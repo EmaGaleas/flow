@@ -67,13 +67,13 @@
                       <Component id="txt_username" alignment="0" min="-2" pref="350" max="-2" attributes="0"/>
                       <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
                           <Group type="102" attributes="0">
-                              <Component id="btn_salir" min="-2" max="-2" attributes="0"/>
+                              <Component id="btn_reg" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="32767" attributes="0"/>
-                              <Component id="btn_salir1" min="-2" max="-2" attributes="0"/>
+                              <Component id="btn_iniciar" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Component id="txt_confirmar_contra" alignment="0" min="-2" pref="350" max="-2" attributes="0"/>
                       </Group>
-                      <Component id="jPasswordField1" alignment="0" min="-2" pref="351" max="-2" attributes="0"/>
+                      <Component id="txt_contra" alignment="0" min="-2" pref="351" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="112" max="-2" attributes="0"/>
               </Group>
@@ -93,15 +93,15 @@
                   <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
                   <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jPasswordField1" min="-2" pref="31" max="-2" attributes="0"/>
+                  <Component id="txt_contra" min="-2" pref="31" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="txt_confirmar_contra" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="btn_salir" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="btn_salir1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="btn_reg" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="btn_iniciar" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="fecha" min="-2" pref="24" max="-2" attributes="0"/>
@@ -172,7 +172,7 @@
             </Property>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="btn_salir">
+        <Component class="javax.swing.JButton" name="btn_reg">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="0" green="0" red="0" type="rgb"/>
@@ -185,11 +185,8 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Regresar"/>
           </Properties>
-          <Events>
-            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btn_salirMouseClicked"/>
-          </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="btn_salir1">
+        <Component class="javax.swing.JButton" name="btn_iniciar">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="0" green="0" red="0" type="rgb"/>
@@ -203,10 +200,10 @@
             <Property name="text" type="java.lang.String" value="Registrar"/>
           </Properties>
           <Events>
-            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btn_salir1MouseClicked"/>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btn_iniciarMouseClicked"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JPasswordField" name="jPasswordField1">
+        <Component class="javax.swing.JPasswordField" name="txt_contra">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Arial" size="20" style="0"/>

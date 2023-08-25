@@ -113,17 +113,21 @@ public class menu_inicio extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btn_registroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_registroMouseClicked
-        
-    }//GEN-LAST:event_btn_registroMouseClicked
-
     private void btn_salirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_salirMouseClicked
         System.exit(0);
     }//GEN-LAST:event_btn_salirMouseClicked
 
     private void btn_logMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_logMouseClicked
-
+        Log_in log=new Log_in();
+        log.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_btn_logMouseClicked
+
+    private void btn_registroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_registroMouseClicked
+        Registro reg=new Registro();
+        reg.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btn_registroMouseClicked
 
     /**
      * @param args the command line arguments

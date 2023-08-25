@@ -3,7 +3,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package sequence;
-
 import javax.swing.ImageIcon;
 
 public class menu_pincipal extends javax.swing.JFrame {

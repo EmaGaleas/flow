@@ -3,6 +3,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package sequence;
+import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 
 
 public class Registro extends javax.swing.JFrame {
@@ -10,6 +12,8 @@ public class Registro extends javax.swing.JFrame {
 
     public Registro() {
         initComponents();
+//        ImageIcon icon = new ImageIcon("src/images/fondos/fondo_registro.png");
+//        f_registro.setIcon(icon);
     }
 
     @SuppressWarnings("unchecked")
@@ -25,9 +29,9 @@ public class Registro extends javax.swing.JFrame {
         fecha = new javax.swing.JLabel();
         txt_username = new javax.swing.JTextField();
         txt_confirmar_contra = new javax.swing.JTextField();
-        btn_salir = new javax.swing.JButton();
-        btn_salir1 = new javax.swing.JButton();
-        jPasswordField1 = new javax.swing.JPasswordField();
+        btn_reg = new javax.swing.JButton();
+        btn_iniciar = new javax.swing.JButton();
+        txt_contra = new javax.swing.JPasswordField();
         f_registro = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -56,27 +60,22 @@ public class Registro extends javax.swing.JFrame {
 
         txt_confirmar_contra.setFont(new java.awt.Font("Arial", 0, 20)); // NOI18N
 
-        btn_salir.setBackground(new java.awt.Color(0, 0, 0));
-        btn_salir.setFont(new java.awt.Font("Arial", 0, 25)); // NOI18N
-        btn_salir.setForeground(new java.awt.Color(255, 255, 255));
-        btn_salir.setText("Regresar");
-        btn_salir.addMouseListener(new java.awt.event.MouseAdapter() {
+        btn_reg.setBackground(new java.awt.Color(0, 0, 0));
+        btn_reg.setFont(new java.awt.Font("Arial", 0, 25)); // NOI18N
+        btn_reg.setForeground(new java.awt.Color(255, 255, 255));
+        btn_reg.setText("Regresar");
+
+        btn_iniciar.setBackground(new java.awt.Color(0, 0, 0));
+        btn_iniciar.setFont(new java.awt.Font("Arial", 0, 25)); // NOI18N
+        btn_iniciar.setForeground(new java.awt.Color(255, 255, 255));
+        btn_iniciar.setText("Registrar");
+        btn_iniciar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btn_salirMouseClicked(evt);
+                btn_iniciarMouseClicked(evt);
             }
         });
 
-        btn_salir1.setBackground(new java.awt.Color(0, 0, 0));
-        btn_salir1.setFont(new java.awt.Font("Arial", 0, 25)); // NOI18N
-        btn_salir1.setForeground(new java.awt.Color(255, 255, 255));
-        btn_salir1.setText("Registrar");
-        btn_salir1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btn_salir1MouseClicked(evt);
-            }
-        });
-
-        jPasswordField1.setFont(new java.awt.Font("Arial", 0, 20)); // NOI18N
+        txt_contra.setFont(new java.awt.Font("Arial", 0, 20)); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -97,11 +96,11 @@ public class Registro extends javax.swing.JFrame {
                     .addComponent(txt_username, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addComponent(btn_salir)
+                            .addComponent(btn_reg)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btn_salir1))
+                            .addComponent(btn_iniciar))
                         .addComponent(txt_confirmar_contra, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 351, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txt_contra, javax.swing.GroupLayout.PREFERRED_SIZE, 351, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(112, 112, 112))
         );
         jPanel1Layout.setVerticalGroup(
@@ -118,15 +117,15 @@ public class Registro extends javax.swing.JFrame {
                 .addGap(7, 7, 7)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txt_contra, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txt_confirmar_contra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(29, 29, 29)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btn_salir)
-                    .addComponent(btn_salir1))
+                    .addComponent(btn_reg)
+                    .addComponent(btn_iniciar))
                 .addGap(18, 18, 18)
                 .addComponent(fecha, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(71, Short.MAX_VALUE))
@@ -153,13 +152,27 @@ public class Registro extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btn_salirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_salirMouseClicked
-        System.exit(0);
-    }//GEN-LAST:event_btn_salirMouseClicked
-
-    private void btn_salir1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_salir1MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btn_salir1MouseClicked
+    private void btn_iniciarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_iniciarMouseClicked
+        String name=txt_nombre.getText().toUpperCase();
+        String contra=txt_contra.getText();
+        String username=txt_username.getText();
+        String confirmarContra=txt_confirmar_contra.getText();
+        if(name.isEmpty() || contra.isEmpty() || username.isEmpty() || confirmarContra.isEmpty()){
+           JOptionPane.showMessageDialog(this, "PORFAVOR\nLlene todos los campos", "REGISTRO DE USUARIO", JOptionPane.WARNING_MESSAGE);    
+        }else if(contra.length()<=4){
+           JOptionPane.showMessageDialog(this, "PORFAVOR\nLa contraseña debe tener 5 o mas caracteres", "REGISTRO DE USUARIO", JOptionPane.WARNING_MESSAGE);    
+        }else{
+            if(contra.equals(confirmarContra)){
+                JOptionPane.showMessageDialog(this, "Cuenta registrada exitosamente", "REGISTRO DE USUARIO", JOptionPane.INFORMATION_MESSAGE);    
+                menu_pincipal m=new menu_pincipal();
+                m.setVisible(true);
+                this.setVisible(false);
+            }else{
+                JOptionPane.showMessageDialog(this, "Las contraseñas NO coinciden", "REGISTRO DE USUARIO", JOptionPane.WARNING_MESSAGE);    
+            }
+                 
+        }
+    }//GEN-LAST:event_btn_iniciarMouseClicked
 
     /**
      * @param args the command line arguments
@@ -197,8 +210,8 @@ public class Registro extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btn_salir;
-    private javax.swing.JButton btn_salir1;
+    private javax.swing.JButton btn_iniciar;
+    private javax.swing.JButton btn_reg;
     private javax.swing.JLabel f_registro;
     private javax.swing.JLabel fecha;
     private javax.swing.JLabel jLabel2;
@@ -206,8 +219,8 @@ public class Registro extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JTextField txt_confirmar_contra;
+    private javax.swing.JPasswordField txt_contra;
     private javax.swing.JTextField txt_nombre;
     private javax.swing.JTextField txt_username;
     // End of variables declaration//GEN-END:variables
