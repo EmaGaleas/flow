@@ -35,10 +35,11 @@ public class logica_tab {
                 final cartas pieza = matrizBotones[i][j]; 
                 JButton button = new JButton(); //CREAR JBUTTON
                 matrizButtonsUI[i][j] = button;
-//                if (pieza!=null && pieza.getFantasma().length() > 0 && pieza.getImagePath() != null && pieza.getImagePath().length() > 0) {
-//                    ImageIcon icon = new ImageIcon(pieza.getImagePath());
-//                    button.setIcon(icon);
-//                }
+//                if (pieza!=null  && pieza.getImagePath() != null && pieza.getImagePath().length() > 0) {
+        ImageIcon icon = new ImageIcon("src/images/corazon/2_corazon.png");
+        button.setIcon(icon);
+
+                
                 button.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {

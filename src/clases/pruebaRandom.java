@@ -16,7 +16,7 @@ import java.util.Scanner;
  */
 public class pruebaRandom {
      public static void main(String[] args) {
-        ArrayList<datos_registro> productos = new ArrayList<>();
+        ArrayList<datos_registro> per = new ArrayList<>();
 //        productos.add(new datos_registro(1, "Juan Perez", 0));
 //        productos.add(new datos_registro(2, "Juan Perez", 0));
 //        productos.add(new datos_registro(3, "Juna Perez", 0));
@@ -33,11 +33,11 @@ public class pruebaRandom {
             System.out.println("el nombre:");
             String nombre=lea.nextLine();
            // lea.nextLine();
-            productos.add(new datos_registro(id,nombre,0));//se va acmabir mas adelante, por medio del id se accedera al user,es decir se añadira el id uno mas la ultima poscion del tamaño y se trasladara ese dato por el juego
+            per.add(new datos_registro(id,nombre,0));//se va acmabir mas adelante, por medio del id se accedera al user,es decir se añadira el id uno mas la ultima poscion del tamaño y se trasladara ese dato por el juego
         }
         try (RandomAccessFile raf=new RandomAccessFile("registro.bin", "rw")) {
             raf.seek(raf.length());
-            for (datos_registro p : productos) {
+            for (datos_registro p : per) {
                 raf.writeInt(p.getId());
                 StringBuffer sb = new StringBuffer(p.getNombre());
                 sb.setLength(10);
