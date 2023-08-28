@@ -64,3 +64,10 @@ public class pruebaRandom {
         }
     }
 }
+/*
+rafObj.getfilepoinet
+rafobj.lenght
+rafobj.seek
+rafObj.skipbytes
+r4eadUTF para string
+*/

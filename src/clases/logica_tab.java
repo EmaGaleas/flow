@@ -46,7 +46,7 @@ public class logica_tab {
                     }
                 });
                 tab.add(button);
-                button.setBackground(Color.lightGray);
+                button.setBackground(Color.black);
             }
         }
     }
