@@ -36,7 +36,7 @@ public class logica_tab {
                 JButton button = new JButton(); //CREAR JBUTTON
                 matrizButtonsUI[i][j] = button;
 //                if (pieza!=null  && pieza.getImagePath() != null && pieza.getImagePath().length() > 0) {
-        ImageIcon icon = new ImageIcon("src/images/corazon/2_corazon.png");
+        ImageIcon icon = new ImageIcon("src/images/corazon/as_corazon.png");
         button.setIcon(icon);
 
                 
