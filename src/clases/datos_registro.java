@@ -4,10 +4,6 @@
  */
 package clases;
 
-/**
- *
- * @author pcast
- */
 public class datos_registro {
     private int id;
     private String nombre;
@@ -42,7 +38,5 @@ public class datos_registro {
     public void setPuntos(int puntos) {
         this.puntos= puntos;
     }
-
-
 
 }

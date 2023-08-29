@@ -15,13 +15,18 @@ public class cartas extends JButton{
     private int fila;
     private int columna;
 
-    public cartas(String tipo, int valor, String imagePath, String posesion, int fila, int columna) {
+    public cartas(String tipo, int valor, String posesion, int fila, int columna) {
         this.tipo = tipo;
         this.valor = valor;
         this.imagePath = imagePath;
         this.posesion = posesion;
         this.fila = fila;
-        this.columna = columna;
+        this.columna = columna;      
+//        if (tipo.equals("ESQUINA") && valor==-1) {
+//            this.imagePath = "src/images/esquina.png";
+//        }else{
+//            this.imagePath = "src/images/trasera.png";
+//        }
     }
 
     public String getTipo() {
