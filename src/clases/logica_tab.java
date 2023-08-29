@@ -12,6 +12,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 
@@ -32,22 +33,32 @@ public class logica_tab {
         matrizBotones = new cartas[filas][col];
         for (int i = 0; i < filas; i++) {
             for (int j = 0; j < col; j++) {
-                final cartas pieza = matrizBotones[i][j]; 
+                final cartas carta = matrizBotones[i][j]; 
                 JButton button = new JButton(); //CREAR JBUTTON
                 matrizButtonsUI[i][j] = button;
-//                if (pieza!=null  && pieza.getImagePath() != null && pieza.getImagePath().length() > 0) {
-        ImageIcon icon = new ImageIcon("src/images/corazon/as_corazon.png");
-        button.setIcon(icon);
+//              if (pieza!=null  && pieza.getImagePath() != null && pieza.getImagePath().length() > 0) {
+                    ImageIcon icon = new ImageIcon("src/images/corazon/as_corazon.png");
+                    button.setIcon(icon);
 
-                
+                tab.add(button);
                 button.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
+                        mostrarInformacionPieza(carta);
                     }
                 });
-                tab.add(button);
                 button.setBackground(Color.black);
             }
+        }
+    }
+    
+    private void mostrarInformacionPieza(cartas carta) {
+        if (carta!=null) {
+            String info="Tipo: "+carta.getTipo()+"\nValor: "+carta.getValor()+"\nPosesion: "+carta.getPosesion()+"\nFila:"+carta.getFila()+"\nColumna: "+carta.getColumna();
+                JOptionPane.showMessageDialog(null, info, "Informacion de Carta", JOptionPane.INFORMATION_MESSAGE);
+        }else{
+            JOptionPane.showMessageDialog(null, "VALOR AUN NO ASIGNADO", "Informacion de Carta", JOptionPane.INFORMATION_MESSAGE);
+
         }
     }
 }

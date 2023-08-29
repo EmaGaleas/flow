@@ -4,6 +4,7 @@
  */
 package sequence;
 import javax.swing.ImageIcon;
+import javax.swing.JFrame;
 
 public class menu_inicio extends javax.swing.JFrame {
 
