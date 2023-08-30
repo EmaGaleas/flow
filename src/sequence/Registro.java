@@ -12,8 +12,8 @@ public class Registro extends javax.swing.JFrame {
 
     public Registro() {
         initComponents();
-//        ImageIcon icon = new ImageIcon("src/images/fondos/fondo_registro.png");
-//        f_registro.setIcon(icon);
+        ImageIcon icon = new ImageIcon("src/images/fondos/fondo_registrous.png");
+        f_registro.setIcon(icon);
     }
 
     @SuppressWarnings("unchecked")

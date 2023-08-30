@@ -5,19 +5,22 @@
 package clases;
 
 import clases.cartas;
-import java.awt.Color;
+import java.awt.*;
 import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.awt.List;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JLabel;
+import javax.swing.*;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.SwingUtilities;
 
 
 public class logica_tab {
@@ -56,6 +59,8 @@ public class logica_tab {
                     @Override
                     public void actionPerformed(ActionEvent e) {
                         mostrarInformacionPieza(carta);
+                        ImageIcon prueba=new ImageIcon("src/images/ficha_prueba.png");
+                        button.setIcon(prueba);
                     }
                 });
               //button.setBackground(Color.black);
@@ -69,7 +74,29 @@ public class logica_tab {
                 JOptionPane.showMessageDialog(null, info, "Informacion de Carta", JOptionPane.INFORMATION_MESSAGE);
         }else{
             JOptionPane.showMessageDialog(null, "VALOR AUN NO ASIGNADO", "Informacion de Carta", JOptionPane.INFORMATION_MESSAGE);
+            SwingUtilities.invokeLater(() -> {
+                ArrayList<ImageIcon> imageIcons = new ArrayList<>();
+                imageIcons.add(new ImageIcon("src/images/trasera.png"));
+                imageIcons.add(new ImageIcon("src/images/trasera.png"));
+                imageIcons.add(new ImageIcon("src/images/trasera.png"));
+                imageIcons.add(new ImageIcon("src/images/trasera.png"));
+                imageIcons.add(new ImageIcon("src/images/trasera.png"));
 
+                JPanel panel = new JPanel(new GridLayout(0, 1));
+                for (ImageIcon i : imageIcons) {
+                    JLabel label = new JLabel(i);
+                    label.setPreferredSize(new Dimension(i.getIconWidth(), i.getIconHeight()));
+                    panel.add(label);
+                }
+
+                JScrollPane scrollPane = new JScrollPane(panel);
+                JOptionPane.showMessageDialog(
+                        null,
+                        scrollPane,
+                        "PRUEBITA",
+                        JOptionPane.PLAIN_MESSAGE
+                );
+            });
         }
     }
     private void posicionarTablero(){
