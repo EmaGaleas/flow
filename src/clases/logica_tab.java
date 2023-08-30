@@ -74,6 +74,7 @@ public class logica_tab {
                 JOptionPane.showMessageDialog(null, info, "Informacion de Carta", JOptionPane.INFORMATION_MESSAGE);
         }else{
             JOptionPane.showMessageDialog(null, "VALOR AUN NO ASIGNADO", "Informacion de Carta", JOptionPane.INFORMATION_MESSAGE);
+            //probar como cuando da eliminar,añadir---poner un boton con icon para seleccionar esa :)
             SwingUtilities.invokeLater(() -> {
                 ArrayList<ImageIcon> imageIcons = new ArrayList<>();
                 imageIcons.add(new ImageIcon("src/images/trasera.png"));
@@ -89,23 +90,38 @@ public class logica_tab {
                     panel.add(label);
                 }
 
-                JScrollPane scrollPane = new JScrollPane(panel);
-                JOptionPane.showMessageDialog(
-                        null,
-                        scrollPane,
-                        "PRUEBITA",
-                        JOptionPane.PLAIN_MESSAGE
-                );
+//                JScrollPane scrollPane = new JScrollPane(panel);
+//                JOptionPane.showMessageDialog(
+//                        null,
+//                        scrollPane,
+//                        "PRUEBITA",
+//                        JOptionPane.PLAIN_MESSAGE
+//                );
             });
         }
     }
     private void posicionarTablero(){
         //esquinas 
-        matrizBotones[0][0]=new cartas("ESQUINA", 0, "NO APLICA",0,0);
-        matrizBotones[0][9]=new cartas("ESQUINA", 0, "NO APLICA",0,9);
-        matrizBotones[9][0]=new cartas("ESQUINA", 0, "NO APLICA",9,0);
-        matrizBotones[9][9]=new cartas("ESQUINA", 0, "NO APLICA",9,9);
- 
+        String posesionInicialE="NO APLICA";
+        matrizBotones[0][0]=new cartas("ESQUINA", 0, posesionInicialE,0,0);
+        matrizBotones[0][9]=new cartas("ESQUINA", 0, posesionInicialE,0,9);
+        matrizBotones[9][0]=new cartas("ESQUINA", 0, posesionInicialE,9,0);
+        matrizBotones[9][9]=new cartas("ESQUINA", 0, posesionInicialE,9,9);
+        //columan 0
+        int valorPicaColumna0=9;//columna 0 fila del 1 al 8
+        String posesionInicial="NADIE";
+        for (int f = 1; f < 9; f++) {
+            matrizBotones[f][0]=new cartas("PICA", valorPicaColumna0, posesionInicial,f,0);
+            valorPicaColumna0--;//llega hasta 2
+        }
+        //columna 9
+        int valorDiamanteColumna9=6;//columna 9 fila del 1 al 7
+        for (int f = 1; f < 8; f++) {
+            matrizBotones[f][9]=new cartas("DIAMANTE", valorDiamanteColumna9, posesionInicial,f,9);
+            valorDiamanteColumna9++;//llega hasta 2
+        }
+        matrizBotones[8][9]=new cartas("DIAMANTE", 1, posesionInicial,8,9);
+        
     }
     //FUNCION RETORNA EL VALOR PARA BUSCAR ESA CARTA 
 }
