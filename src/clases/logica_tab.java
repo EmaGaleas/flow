@@ -29,28 +29,28 @@ public class logica_tab {
 
     } 
     public void GridLayout(JPanel tab) {
-        int filas = 10;
-        int col = 10;
-        GridLayout gridLayout = new GridLayout(filas, col);
+        int filas=10;
+        int col=10;
+        GridLayout gridLayout=new GridLayout(filas, col);
         tab.setLayout(gridLayout);
-        matrizBotones = new cartas[filas][col];
+        matrizBotones=new cartas[filas][col];
         posicionarTablero();
         tab.setOpaque(false);
         
         for (int i = 0; i < filas; i++) {
             for (int j = 0; j < col; j++) {
-                final cartas carta = matrizBotones[i][j]; 
-                JButton button = new JButton(); //CREAR JBUTTON
-                matrizButtonsUI[i][j] = button;
+                final cartas carta=matrizBotones[i][j]; 
+                JButton button=new JButton(); //CREAR JBUTTON
+                matrizButtonsUI[i][j]=button;
                 tab.add(button);
                 
-                int ancho=(int)(1.4 * 40);
-                int largo=(int)(1.4 * 40);
+                int ancho=(int)(1.4*40);
+                int largo=(int)(1.4*40);
                 
                 button.setPreferredSize(new Dimension(ancho, largo));
                 button.setOpaque(false);
                 button.setContentAreaFilled(false);
-             //   button.setBorder(BorderFactory.createLineBorder(Color.black));
+              //button.setBorder(BorderFactory.createLineBorder(Color.black));
      
                 button.addActionListener(new ActionListener() {
                     @Override
@@ -58,7 +58,7 @@ public class logica_tab {
                         mostrarInformacionPieza(carta);
                     }
                 });
-              //  button.setBackground(Color.black);
+              //button.setBackground(Color.black);
             }
         }
     }

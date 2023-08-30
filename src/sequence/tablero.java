@@ -15,12 +15,13 @@ public class tablero extends javax.swing.JFrame {
 
     public tablero() {
         initComponents();
+        
         logica_tab lt=new logica_tab();
-        ImageIcon originalIcon=new ImageIcon("src/images/fondos/fondo_tablero.png");
-        Image originalImage=originalIcon.getImage();
-        Image scaledImage=originalImage.getScaledInstance(fondo_tab.getWidth(), fondo_tab.getHeight(), Image.SCALE_SMOOTH);
-        ImageIcon scaledIcon=new ImageIcon(scaledImage);        
-        fondo_tab.setIcon(scaledIcon);
+        ImageIcon ig=new ImageIcon("src/images/fondos/fondo_tablero.png");
+        Image original=ig.getImage();
+        Image scaledImage=original.getScaledInstance(fondo_tab.getWidth(), fondo_tab.getHeight(), Image.SCALE_SMOOTH);
+        ImageIcon escala=new ImageIcon(scaledImage);        
+        fondo_tab.setIcon(escala);
         
         lt.GridLayout(tab);
     }
