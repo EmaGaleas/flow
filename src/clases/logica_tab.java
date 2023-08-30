@@ -26,10 +26,11 @@ import javax.swing.SwingUtilities;
 public class logica_tab {
     public JButton[][] matrizButtonsUI;//ACCEDE A LOS BOTONES
     public cartas[][] matrizBotones; //de JButton a Pieza por valores
+    private call_png_baraja baraja; 
 
     public logica_tab() {
         matrizButtonsUI = new JButton[10][10]; 
-
+        baraja = new call_png_baraja(); 
     } 
     public void GridLayout(JPanel tab) {
         int filas=10;
@@ -60,7 +61,7 @@ public class logica_tab {
                     public void actionPerformed(ActionEvent e) {
                         mostrarInformacionPieza(carta);
                         ImageIcon prueba=new ImageIcon("src/images/ficha_prueba.png");
-                        button.setIcon(prueba);
+                        button.setIcon(call_png_baraja.imagenFichaPrueba());
                     }
                 });
               //button.setBackground(Color.black);
@@ -76,12 +77,11 @@ public class logica_tab {
             JOptionPane.showMessageDialog(null, "VALOR AUN NO ASIGNADO", "Informacion de Carta", JOptionPane.INFORMATION_MESSAGE);
             //probar como cuando da eliminar,añadir---poner un boton con icon para seleccionar esa :)
             SwingUtilities.invokeLater(() -> {
+                // Dentro del método mostrarInformacionPieza
+
                 ArrayList<ImageIcon> imageIcons = new ArrayList<>();
-                imageIcons.add(new ImageIcon("src/images/trasera.png"));
-                imageIcons.add(new ImageIcon("src/images/trasera.png"));
-                imageIcons.add(new ImageIcon("src/images/trasera.png"));
-                imageIcons.add(new ImageIcon("src/images/trasera.png"));
-                imageIcons.add(new ImageIcon("src/images/trasera.png"));
+                imageIcons.add(call_png_baraja.imagenTrasera());
+            imageIcons.add(call_png_baraja.imagenTrasera());
 
                 JPanel panel = new JPanel(new GridLayout(0, 1));
                 for (ImageIcon i : imageIcons) {
@@ -89,17 +89,19 @@ public class logica_tab {
                     label.setPreferredSize(new Dimension(i.getIconWidth(), i.getIconHeight()));
                     panel.add(label);
                 }
+                
 
-//                JScrollPane scrollPane = new JScrollPane(panel);
-//                JOptionPane.showMessageDialog(
-//                        null,
-//                        scrollPane,
-//                        "PRUEBITA",
-//                        JOptionPane.PLAIN_MESSAGE
-//                );
+                JScrollPane scrollPane = new JScrollPane(panel);
+                JOptionPane.showMessageDialog(
+                        null,
+                        scrollPane,
+                        "PRUEBITA",
+                        JOptionPane.PLAIN_MESSAGE
+                );
             });
         }
     }
+
     private void posicionarTablero(){
         //esquinas 
         String posesionInicialE="NO APLICA";

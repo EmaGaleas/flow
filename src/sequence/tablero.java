@@ -4,6 +4,7 @@
  */
 package sequence;
 
+import clases.call_png_baraja;
 import clases.logica_tab;
 import java.awt.Image;
 import javax.swing.ImageIcon;
@@ -28,15 +29,14 @@ public class tablero extends javax.swing.JFrame {
         fondo_tab.setIcon(escala);
     }
     private void ponerIconbtnCartas(){
-        ImageIcon igbtn=new ImageIcon("src/images/trasera.png");
-        btn_verJ1.setIcon(igbtn);
-        btn_verJ2.setIcon(igbtn);
-        btn_verJ3.setIcon(igbtn);
-        btn_verJ4.setIcon(igbtn);
-        btn_verJ5.setIcon(igbtn);
-        btn_verJ6.setIcon(igbtn);
-        btn_verJ7.setIcon(igbtn);
-        btn_verJ8.setIcon(igbtn);
+        btn_verJ1.setIcon(call_png_baraja.imagenTrasera());
+        btn_verJ2.setIcon(call_png_baraja.imagenTrasera());
+        btn_verJ3.setIcon(call_png_baraja.imagenTrasera());
+        btn_verJ4.setIcon(call_png_baraja.imagenTrasera());
+        btn_verJ5.setIcon(call_png_baraja.imagenTrasera());
+        btn_verJ6.setIcon(call_png_baraja.imagenTrasera());
+        btn_verJ7.setIcon(call_png_baraja.imagenTrasera());
+        btn_verJ8.setIcon(call_png_baraja.imagenTrasera());
         //panelJ8.setVisible(false);
     }
 
