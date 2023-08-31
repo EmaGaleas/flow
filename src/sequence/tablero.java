@@ -30,14 +30,18 @@ public class tablero extends javax.swing.JFrame {
     }
     private void ponerIconbtnCartas(){
         btn_verJ1.setIcon(call_png_baraja.imagenTrasera());
-        btn_verJ2.setIcon(call_png_baraja.imagenTrasera());
         btn_verJ3.setIcon(call_png_baraja.imagenTrasera());
-        btn_verJ4.setIcon(call_png_baraja.imagenTrasera());
         btn_verJ5.setIcon(call_png_baraja.imagenTrasera());
-        btn_verJ6.setIcon(call_png_baraja.imagenTrasera());
         btn_verJ7.setIcon(call_png_baraja.imagenTrasera());
+        btn_verJ2.setIcon(call_png_baraja.imagenTrasera());
+        btn_verJ4.setIcon(call_png_baraja.imagenTrasera());
+        btn_verJ6.setIcon(call_png_baraja.imagenTrasera());
         btn_verJ8.setIcon(call_png_baraja.imagenTrasera());
-        //panelJ8.setVisible(false);
+    //varia segun jugadores, hacer logica en tab    
+//       panelJ8.setVisible(false);
+//       panelJ6.setVisible(false);
+//        panelJ5.setVisible(false);
+//       panelJ7.setVisible(false);
     }
 
     @SuppressWarnings("unchecked")
@@ -57,31 +61,31 @@ public class tablero extends javax.swing.JFrame {
         nombre_J1 = new javax.swing.JLabel();
         equipo_J1 = new javax.swing.JLabel();
         btn_verJ1 = new javax.swing.JButton();
-        panelJ2 = new javax.swing.JPanel();
-        nombre_J2 = new javax.swing.JLabel();
-        equipo_J2 = new javax.swing.JLabel();
-        btn_verJ2 = new javax.swing.JButton();
         panelJ3 = new javax.swing.JPanel();
         nombre_J3 = new javax.swing.JLabel();
         equipo_J3 = new javax.swing.JLabel();
         btn_verJ3 = new javax.swing.JButton();
-        panelJ4 = new javax.swing.JPanel();
-        nombre_J4 = new javax.swing.JLabel();
-        equipo_J4 = new javax.swing.JLabel();
-        btn_verJ4 = new javax.swing.JButton();
-        panelJ_4al8 = new javax.swing.JPanel();
         panelJ5 = new javax.swing.JPanel();
         nombre_J5 = new javax.swing.JLabel();
         equipo_J5 = new javax.swing.JLabel();
         btn_verJ5 = new javax.swing.JButton();
-        panelJ6 = new javax.swing.JPanel();
-        nombre_J6 = new javax.swing.JLabel();
-        equipo_J6 = new javax.swing.JLabel();
-        btn_verJ6 = new javax.swing.JButton();
         panelJ7 = new javax.swing.JPanel();
         nombre_J7 = new javax.swing.JLabel();
         equipo_J7 = new javax.swing.JLabel();
         btn_verJ7 = new javax.swing.JButton();
+        panelJ_4al8 = new javax.swing.JPanel();
+        panelJ2 = new javax.swing.JPanel();
+        nombre_J2 = new javax.swing.JLabel();
+        equipo_J2 = new javax.swing.JLabel();
+        btn_verJ2 = new javax.swing.JButton();
+        panelJ4 = new javax.swing.JPanel();
+        nombre_J4 = new javax.swing.JLabel();
+        equipo_J4 = new javax.swing.JLabel();
+        btn_verJ4 = new javax.swing.JButton();
+        panelJ6 = new javax.swing.JPanel();
+        nombre_J6 = new javax.swing.JLabel();
+        equipo_J6 = new javax.swing.JLabel();
+        btn_verJ6 = new javax.swing.JButton();
         panelJ8 = new javax.swing.JPanel();
         nombre_J8 = new javax.swing.JLabel();
         equipo_J8 = new javax.swing.JLabel();
@@ -209,46 +213,6 @@ public class tablero extends javax.swing.JFrame {
                 .addContainerGap(16, Short.MAX_VALUE))
         );
 
-        panelJ2.setBackground(new java.awt.Color(51, 0, 51));
-
-        nombre_J2.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
-        nombre_J2.setForeground(new java.awt.Color(255, 255, 255));
-        nombre_J2.setText("Jugador:");
-
-        equipo_J2.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
-        equipo_J2.setForeground(new java.awt.Color(255, 255, 255));
-        equipo_J2.setText("Equipo:");
-
-        btn_verJ2.setBackground(new java.awt.Color(255, 232, 255));
-        btn_verJ2.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        btn_verJ2.setText("Ver mis cartas");
-
-        javax.swing.GroupLayout panelJ2Layout = new javax.swing.GroupLayout(panelJ2);
-        panelJ2.setLayout(panelJ2Layout);
-        panelJ2Layout.setHorizontalGroup(
-            panelJ2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelJ2Layout.createSequentialGroup()
-                .addGroup(panelJ2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(equipo_J2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(nombre_J2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
-            .addGroup(panelJ2Layout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addComponent(btn_verJ2, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(31, Short.MAX_VALUE))
-        );
-        panelJ2Layout.setVerticalGroup(
-            panelJ2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelJ2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(nombre_J2, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(equipo_J2, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btn_verJ2, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(16, Short.MAX_VALUE))
-        );
-
         panelJ3.setBackground(new java.awt.Color(51, 0, 51));
 
         nombre_J3.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
@@ -289,74 +253,6 @@ public class tablero extends javax.swing.JFrame {
                 .addContainerGap(16, Short.MAX_VALUE))
         );
 
-        panelJ4.setBackground(new java.awt.Color(51, 0, 51));
-
-        nombre_J4.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
-        nombre_J4.setForeground(new java.awt.Color(255, 255, 255));
-        nombre_J4.setText("Jugador:");
-
-        equipo_J4.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
-        equipo_J4.setForeground(new java.awt.Color(255, 255, 255));
-        equipo_J4.setText("Equipo:");
-
-        btn_verJ4.setBackground(new java.awt.Color(255, 232, 255));
-        btn_verJ4.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        btn_verJ4.setText("Ver mis cartas");
-
-        javax.swing.GroupLayout panelJ4Layout = new javax.swing.GroupLayout(panelJ4);
-        panelJ4.setLayout(panelJ4Layout);
-        panelJ4Layout.setHorizontalGroup(
-            panelJ4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelJ4Layout.createSequentialGroup()
-                .addGroup(panelJ4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(equipo_J4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(nombre_J4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
-            .addGroup(panelJ4Layout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addComponent(btn_verJ4, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(31, Short.MAX_VALUE))
-        );
-        panelJ4Layout.setVerticalGroup(
-            panelJ4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelJ4Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(nombre_J4, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(equipo_J4, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btn_verJ4, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(16, Short.MAX_VALUE))
-        );
-
-        javax.swing.GroupLayout panelJ_1al4Layout = new javax.swing.GroupLayout(panelJ_1al4);
-        panelJ_1al4.setLayout(panelJ_1al4Layout);
-        panelJ_1al4Layout.setHorizontalGroup(
-            panelJ_1al4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelJ_1al4Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(panelJ_1al4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(panelJ1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(panelJ2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(panelJ3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(panelJ4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
-        );
-        panelJ_1al4Layout.setVerticalGroup(
-            panelJ_1al4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelJ_1al4Layout.createSequentialGroup()
-                .addComponent(panelJ1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(panelJ2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(panelJ3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(12, 12, 12)
-                .addComponent(panelJ4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(15, 15, 15))
-        );
-
-        panelJ_4al8.setBackground(new java.awt.Color(51, 0, 51));
-
         panelJ5.setBackground(new java.awt.Color(51, 0, 51));
 
         nombre_J5.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
@@ -383,7 +279,7 @@ public class tablero extends javax.swing.JFrame {
             .addGroup(panelJ5Layout.createSequentialGroup()
                 .addGap(25, 25, 25)
                 .addComponent(btn_verJ5, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addContainerGap(31, Short.MAX_VALUE))
         );
         panelJ5Layout.setVerticalGroup(
             panelJ5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -394,6 +290,154 @@ public class tablero extends javax.swing.JFrame {
                 .addComponent(equipo_J5, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btn_verJ5, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(16, Short.MAX_VALUE))
+        );
+
+        panelJ7.setBackground(new java.awt.Color(51, 0, 51));
+
+        nombre_J7.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
+        nombre_J7.setForeground(new java.awt.Color(255, 255, 255));
+        nombre_J7.setText("Jugador:");
+
+        equipo_J7.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
+        equipo_J7.setForeground(new java.awt.Color(255, 255, 255));
+        equipo_J7.setText("Equipo:");
+
+        btn_verJ7.setBackground(new java.awt.Color(255, 232, 255));
+        btn_verJ7.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        btn_verJ7.setText("Ver mis cartas");
+
+        javax.swing.GroupLayout panelJ7Layout = new javax.swing.GroupLayout(panelJ7);
+        panelJ7.setLayout(panelJ7Layout);
+        panelJ7Layout.setHorizontalGroup(
+            panelJ7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelJ7Layout.createSequentialGroup()
+                .addGroup(panelJ7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(equipo_J7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(nombre_J7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+            .addGroup(panelJ7Layout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addComponent(btn_verJ7, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(31, Short.MAX_VALUE))
+        );
+        panelJ7Layout.setVerticalGroup(
+            panelJ7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelJ7Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(nombre_J7, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(equipo_J7, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btn_verJ7, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(16, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout panelJ_1al4Layout = new javax.swing.GroupLayout(panelJ_1al4);
+        panelJ_1al4.setLayout(panelJ_1al4Layout);
+        panelJ_1al4Layout.setHorizontalGroup(
+            panelJ_1al4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelJ_1al4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(panelJ_1al4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(panelJ1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(panelJ3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(panelJ5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(panelJ7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        panelJ_1al4Layout.setVerticalGroup(
+            panelJ_1al4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelJ_1al4Layout.createSequentialGroup()
+                .addComponent(panelJ1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(panelJ3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(panelJ5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(12, 12, 12)
+                .addComponent(panelJ7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(15, 15, 15))
+        );
+
+        panelJ_4al8.setBackground(new java.awt.Color(51, 0, 51));
+
+        panelJ2.setBackground(new java.awt.Color(51, 0, 51));
+
+        nombre_J2.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
+        nombre_J2.setForeground(new java.awt.Color(255, 255, 255));
+        nombre_J2.setText("Jugador:");
+
+        equipo_J2.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
+        equipo_J2.setForeground(new java.awt.Color(255, 255, 255));
+        equipo_J2.setText("Equipo:");
+
+        btn_verJ2.setBackground(new java.awt.Color(255, 232, 255));
+        btn_verJ2.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        btn_verJ2.setText("Ver mis cartas");
+
+        javax.swing.GroupLayout panelJ2Layout = new javax.swing.GroupLayout(panelJ2);
+        panelJ2.setLayout(panelJ2Layout);
+        panelJ2Layout.setHorizontalGroup(
+            panelJ2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelJ2Layout.createSequentialGroup()
+                .addGroup(panelJ2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(equipo_J2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(nombre_J2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+            .addGroup(panelJ2Layout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addComponent(btn_verJ2, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(30, Short.MAX_VALUE))
+        );
+        panelJ2Layout.setVerticalGroup(
+            panelJ2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelJ2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(nombre_J2, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(equipo_J2, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btn_verJ2, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(16, Short.MAX_VALUE))
+        );
+
+        panelJ4.setBackground(new java.awt.Color(51, 0, 51));
+
+        nombre_J4.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
+        nombre_J4.setForeground(new java.awt.Color(255, 255, 255));
+        nombre_J4.setText("Jugador:");
+
+        equipo_J4.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
+        equipo_J4.setForeground(new java.awt.Color(255, 255, 255));
+        equipo_J4.setText("Equipo:");
+
+        btn_verJ4.setBackground(new java.awt.Color(255, 232, 255));
+        btn_verJ4.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        btn_verJ4.setText("Ver mis cartas");
+
+        javax.swing.GroupLayout panelJ4Layout = new javax.swing.GroupLayout(panelJ4);
+        panelJ4.setLayout(panelJ4Layout);
+        panelJ4Layout.setHorizontalGroup(
+            panelJ4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelJ4Layout.createSequentialGroup()
+                .addGroup(panelJ4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(equipo_J4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(nombre_J4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+            .addGroup(panelJ4Layout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addComponent(btn_verJ4, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(30, Short.MAX_VALUE))
+        );
+        panelJ4Layout.setVerticalGroup(
+            panelJ4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelJ4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(nombre_J4, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(equipo_J4, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btn_verJ4, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(16, Short.MAX_VALUE))
         );
 
@@ -434,46 +478,6 @@ public class tablero extends javax.swing.JFrame {
                 .addComponent(equipo_J6, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btn_verJ6, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(16, Short.MAX_VALUE))
-        );
-
-        panelJ7.setBackground(new java.awt.Color(51, 0, 51));
-
-        nombre_J7.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
-        nombre_J7.setForeground(new java.awt.Color(255, 255, 255));
-        nombre_J7.setText("Jugador:");
-
-        equipo_J7.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
-        equipo_J7.setForeground(new java.awt.Color(255, 255, 255));
-        equipo_J7.setText("Equipo:");
-
-        btn_verJ7.setBackground(new java.awt.Color(255, 232, 255));
-        btn_verJ7.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        btn_verJ7.setText("Ver mis cartas");
-
-        javax.swing.GroupLayout panelJ7Layout = new javax.swing.GroupLayout(panelJ7);
-        panelJ7.setLayout(panelJ7Layout);
-        panelJ7Layout.setHorizontalGroup(
-            panelJ7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelJ7Layout.createSequentialGroup()
-                .addGroup(panelJ7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(equipo_J7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(nombre_J7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
-            .addGroup(panelJ7Layout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addComponent(btn_verJ7, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(30, Short.MAX_VALUE))
-        );
-        panelJ7Layout.setVerticalGroup(
-            panelJ7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelJ7Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(nombre_J7, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(equipo_J7, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btn_verJ7, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(28, Short.MAX_VALUE))
         );
 
@@ -524,9 +528,9 @@ public class tablero extends javax.swing.JFrame {
             .addGroup(panelJ_4al8Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(panelJ_4al8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(panelJ5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(panelJ6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(panelJ7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(panelJ2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(panelJ4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(panelJ6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(panelJ8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -534,11 +538,11 @@ public class tablero extends javax.swing.JFrame {
             panelJ_4al8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelJ_4al8Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(panelJ5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(panelJ2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(panelJ4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(panelJ6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(panelJ7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(panelJ8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())

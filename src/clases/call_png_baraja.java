@@ -22,12 +22,7 @@ public class call_png_baraja {
     }
     
 //codigo fichas
-    public static ImageIcon imagenFichaPrueba() {
-        ImageIcon icono=new ImageIcon("src/images/ficha_prueba.png");
-        return icono;
-    }
-/*
-    public static ImageIcon imagenFichaA() {
+    public static ImageIcon imagenFichaAz() {
         ImageIcon icono=new ImageIcon("src/images/ficha_azul.png");
         return icono;
     }
@@ -37,7 +32,7 @@ public class call_png_baraja {
         return icono;
     }
     
-    public static ImageIcon imagenFichaA() {
+    public static ImageIcon imagenFichaAm() {
         ImageIcon icono=new ImageIcon("src/images/ficha_amarilla.png");
         return icono;
     }
@@ -46,8 +41,7 @@ public class call_png_baraja {
         ImageIcon icono=new ImageIcon("src/images/ficha_verde.png");
         return icono;
     }
-    */
-   
+     
     
 //codigo para pica
     public static ImageIcon imagenPica1() {
@@ -99,7 +93,7 @@ public class call_png_baraja {
         return icono;
     }
     public static ImageIcon imagenPica13() {
-        ImageIcon icono=new ImageIcon("src/images/pica/j_pica.png");
+        ImageIcon icono=new ImageIcon("src/images/pica/j_pica13.png");
         return icono;
     }
         
@@ -154,7 +148,7 @@ public class call_png_baraja {
         return icono;
     }
     public static ImageIcon imagenCorazon13() {
-        ImageIcon icono=new ImageIcon("src/images/corazon/j_corazon.png");
+        ImageIcon icono=new ImageIcon("src/images/corazon/j_corazon13.png");
         return icono;
     }
         
@@ -208,8 +202,8 @@ public class call_png_baraja {
         ImageIcon icono=new ImageIcon("src/images/diamante/k_diamante.png");
         return icono;
     }
-    public static ImageIcon imagenDiamante13() {
-        ImageIcon icono=new ImageIcon("src/images/diamante/j_diamante.png");
+    public static ImageIcon imagenDiamante14() {
+        ImageIcon icono=new ImageIcon("src/images/diamante/j_diamante14.png");
         return icono;
     }
     
@@ -263,8 +257,8 @@ public class call_png_baraja {
         ImageIcon icono=new ImageIcon("src/images/trebol/k_trebol.png");
         return icono;
     }
-    public static ImageIcon imagenTrebol13() {
-        ImageIcon icono=new ImageIcon("src/images/trebol/j_trebol.png");
+    public static ImageIcon imagenTrebol14() {
+        ImageIcon icono=new ImageIcon("src/images/trebol/j_trebol14.png");
         return icono;
     }
 }

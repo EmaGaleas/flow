@@ -8,8 +8,8 @@ import javax.swing.JButton;
 
 
 public class cartas extends JButton{
-    private String tipo;//corazon,trebol,pica,diamante...se podra por numero?
-    private int valor;//del 1 al 13-- 13 es j
+    private String tipo;//corazon,trebol,pica,diamante
+    private int valor;//del 1 al 13-- 13 es j con un ojo, 14 es j con 2 ojos
     private String imagePath;//direccion imagen
     private String posesion;//quien la tiene o si hay ficha sobre ella
     private int fila;
