@@ -3,13 +3,16 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package sequence;
+import clases.registro;
 import java.awt.Image;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 
 public class Registro extends javax.swing.JFrame {
-
 
     public Registro() {
         initComponents();
@@ -169,10 +172,20 @@ public class Registro extends javax.swing.JFrame {
            JOptionPane.showMessageDialog(this, "PORFAVOR\nIngrese nombre valido", "REGISTRO DE USUARIO", JOptionPane.WARNING_MESSAGE);    
         }else{
             if(contra.equals(confirmarContra)){
-                JOptionPane.showMessageDialog(this, "Cuenta registrada exitosamente", "REGISTRO DE USUARIO", JOptionPane.INFORMATION_MESSAGE);    
-                menu_pincipal m=new menu_pincipal();
-                m.setVisible(true);
-                this.setVisible(false);
+                try {
+                    registro reg= new registro();
+                    if(!reg.usuarioExiste(username)){
+                        reg.agregarUsuario(name, username, contra);
+                        menu_pincipal m=new menu_pincipal();
+                        m.setVisible(true);
+                        this.setVisible(false);
+                    }
+
+                } catch (IOException ex) {
+                JOptionPane.showMessageDialog(this, "ERROR INESPERADO EN ARCHIVOS", "REGISTRO DE USUARIO", JOptionPane.WARNING_MESSAGE);                        
+
+                }
+                
             }else{
                 JOptionPane.showMessageDialog(this, "Las contraseñas NO coinciden", "REGISTRO DE USUARIO", JOptionPane.WARNING_MESSAGE);    
             }

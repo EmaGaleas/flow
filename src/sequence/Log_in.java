@@ -3,6 +3,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package sequence;
+import clases.registro;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import sequence.*;
@@ -141,10 +145,18 @@ public class Log_in extends javax.swing.JFrame {
         if(name.isEmpty() || contra.isEmpty()){
            JOptionPane.showMessageDialog(this, "PORFAVOR\nLlene todos los campos", "INICIO DE SESION", JOptionPane.WARNING_MESSAGE);    
         }else{
-            JOptionPane.showMessageDialog(this, "Bienvenido de vuelta", "INICIO DE SESION", JOptionPane.INFORMATION_MESSAGE);    
-            menu_pincipal m=new menu_pincipal();
-            m.setVisible(true);
-            this.setVisible(false);
+            registro reg=new registro();
+            try {
+                if(reg.login(name, contra)){
+                    menu_pincipal m=new menu_pincipal();
+                    m.setVisible(true);
+                    this.setVisible(false);
+                }
+                reg.listarUsuarios();
+                
+            } catch (IOException ex) {
+                JOptionPane.showMessageDialog(this, "ERROR EN LOGIN", "INICIO DE SESION", JOptionPane.INFORMATION_MESSAGE);    
+            }
         }
     }//GEN-LAST:event_btn_logMouseClicked
 

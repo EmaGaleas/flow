@@ -95,7 +95,9 @@ public class menu_pincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_registroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_registroMouseClicked
-
+        menu_inicio mi=new menu_inicio();
+        mi.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_btn_registroMouseClicked
 
     private void btn_salirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_salirMouseClicked

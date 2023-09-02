@@ -14,8 +14,6 @@ public class menu_inicio extends javax.swing.JFrame {
         ImageIcon icon = new ImageIcon("src/images/fondos/fondo_inicio.png");
         f_menu.setIcon(icon);
     }
-
-
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
