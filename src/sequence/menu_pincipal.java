@@ -10,24 +10,26 @@ public class menu_pincipal extends javax.swing.JFrame {
    
     public menu_pincipal() {
         initComponents();
-        ImageIcon icon = new ImageIcon("src/images/fondos/fondo_menu_principal.png");
-        f_princi.setIcon(icon);
+        System.out.println("MENUPRINCIPA");    
+//        ImageIcon icon = new ImageIcon("src/images/fondos/fondo_menu_principal.png");
+//        f_princi.setIcon(icon);
     }
 
-   
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
         btn_registro = new javax.swing.JButton();
+        conf_button = new javax.swing.JButton();
         btn_salir = new javax.swing.JButton();
-        f_princi = new javax.swing.JLabel();
+        sq_button = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
 
         jPanel1.setOpaque(false);
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         btn_registro.setBackground(new java.awt.Color(0, 0, 0));
         btn_registro.setFont(new java.awt.Font("Arial", 0, 32)); // NOI18N
@@ -38,6 +40,18 @@ public class menu_pincipal extends javax.swing.JFrame {
                 btn_registroMouseClicked(evt);
             }
         });
+        jPanel1.add(btn_registro, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 430, -1, 53));
+
+        conf_button.setBackground(new java.awt.Color(0, 0, 0));
+        conf_button.setFont(new java.awt.Font("Arial", 0, 32)); // NOI18N
+        conf_button.setForeground(new java.awt.Color(255, 255, 255));
+        conf_button.setText("CONFIGURACION");
+        conf_button.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                conf_buttonMouseClicked(evt);
+            }
+        });
+        jPanel1.add(conf_button, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 500, 425, 57));
 
         btn_salir.setBackground(new java.awt.Color(0, 0, 0));
         btn_salir.setFont(new java.awt.Font("Arial", 0, 32)); // NOI18N
@@ -48,30 +62,18 @@ public class menu_pincipal extends javax.swing.JFrame {
                 btn_salirMouseClicked(evt);
             }
         });
+        jPanel1.add(btn_salir, new org.netbeans.lib.awtextra.AbsoluteConstraints(359, 571, 287, 52));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(360, 360, 360)
-                        .addComponent(btn_salir, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(294, 294, 294)
-                        .addComponent(btn_registro)))
-                .addContainerGap(293, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(425, Short.MAX_VALUE)
-                .addComponent(btn_registro, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
-                .addComponent(btn_salir, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(164, 164, 164))
-        );
+        sq_button.setBackground(new java.awt.Color(0, 0, 0));
+        sq_button.setFont(new java.awt.Font("Arial", 0, 32)); // NOI18N
+        sq_button.setForeground(new java.awt.Color(255, 255, 255));
+        sq_button.setText("SEQUENCE");
+        sq_button.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sq_buttonMouseClicked(evt);
+            }
+        });
+        jPanel1.add(sq_button, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 360, 425, 56));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -80,14 +82,10 @@ public class menu_pincipal extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(f_princi, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(f_princi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -104,6 +102,20 @@ public class menu_pincipal extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_btn_salirMouseClicked
 
+    private void conf_buttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_conf_buttonMouseClicked
+        // CONFIGURACION
+        Configuracion objconf=new Configuracion();
+        objconf.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_conf_buttonMouseClicked
+
+    private void sq_buttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sq_buttonMouseClicked
+        // SEQUENCE
+        tablero objtabl=new tablero();
+        objtabl.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_sq_buttonMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -112,7 +124,8 @@ public class menu_pincipal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_registro;
     private javax.swing.JButton btn_salir;
-    private javax.swing.JLabel f_princi;
+    private javax.swing.JButton conf_button;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JButton sq_button;
     // End of variables declaration//GEN-END:variables
 }

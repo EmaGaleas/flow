@@ -9,10 +9,11 @@ import clases.logica_tab;
 import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 public class tablero extends javax.swing.JFrame {
     private logica_tab lt;
-
+    private Configuracion conf;
     public tablero() {
         initComponents();
    
@@ -78,6 +79,7 @@ public class tablero extends javax.swing.JFrame {
         nombre_J2 = new javax.swing.JLabel();
         equipo_J2 = new javax.swing.JLabel();
         btn_verJ2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
         panelJ4 = new javax.swing.JPanel();
         nombre_J4 = new javax.swing.JLabel();
         equipo_J4 = new javax.swing.JLabel();
@@ -131,7 +133,7 @@ public class tablero extends javax.swing.JFrame {
                 .addGroup(panel_infoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panel_infoLayout.createSequentialGroup()
                         .addComponent(lbl_turno_equipo, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 237, Short.MAX_VALUE)
                         .addGroup(panel_infoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel_infoLayout.createSequentialGroup()
                                 .addComponent(jButton1)
@@ -226,6 +228,11 @@ public class tablero extends javax.swing.JFrame {
         btn_verJ3.setBackground(new java.awt.Color(255, 232, 255));
         btn_verJ3.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         btn_verJ3.setText("Ver mis cartas");
+        btn_verJ3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_verJ3MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelJ3Layout = new javax.swing.GroupLayout(panelJ3);
         panelJ3.setLayout(panelJ3Layout);
@@ -375,6 +382,13 @@ public class tablero extends javax.swing.JFrame {
         btn_verJ2.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         btn_verJ2.setText("Ver mis cartas");
 
+        jButton3.setText("jButton3");
+        jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton3MouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout panelJ2Layout = new javax.swing.GroupLayout(panelJ2);
         panelJ2.setLayout(panelJ2Layout);
         panelJ2Layout.setHorizontalGroup(
@@ -383,7 +397,8 @@ public class tablero extends javax.swing.JFrame {
                 .addGroup(panelJ2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(equipo_J2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(nombre_J2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton3))
             .addGroup(panelJ2Layout.createSequentialGroup()
                 .addGap(25, 25, 25)
                 .addComponent(btn_verJ2, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -393,7 +408,9 @@ public class tablero extends javax.swing.JFrame {
             panelJ2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelJ2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(nombre_J2, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(panelJ2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(nombre_J2, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(equipo_J2, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -554,7 +571,7 @@ public class tablero extends javax.swing.JFrame {
         tab.setLayout(tabLayout);
         tabLayout.setHorizontalGroup(
             tabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 860, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
         tabLayout.setVerticalGroup(
             tabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -572,7 +589,8 @@ public class tablero extends javax.swing.JFrame {
                     .addComponent(panel_info, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(tab, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(panelJ_4al8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(panelJ_4al8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
             .addGroup(principalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(principalLayout.createSequentialGroup()
                     .addGap(311, 311, 311)
@@ -608,6 +626,25 @@ public class tablero extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btn_verJ3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_verJ3MouseClicked
+        // JUEGO DE 8 PERSONAS
+        if(conf.getCantjugadores()<3){
+            
+            JOptionPane.showMessageDialog(this, "Ups\nCaseta no disponible", "NO DISCPONIBLE", JOptionPane.WARNING_MESSAGE);    
+        
+        }
+    }//GEN-LAST:event_btn_verJ3MouseClicked
+
+    private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
+        //probar
+        menu_pincipal objmenu=new menu_pincipal();
+        objmenu.setVisible(true);
+        this.setVisible(false);
+        
+        
+        
+    }//GEN-LAST:event_jButton3MouseClicked
 
     /**
      * @param args the command line arguments
@@ -665,6 +702,7 @@ public class tablero extends javax.swing.JFrame {
     private javax.swing.JLabel fondo_tab;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel label_turno;
     private javax.swing.JLabel label_turno1;
     private javax.swing.JLabel lbl_turno_equipo;
