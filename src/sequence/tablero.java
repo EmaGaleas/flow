@@ -431,6 +431,11 @@ public class tablero extends javax.swing.JFrame {
         btn_verJ4.setBackground(new java.awt.Color(255, 232, 255));
         btn_verJ4.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         btn_verJ4.setText("Ver mis cartas");
+        btn_verJ4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_verJ4MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelJ4Layout = new javax.swing.GroupLayout(panelJ4);
         panelJ4.setLayout(panelJ4Layout);
@@ -628,10 +633,10 @@ public class tablero extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_verJ3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_verJ3MouseClicked
-        // JUEGO DE 8 PERSONAS
+        // JUEGO DE 4 EN ADELANTE
         if(conf.getCantjugadores()<3){
             
-            JOptionPane.showMessageDialog(this, "Ups\nCaseta no disponible", "NO DISCPONIBLE", JOptionPane.WARNING_MESSAGE);    
+            JOptionPane.showMessageDialog(this, "Ups\nCaseta no disponible", "NO DISPONIBLE", JOptionPane.WARNING_MESSAGE);    
         
         }
     }//GEN-LAST:event_btn_verJ3MouseClicked
@@ -645,6 +650,10 @@ public class tablero extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_jButton3MouseClicked
+
+    private void btn_verJ4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_verJ4MouseClicked
+        // JUEGO DE 3 EN ADELANTE
+    }//GEN-LAST:event_btn_verJ4MouseClicked
 
     /**
      * @param args the command line arguments

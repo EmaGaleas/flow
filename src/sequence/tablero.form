@@ -756,6 +756,9 @@
                     </Property>
                     <Property name="text" type="java.lang.String" value="Ver mis cartas"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btn_verJ4MouseClicked"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>
