@@ -10,7 +10,9 @@ import javax.swing.JOptionPane;
 public class Configuracion extends javax.swing.JFrame {
     private int cantjugadores;
     public Configuracion() {
-        
+        /*
+        comentario para pruebita de ruth
+        */
         initComponents();
         System.out.println("ENTRO");
     }
