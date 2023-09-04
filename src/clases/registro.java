@@ -10,6 +10,7 @@ import javax.swing.JOptionPane;
 public class registro {
 
     private RandomAccessFile cods, registros;
+  
 
     public registro() {
         try {
@@ -21,6 +22,7 @@ public class registro {
         } catch (IOException e) {
             System.out.println("NO DEBERIA PASAR ESTO");
         }
+      
     }
 
     private void initCodigo() throws IOException {
@@ -128,5 +130,6 @@ public class registro {
             JOptionPane.showMessageDialog(null, "Acceso denegado");
         return false;
     }
+   
 
 }

@@ -5,13 +5,17 @@
 package sequence;
 import javax.swing.ImageIcon;
 import clases.registro;
+import javax.swing.JOptionPane;
 public class menu_pincipal extends javax.swing.JFrame {
 
    int contjug;
+
+   registro reg=new registro();
     public menu_pincipal(int contjug) {
         initComponents();
-        System.out.println("MENUPRINCIPA");  
+       
         this.contjug=contjug;
+
 //        ImageIcon icon = new ImageIcon("src/images/fondos/fondo_menu_principal.png");
 //        f_princi.setIcon(icon);
     }
@@ -112,13 +116,15 @@ public class menu_pincipal extends javax.swing.JFrame {
 
     private void sq_buttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sq_buttonMouseClicked
         // SEQUENCE
-        registro reg=new registro();
-        
-        
-        
+       
+       
+         
+     
+       
         tablero objtabl=new tablero(contjug);
         objtabl.setVisible(true);
         this.setVisible(false);
+        
     }//GEN-LAST:event_sq_buttonMouseClicked
 
     /**

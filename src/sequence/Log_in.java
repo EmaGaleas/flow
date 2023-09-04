@@ -14,11 +14,15 @@ import sequence.*;
 public class Log_in extends javax.swing.JFrame {
 
 int contjug;
+
+
     public Log_in(int contjug) {
         initComponents();
         this.contjug=contjug;
+        
         ImageIcon icon = new ImageIcon("src/images/fondos/fondo_InicioSesion.png");
         f_login.setIcon(icon);
+       
     }
 
 

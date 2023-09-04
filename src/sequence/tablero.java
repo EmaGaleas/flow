@@ -23,6 +23,7 @@ public class tablero extends javax.swing.JFrame {
         ponerIconbtnCartas();
         fondoTablero();
         lt.GridLayout(tab);
+       
         
         
         if(this.contjug>=2){

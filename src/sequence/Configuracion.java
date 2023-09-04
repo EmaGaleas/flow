@@ -1,6 +1,7 @@
 
 package sequence;
 
+import clases.registro;
 import javax.swing.JOptionPane;
 
 /**
@@ -8,7 +9,8 @@ import javax.swing.JOptionPane;
  * @author ruthreyes
  */
 public class Configuracion extends javax.swing.JFrame {
-    private int cantjugadores=4;
+    private int cantjugadores=4,contuser;
+    registro reg=new registro();
     public Configuracion(int contjug) {
         /*
         comentario para pruebita de ruth
@@ -16,6 +18,7 @@ public class Configuracion extends javax.swing.JFrame {
         initComponents();
         System.out.println("ENTRO");
         cantjugadores=contjug;
+
     }
 
     /**

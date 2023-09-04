@@ -14,11 +14,13 @@ import javax.swing.JOptionPane;
 
 public class Registro extends javax.swing.JFrame {
 int contjug;
+
     public Registro(int contjug) {
         initComponents();
         ImageIcon icon=new ImageIcon("src/images/fondos/fondo_registrous.png");
         f_registro.setIcon(icon);
         this.contjug=contjug;
+      
     }
 
     @SuppressWarnings("unchecked")
