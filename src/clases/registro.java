@@ -10,7 +10,6 @@ import javax.swing.JOptionPane;
 public class registro {
 
     private RandomAccessFile cods, registros;
-  
 
     public registro() {
         try {
@@ -20,7 +19,7 @@ public class registro {
             registros = new RandomAccessFile("usuarios/registrado.emp", "rw");
             initCodigo();
         } catch (IOException e) {
-            System.out.println("NO DEBERIA PASAR ESTO");
+            System.out.println("SE TRONO");
         }
       
     }
@@ -100,7 +99,7 @@ public class registro {
         }
     }
 
-    public void listarUsuarios() throws IOException {
+    public void listarUsuarios() throws IOException {//COMENTAR AL TERMINAR
         registros.seek(0);
         while (registros.getFilePointer() < registros.length()) {
             int codigo = registros.readInt();
@@ -130,6 +129,19 @@ public class registro {
             JOptionPane.showMessageDialog(null, "Acceso denegado");
         return false;
     }
-   
+    public int contarUsuarios() throws IOException {
+        int contador = 0;
+        registros.seek(0);
+        while (registros.getFilePointer() < registros.length()) {
+            registros.readInt();
+            registros.readUTF();
+            registros.readInt();
+            registros.readUTF();
+            registros.readLong();
+            registros.readUTF();
+            contador++;
+        }
+        return contador;
+    }
 
 }

@@ -14,7 +14,7 @@ import javax.swing.JOptionPane;
 public class tablero extends javax.swing.JFrame {
     private logica_tab lt;
     int contjug;
-    Configuracion conf=new Configuracion(contjug);
+    confi conf=new confi(contjug);
     public tablero(int contjug) {
         initComponents();
         this.contjug=contjug;
@@ -689,12 +689,11 @@ public class tablero extends javax.swing.JFrame {
 
     private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
         //probar
-        menu_pincipal objmenu=new menu_pincipal(contjug);
+        menu_p objmenu=new menu_p(contjug);
         objmenu.setVisible(true);
         this.setVisible(false);
-        
-        
-        
+  
+       
     }//GEN-LAST:event_jButton3MouseClicked
 
     private void btn_verJ4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_verJ4MouseClicked

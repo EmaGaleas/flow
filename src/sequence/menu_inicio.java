@@ -5,16 +5,13 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
 public class menu_inicio extends javax.swing.JFrame {
+    int contjug;
 
-int contjug;
-
-registro reg=new registro();
     public menu_inicio(int contjug) {
         initComponents();
         this.contjug=contjug;
         ImageIcon icon = new ImageIcon("src/images/fondos/fondo_inicio.png");
         f_menu.setIcon(icon);
-      
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents

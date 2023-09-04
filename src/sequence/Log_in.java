@@ -153,7 +153,7 @@ int contjug;
             registro reg=new registro();
             try {
                 if(reg.login(name, contra)){
-                    menu_pincipal m=new menu_pincipal(contjug);
+                    menu_p m=new menu_p(contjug);
                     m.setVisible(true);
                     this.setVisible(false);
                 }

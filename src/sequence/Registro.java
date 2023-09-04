@@ -179,7 +179,7 @@ int contjug;
                     registro reg= new registro();
                     if(!reg.usuarioExiste(username)){
                         reg.agregarUsuario(name, username, contra);
-                        menu_pincipal m=new menu_pincipal(contjug);
+                        menu_p m=new menu_p(contjug);
                         m.setVisible(true);
                         this.setVisible(false);
                     }
