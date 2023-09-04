@@ -18,17 +18,6 @@ public class menu_p extends javax.swing.JFrame {
         this.contjug=contjug;
         ImageIcon icon = new ImageIcon("src/images/fondos/fondo_menu_principal.png");
         fondo_m.setIcon(icon);
-        registro miRegistro = new registro();
-int cantidadUsuarios;
-        try {
-            cantidadUsuarios = miRegistro.contarUsuarios();
-            System.out.println("Número de jugadores registrados: " + cantidadUsuarios);
-
-        } catch (IOException ex) {
-            Logger.getLogger(menu_p.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-
     }
 
 
@@ -165,8 +154,8 @@ int cantidadUsuarios;
     }//GEN-LAST:event_btn_rankingMouseClicked
 
     private void sq_buttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sq_buttonMouseClicked
-        tablero objtabl=new tablero(contjug);
-        objtabl.setVisible(true);
+        oponente c=new oponente(contjug);
+        c.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_sq_buttonMouseClicked
 

@@ -18,16 +18,6 @@ public class confi extends javax.swing.JFrame {
         cantjugadores=contjug;
         ImageIcon icon = new ImageIcon("src/images/fondos/fondo_configuracion.png");
         fondo_c.setIcon(icon);
-                registro miRegistro = new registro();
-
-int cantidadUsuarios;
-        try {
-            cantidadUsuarios = miRegistro.contarUsuarios();
-            System.out.println("Número de jugadores registrados: " + cantidadUsuarios);
-
-        } catch (IOException ex) {
-            Logger.getLogger(menu_p.class.getName()).log(Level.SEVERE, null, ex);
-        }
     }
 
   
@@ -48,7 +38,7 @@ int cantidadUsuarios;
         tbn_inicio.setBackground(new java.awt.Color(0, 0, 0));
         tbn_inicio.setFont(new java.awt.Font("Arial", 0, 32)); // NOI18N
         tbn_inicio.setForeground(new java.awt.Color(255, 255, 255));
-        tbn_inicio.setText("MENU INICIO");
+        tbn_inicio.setText("MENU PRINCIPAL");
         tbn_inicio.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbn_inicioMouseClicked(evt);
@@ -83,25 +73,25 @@ int cantidadUsuarios;
                 .addContainerGap(246, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(tbn_inicio)
-                        .addGap(392, 392, 392))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(btn_color, javax.swing.GroupLayout.PREFERRED_SIZE, 549, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(224, 224, 224))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(btn_cantidad)
-                        .addGap(270, 270, 270))))
+                        .addGap(270, 270, 270))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(tbn_inicio, javax.swing.GroupLayout.PREFERRED_SIZE, 384, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(309, 309, 309))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(333, 333, 333)
-                .addComponent(btn_cantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(40, 40, 40)
-                .addComponent(btn_color, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27)
-                .addComponent(tbn_inicio, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(154, Short.MAX_VALUE))
+                .addGap(268, 268, 268)
+                .addComponent(btn_cantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(58, 58, 58)
+                .addComponent(btn_color, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(58, 58, 58)
+                .addComponent(tbn_inicio, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(178, Short.MAX_VALUE))
         );
 
         fondo_c.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/fondos/fondo_configuracion.png"))); // NOI18N
@@ -126,6 +116,7 @@ int cantidadUsuarios;
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void tbn_inicioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbn_inicioMouseClicked
@@ -145,16 +136,24 @@ int cantidadUsuarios;
                 null,
                 opciones,
                 opciones[0]);
-
-        if (seleccion != null) {
-            int numeroSeleccionado = Integer.parseInt(seleccion);
+         if (seleccion != null) {
+            registro miRegistro = new registro();
+            int cantidadUsuarios;
+            try {
+                cantidadUsuarios = miRegistro.contarUsuarios();
+                System.out.println("Número de jugadores registrados: " + cantidadUsuarios);
+                int numeroSeleccionado = Integer.parseInt(seleccion);
            
-            if (numeroSeleccionado >= 1 && numeroSeleccionado <= 8) {
-                JOptionPane.showMessageDialog(null, "Has seleccionado la cantidad de jugadores de: " + numeroSeleccionado);
-            cantjugadores=numeroSeleccionado;
-                System.out.println("cantjugadores"+cantjugadores);
-            } else {
-                JOptionPane.showMessageDialog(null, "Opcion no valida", "Error", JOptionPane.ERROR_MESSAGE);
+                if (numeroSeleccionado <= cantidadUsuarios) {
+                    JOptionPane.showMessageDialog(null, "Has seleccionado la cantidad de jugadores de: " + numeroSeleccionado);
+                cantjugadores=numeroSeleccionado;
+                    System.out.println("cantjugadores"+cantjugadores);
+                } else {
+                    JOptionPane.showMessageDialog(null, "No hay suficientes usuarios registrados\nActualmente hay "+cantidadUsuarios+" registrados", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            
+            } catch (IOException ex) {
+                JOptionPane.showMessageDialog(null, "ERROR POTENTE", "Error", JOptionPane.ERROR_MESSAGE);
             }
         }
     }//GEN-LAST:event_btn_cantidadMouseClicked

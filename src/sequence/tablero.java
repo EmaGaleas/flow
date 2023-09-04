@@ -23,7 +23,7 @@ public class tablero extends javax.swing.JFrame {
         ponerIconbtnCartas();
         fondoTablero();
         lt.GridLayout(tab);
-       
+        
         
         
         if(this.contjug>=2){
@@ -107,6 +107,7 @@ public class tablero extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         label_turno1 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
         panelJ_1al4 = new javax.swing.JPanel();
         panelJ1 = new javax.swing.JPanel();
         nombre_J1 = new javax.swing.JLabel();
@@ -129,7 +130,6 @@ public class tablero extends javax.swing.JFrame {
         nombre_J2 = new javax.swing.JLabel();
         equipo_J2 = new javax.swing.JLabel();
         btn_verJ2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
         panelJ4 = new javax.swing.JPanel();
         nombre_J4 = new javax.swing.JLabel();
         equipo_J4 = new javax.swing.JLabel();
@@ -174,6 +174,13 @@ public class tablero extends javax.swing.JFrame {
         jButton2.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jButton2.setText("Poner ficha");
 
+        jButton3.setText("volver menu");
+        jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton3MouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout panel_infoLayout = new javax.swing.GroupLayout(panel_info);
         panel_info.setLayout(panel_infoLayout);
         panel_infoLayout.setHorizontalGroup(
@@ -183,7 +190,7 @@ public class tablero extends javax.swing.JFrame {
                 .addGroup(panel_infoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panel_infoLayout.createSequentialGroup()
                         .addComponent(lbl_turno_equipo, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 237, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 221, Short.MAX_VALUE)
                         .addGroup(panel_infoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel_infoLayout.createSequentialGroup()
                                 .addComponent(jButton1)
@@ -191,6 +198,8 @@ public class tablero extends javax.swing.JFrame {
                                 .addComponent(jButton2)
                                 .addGap(75, 75, 75))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel_infoLayout.createSequentialGroup()
+                                .addComponent(jButton3)
+                                .addGap(120, 120, 120)
                                 .addComponent(btn_reglas)
                                 .addContainerGap())))
                     .addGroup(panel_infoLayout.createSequentialGroup()
@@ -216,7 +225,9 @@ public class tablero extends javax.swing.JFrame {
                             .addComponent(jButton2)
                             .addComponent(jButton1))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
-                        .addComponent(btn_reglas))
+                        .addGroup(panel_infoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btn_reglas)
+                            .addComponent(jButton3)))
                     .addGroup(panel_infoLayout.createSequentialGroup()
                         .addComponent(lbl_turno_equipo, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
@@ -432,13 +443,6 @@ public class tablero extends javax.swing.JFrame {
         btn_verJ2.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         btn_verJ2.setText("Ver mis cartas");
 
-        jButton3.setText("volver menu");
-        jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton3MouseClicked(evt);
-            }
-        });
-
         javax.swing.GroupLayout panelJ2Layout = new javax.swing.GroupLayout(panelJ2);
         panelJ2.setLayout(panelJ2Layout);
         panelJ2Layout.setHorizontalGroup(
@@ -447,8 +451,7 @@ public class tablero extends javax.swing.JFrame {
                 .addGroup(panelJ2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(equipo_J2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(nombre_J2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton3))
+                .addGap(101, 101, 101))
             .addGroup(panelJ2Layout.createSequentialGroup()
                 .addGap(25, 25, 25)
                 .addComponent(btn_verJ2, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -458,9 +461,7 @@ public class tablero extends javax.swing.JFrame {
             panelJ2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelJ2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(panelJ2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(nombre_J2, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3))
+                .addComponent(nombre_J2, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(equipo_J2, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -649,8 +650,8 @@ public class tablero extends javax.swing.JFrame {
             .addGroup(principalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(principalLayout.createSequentialGroup()
                     .addGap(311, 311, 311)
-                    .addComponent(fondo_tab, javax.swing.GroupLayout.PREFERRED_SIZE, 856, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(308, Short.MAX_VALUE)))
+                    .addComponent(fondo_tab, javax.swing.GroupLayout.PREFERRED_SIZE, 909, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(332, Short.MAX_VALUE)))
         );
         principalLayout.setVerticalGroup(
             principalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

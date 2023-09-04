@@ -6,6 +6,8 @@ package sequence;
 import clases.registro;
 import java.awt.Image;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
@@ -20,6 +22,10 @@ int contjug;
         ImageIcon icon=new ImageIcon("src/images/fondos/fondo_registrous.png");
         f_registro.setIcon(icon);
         this.contjug=contjug;
+        Date fechaActual = new Date();
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        String formateada = sdf.format(fechaActual);
+        fecha.setText("Hoy es: "+formateada);
       
     }
 

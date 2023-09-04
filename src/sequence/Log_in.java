@@ -5,6 +5,8 @@
 package sequence;
 import clases.registro;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
@@ -22,7 +24,10 @@ int contjug;
         
         ImageIcon icon = new ImageIcon("src/images/fondos/fondo_InicioSesion.png");
         f_login.setIcon(icon);
-       
+        Date fechaActual = new Date();
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        String formateada = sdf.format(fechaActual);
+        fecha.setText("Hoy es: "+formateada);
     }
 
 
@@ -158,6 +163,7 @@ int contjug;
                     this.setVisible(false);
                 }
                 reg.listarUsuarios();
+                reg.listarUsuariosT();
                 
             } catch (IOException ex) {
                 JOptionPane.showMessageDialog(this, "ERROR EN LOGIN", "INICIO DE SESION", JOptionPane.INFORMATION_MESSAGE);    

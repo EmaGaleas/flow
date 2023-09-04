@@ -8,7 +8,7 @@ import java.util.Date;
 import javax.swing.JOptionPane;
 
 public class registro {
-
+    private static String login;
     private RandomAccessFile cods, registros;
 
     public registro() {
@@ -99,7 +99,7 @@ public class registro {
         }
     }
 
-    public void listarUsuarios() throws IOException {//COMENTAR AL TERMINAR
+    public void listarUsuariosT() throws IOException {//COMENTAR AL TERMINAR
         registros.seek(0);
         while (registros.getFilePointer() < registros.length()) {
             int codigo = registros.readInt();
@@ -110,6 +110,20 @@ public class registro {
             String contrasena = registros.readUTF();
             System.out.println(codigo + " - " + nombre + " - " + puntos + " - " + username + " - " + fechaRegistro + " - " + contrasena);
         }
+    }
+    public String listarUsuarios() throws IOException {//COMENTAR AL TERMINAR
+        registros.seek(0);
+        String j="";
+        while (registros.getFilePointer() < registros.length()) {
+            registros.readInt();
+            registros.readUTF();
+            registros.readInt();
+            String username = registros.readUTF();
+            registros.readLong();
+            registros.readUTF();
+            j+=username+"\n";
+        }
+        return j;
     }
 
     public boolean login(String username, String contraseña) throws IOException {
@@ -122,12 +136,16 @@ public class registro {
             Date fc = new Date(registros.readLong());
             String contra = registros.readUTF();
             if (username.equals(user) && contraseña.equals(contra)) {
+                login = username;
                 JOptionPane.showMessageDialog(null, "Bienvenido de vuelta");
                 return true;
             }
         }
             JOptionPane.showMessageDialog(null, "Acceso denegado");
         return false;
+    }
+     public static String getLogin() {
+        return login;
     }
     public int contarUsuarios() throws IOException {
         int contador = 0;
