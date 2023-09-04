@@ -13,9 +13,10 @@ import sequence.*;
 
 public class Log_in extends javax.swing.JFrame {
 
-
-    public Log_in() {
+int contjug;
+    public Log_in(int contjug) {
         initComponents();
+        this.contjug=contjug;
         ImageIcon icon = new ImageIcon("src/images/fondos/fondo_InicioSesion.png");
         f_login.setIcon(icon);
     }
@@ -148,7 +149,7 @@ public class Log_in extends javax.swing.JFrame {
             registro reg=new registro();
             try {
                 if(reg.login(name, contra)){
-                    menu_pincipal m=new menu_pincipal();
+                    menu_pincipal m=new menu_pincipal(contjug);
                     m.setVisible(true);
                     this.setVisible(false);
                 }
@@ -161,7 +162,7 @@ public class Log_in extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_logMouseClicked
 
     private void btn_regMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_regMouseClicked
-        menu_inicio v=new menu_inicio();
+        menu_inicio v=new menu_inicio(contjug);
         v.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btn_regMouseClicked

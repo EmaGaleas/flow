@@ -13,14 +13,63 @@ import javax.swing.JOptionPane;
 
 public class tablero extends javax.swing.JFrame {
     private logica_tab lt;
-    private Configuracion conf;
-    public tablero() {
+    int contjug;
+    Configuracion conf=new Configuracion(contjug);
+    public tablero(int contjug) {
         initComponents();
-   
+        this.contjug=contjug;
+        System.out.println("contajajaa"+contjug);
         logica_tab lt=new logica_tab();
         ponerIconbtnCartas();
         fondoTablero();
         lt.GridLayout(tab);
+        
+        
+        if(this.contjug>=2){
+            if(this.contjug<3){
+           //fila 1 numero 2
+            System.out.println("entro cont3");
+            btn_verJ3.setVisible(false);
+            equipo_J3.setVisible(false);
+            nombre_J3.setVisible(false);
+            
+            }
+            if(this.contjug<4){
+            //fila 2 numero 2
+            nombre_J4.setVisible(false);
+            equipo_J4.setVisible(false);
+            btn_verJ4.setVisible(false);
+            }
+            
+            if(this.contjug<6){
+           //fila 1 el numero 3
+            nombre_J5.setVisible(false);
+            equipo_J5.setVisible(false);
+            btn_verJ5.setVisible(false);
+            
+            //fila 2 numero 3
+            nombre_J6.setVisible(false);
+            equipo_J6.setVisible(false);
+            btn_verJ6.setVisible(false);
+            }
+            if(this.contjug<8){
+            //fila1 el numero4
+            nombre_J7.setVisible(false);
+            equipo_J7.setVisible(false);
+            btn_verJ7.setVisible(false);
+            
+            //fila 2 numero 3
+            nombre_J8.setVisible(false);
+            equipo_J8.setVisible(false);
+            btn_verJ8.setVisible(false);
+            }
+        }
+        
+        
+        
+        
+        
+        
     }
     private void fondoTablero(){
         ImageIcon ig=new ImageIcon("src/images/fondos/fondo_tablero.png");
@@ -382,7 +431,7 @@ public class tablero extends javax.swing.JFrame {
         btn_verJ2.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         btn_verJ2.setText("Ver mis cartas");
 
-        jButton3.setText("jButton3");
+        jButton3.setText("volver menu");
         jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton3MouseClicked(evt);
@@ -634,16 +683,12 @@ public class tablero extends javax.swing.JFrame {
 
     private void btn_verJ3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_verJ3MouseClicked
         // JUEGO DE 4 EN ADELANTE
-        if(conf.getCantjugadores()<3){
-            
-            JOptionPane.showMessageDialog(this, "Ups\nCaseta no disponible", "NO DISPONIBLE", JOptionPane.WARNING_MESSAGE);    
         
-        }
     }//GEN-LAST:event_btn_verJ3MouseClicked
 
     private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
         //probar
-        menu_pincipal objmenu=new menu_pincipal();
+        menu_pincipal objmenu=new menu_pincipal(contjug);
         objmenu.setVisible(true);
         this.setVisible(false);
         
@@ -653,6 +698,7 @@ public class tablero extends javax.swing.JFrame {
 
     private void btn_verJ4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_verJ4MouseClicked
         // JUEGO DE 3 EN ADELANTE
+        
     }//GEN-LAST:event_btn_verJ4MouseClicked
 
     /**
@@ -685,7 +731,7 @@ public class tablero extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new tablero().setVisible(true);
+                new tablero(0).setVisible(true);
             }
         });
     }

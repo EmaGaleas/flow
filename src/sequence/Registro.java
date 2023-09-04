@@ -13,11 +13,12 @@ import javax.swing.JOptionPane;
 
 
 public class Registro extends javax.swing.JFrame {
-
-    public Registro() {
+int contjug;
+    public Registro(int contjug) {
         initComponents();
         ImageIcon icon=new ImageIcon("src/images/fondos/fondo_registrous.png");
         f_registro.setIcon(icon);
+        this.contjug=contjug;
     }
 
     @SuppressWarnings("unchecked")
@@ -176,7 +177,7 @@ public class Registro extends javax.swing.JFrame {
                     registro reg= new registro();
                     if(!reg.usuarioExiste(username)){
                         reg.agregarUsuario(name, username, contra);
-                        menu_pincipal m=new menu_pincipal();
+                        menu_pincipal m=new menu_pincipal(contjug);
                         m.setVisible(true);
                         this.setVisible(false);
                     }
@@ -193,7 +194,7 @@ public class Registro extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_iniciarMouseClicked
 
     private void btn_regMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_regMouseClicked
-        menu_inicio mi=new menu_inicio();
+        menu_inicio mi=new menu_inicio(contjug);
         mi.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btn_regMouseClicked

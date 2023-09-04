@@ -8,17 +8,14 @@ import javax.swing.JOptionPane;
  * @author ruthreyes
  */
 public class Configuracion extends javax.swing.JFrame {
-    private int cantjugadores;
-    public Configuracion() {
+    private int cantjugadores=4;
+    public Configuracion(int contjug) {
         /*
         comentario para pruebita de ruth
         */
         initComponents();
         System.out.println("ENTRO");
-    }
-
-    public int getCantjugadores() {
-        return cantjugadores;
+        cantjugadores=contjug;
     }
 
     /**
@@ -136,7 +133,7 @@ public class Configuracion extends javax.swing.JFrame {
         if (seleccion != null) {
             int numeroSeleccionado = Integer.parseInt(seleccion);
            
-            if (numeroSeleccionado >= 1 && numeroSeleccionado <= 5) {
+            if (numeroSeleccionado >= 1 && numeroSeleccionado <= 8) {
                 JOptionPane.showMessageDialog(null, "Has seleccionado la cantidad de jugadores de: " + numeroSeleccionado);
             cantjugadores=numeroSeleccionado;
                 System.out.println("cantjugadores"+cantjugadores);
@@ -166,7 +163,7 @@ public class Configuracion extends javax.swing.JFrame {
 
     private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
         // VOLVER 
-        menu_pincipal objmenu=new menu_pincipal();
+        menu_pincipal objmenu=new menu_pincipal(cantjugadores);
         objmenu.setVisible(true);
         this.setVisible(false);
         
@@ -207,7 +204,7 @@ public class Configuracion extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Configuracion().setVisible(true);
+                new Configuracion(0).setVisible(true);
             }
         });
     }

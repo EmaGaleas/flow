@@ -8,9 +8,10 @@ import javax.swing.JFrame;
 
 public class menu_inicio extends javax.swing.JFrame {
 
-
-    public menu_inicio() {
+int contjug;
+    public menu_inicio(int contjug) {
         initComponents();
+        this.contjug=contjug;
         ImageIcon icon = new ImageIcon("src/images/fondos/fondo_inicio.png");
         f_menu.setIcon(icon);
     }
@@ -117,13 +118,13 @@ public class menu_inicio extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_salirMouseClicked
 
     private void btn_logMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_logMouseClicked
-        Log_in log=new Log_in();
+        Log_in log=new Log_in(contjug);
         log.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btn_logMouseClicked
 
     private void btn_registroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_registroMouseClicked
-        Registro reg=new Registro();
+        Registro reg=new Registro(contjug);
         reg.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btn_registroMouseClicked
@@ -158,7 +159,7 @@ public class menu_inicio extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new menu_inicio().setVisible(true);
+                new menu_inicio(0).setVisible(true);
             }
         });
     }
