@@ -12,13 +12,11 @@ import javax.swing.JOptionPane;
 
 
 public class oponente extends javax.swing.JFrame {
-    int contjug;
     private int selec;
     
     
-    public oponente(int contjug) {
+    public oponente() {
         initComponents();
-        this.contjug=contjug;
         ImageIcon icon = new ImageIcon("src/images/fondos/fondo_selecjug.png");
         fondo_op.setIcon(icon);
         
@@ -173,7 +171,7 @@ public class oponente extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void tbn_inicioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbn_inicioMouseClicked
-        menu_p mi=new menu_p(contjug);
+        menu_p mi=new menu_p();
         mi.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_tbn_inicioMouseClicked

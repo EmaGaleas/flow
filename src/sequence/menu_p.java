@@ -1,4 +1,4 @@
-/*
+ /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
@@ -13,12 +13,10 @@ import javax.swing.JOptionPane;
 
 public class menu_p extends javax.swing.JFrame {
 
-    int contjug;
     registro obrg = new registro();
 
-    public menu_p(int contjug) {
+    public menu_p() {
         initComponents();
-        this.contjug = contjug;
         ImageIcon icon = new ImageIcon("src/images/fondos/fondo_menu_principal.png");
         fondo_m.setIcon(icon);
         
@@ -148,20 +146,20 @@ public class menu_p extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void tbn_inicioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbn_inicioMouseClicked
-        menu_inicio mi = new menu_inicio(contjug);
+        menu_inicio mi = new menu_inicio();
         mi.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_tbn_inicioMouseClicked
 
     private void btn_confiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_confiMouseClicked
         // CONFIGURACION
-        confi objconf = new confi(contjug);
+        confi objconf = new confi();
         objconf.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btn_confiMouseClicked
 
     private void btn_rankingMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_rankingMouseClicked
-        //rankiing mi=new ranking(contjug);
+        //rankiing mi=new ranking();
         //mi.setVisible(true);
         //this.setVisible(false);
 
@@ -172,9 +170,9 @@ public class menu_p extends javax.swing.JFrame {
         try {
             registro r = new registro();
            // System.out.println(r.contarUsuarios());
-            System.out.println(contjug);
+            System.out.println();
             if (r.contarUsuarios() >= 1) {
-                oponente c = new oponente(contjug);
+                oponente c = new oponente();
                 c.setVisible(true);
                 this.setVisible(false);
             }else{

@@ -9,10 +9,13 @@ import java.util.Date;
 import javax.swing.JOptionPane;
 
 public class registro {
-    private static String login;
-    private RandomAccessFile cods, registros, modo, reportes;
-    private static int codigoLogueado;
 
+    private static String login;
+    private static int cantidadJ;
+    private static int codigoLogueado;
+    private static String colorFicha;
+    private RandomAccessFile cods, registros, modo, reportes;
+       
     public registro() {
         try {
             File f = new File("usuarios");
@@ -23,7 +26,6 @@ public class registro {
         } catch (IOException e) {
             System.out.println("SE TRONO");
         }
-      
     }
 
     private void initCodigo() throws IOException {
@@ -39,7 +41,33 @@ public class registro {
         cods.writeInt(codigo + 1);
         return codigo;
     }
+    public boolean usuarioExiste(String username) throws IOException {
+        registros.seek(0);
+        while (registros.getFilePointer() < registros.length()) {
+            registros.readInt();
+            registros.readUTF();
+            registros.readInt();
+            String existingUsername = registros.readUTF();
+            registros.readLong();
+            registros.readUTF();
 
+            if (username.equals(existingUsername)) {
+                JOptionPane.showMessageDialog(null, "USERNAME no disponible");
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private String carpetaUsuario(int code) {
+        return "usuarios/registro" + code;
+    }
+
+    private void crearCarpetaUsuario(int code) throws IOException {
+        File udir = new File(carpetaUsuario(code));
+        udir.mkdir();
+    }
+    
     public void agregarUsuario(String nombreCompleto, String username, String contra) throws IOException {
         if (!usuarioExiste(username)) {
             registros.seek(registros.length());
@@ -51,33 +79,36 @@ public class registro {
             registros.writeLong(Calendar.getInstance().getTimeInMillis());
             registros.writeUTF(contra);
             crearCarpetaUsuario(code);
-            //crea archivo que contendra datos del modo
+
+            //crea archivo que contendra datos del modo de este jugador
             RandomAccessFile modoArchivo = new RandomAccessFile(carpetaUsuario(code) + "/modo.emp", "rw");
             modoArchivo.writeInt(4);//por default es 4
             modoArchivo.writeUTF("NO APLICA");//si no aplica no pasa nada pero cuando se escoja va a cambiar sobreescirbe seek 0
             modoArchivo.close();
+
             //crea archivo que contendra datos de reportes de este jugador 
             RandomAccessFile repotesArchivo = new RandomAccessFile(carpetaUsuario(code) + "/reportes.emp", "rw");
             repotesArchivo.writeLong(Calendar.getInstance().getTimeInMillis());//pruebita
             repotesArchivo.writeUTF("NO HA JUGADOR");//se le va a ñadir despues
             repotesArchivo.close();
-            
+
             login = username;
-            codigoLogueado=code;
+            codigoLogueado = code;
+
             JOptionPane.showMessageDialog(null, "Agregado correctamente");
         } else {
             JOptionPane.showMessageDialog(null, "USERNAME no disponible");
         }
     }
-    
+
     public void imprimirModo() throws IOException {
         String path = carpetaUsuario(codigoLogueado) + "/modo.emp";
         RandomAccessFile raf = new RandomAccessFile(path, "r");
         try {
-            int entero=raf.readInt();
-            String cadena=raf.readUTF();
-            System.out.println("mo:"+entero);
-            System.out.println("ficha:"+cadena);
+            int entero = raf.readInt();
+            String cadena = raf.readUTF();
+            System.out.println("modo:" + entero);
+            System.out.println("ficha:" + cadena);
         } catch (EOFException e) {
             JOptionPane.showMessageDialog(null, "Voa llorar");
         } finally {
@@ -85,78 +116,51 @@ public class registro {
         }
     }
 
-    public void sobreModo( int nModo, String ficha) throws IOException {
-        String path=carpetaUsuario(codigoLogueado)+"/modo.emp";
-        RandomAccessFile raf=new RandomAccessFile(path, "rw");
-        try {
-            raf.seek(0); // principio del archivo
-            raf.writeInt(nModo); // Sobre el int
-            raf.writeUTF(ficha); // Sobre color
-            JOptionPane.showMessageDialog(null, "SIRVE");
-        } finally {
-            raf.close();
-        }
-    }
-    public void agregarReportes(String sms) throws IOException {
-        String path = carpetaUsuario(codigoLogueado) + "/reportes.emp";
+    public void sobreModo(int nModo, String ficha) throws IOException {
+        String path = carpetaUsuario(codigoLogueado) + "/modo.emp";
         RandomAccessFile raf = new RandomAccessFile(path, "rw");
         try {
-            raf.seek(raf.length()); 
-            raf.writeLong(Calendar.getInstance().getTimeInMillis());
-            raf.writeUTF(sms); 
-            JOptionPane.showMessageDialog(null, "se agrego reporte");
+            raf.seek(0); //principio del archivo
+            raf.writeInt(nModo); //Sobre el int
+            raf.writeUTF(ficha); //Sobre color
         } finally {
             raf.close();
         }
     }
+
     public String imprimirReportes() throws IOException {
         String path = carpetaUsuario(codigoLogueado) + "/reportes.emp";
         RandomAccessFile raf = new RandomAccessFile(path, "r");
-        String r="";
+        String r = "";
         try {
             while (raf.getFilePointer() < raf.length()) {
                 Date fecha = new Date(raf.readLong());
                 String dat = raf.readUTF();
-                r+=fecha+dat+"\n";
+                r += fecha + "\t" + dat + "\n";
             }
             //esto lo podes usar para insertarlo despues en un text area la letra esta
-            System.out.println(r);      
+            System.out.println(r);
             return r;
         } catch (EOFException e) {
             JOptionPane.showMessageDialog(null, "INTENTO 5 PQ SE LE OLVIDO EL LLAMADO JEJE");
         } finally {
             raf.close();
         }
-        System.out.println(r);      
+        System.out.println(r);
         return "";
     }
 
-
-    public boolean usuarioExiste(String username) throws IOException {
-        registros.seek(0);
-        while (registros.getFilePointer() < registros.length()) {
-            registros.readInt();
-            registros.readUTF();
-            registros.readInt();
-            String existingUsername = registros.readUTF();
-            registros.readLong();
-            registros.readUTF();
-            
-            if (username.equals(existingUsername)) {
-                JOptionPane.showMessageDialog(null, "USERNAME no disponible");
-                return true;
-            }
+    public void agregarReportes(String sms) throws IOException {
+        String path = carpetaUsuario(codigoLogueado) + "/reportes.emp";
+        RandomAccessFile raf = new RandomAccessFile(path, "rw");
+        try {
+            raf.seek(raf.length());
+            raf.writeLong(Calendar.getInstance().getTimeInMillis());
+            raf.writeUTF(sms);
+            JOptionPane.showMessageDialog(null, "REPORTE AGREGADO");
+        } finally {
+            raf.close();
         }
-        return false;
-    }
- 
-    private String carpetaUsuario(int code) {
-        return "usuarios/registro" + code;
-    }
-
-    private void crearCarpetaUsuario(int code) throws IOException {
-        File udir = new File(carpetaUsuario(code));
-        udir.mkdir();
     }
 
 //
@@ -174,7 +178,7 @@ public class registro {
 //    }
     public String listarUsuarios() throws IOException {//COMENTAR AL TERMINAR
         registros.seek(0);
-        String j="";
+        String j = "";
         while (registros.getFilePointer() < registros.length()) {
             registros.readInt();
             registros.readUTF();
@@ -182,7 +186,7 @@ public class registro {
             String username = registros.readUTF();
             registros.readLong();
             registros.readUTF();
-            j+=username+"\n";
+            j += username + "\n";
         }
         return j;
     }
@@ -190,7 +194,7 @@ public class registro {
     public boolean login(String username, String contraseña) throws IOException {
         registros.seek(0);
         while (registros.getFilePointer() < registros.length()) {
-            int code=registros.readInt();
+            int code = registros.readInt();
             registros.readUTF();
             registros.readInt();
             String user = registros.readUTF();
@@ -198,17 +202,19 @@ public class registro {
             String contra = registros.readUTF();
             if (username.equals(user) && contraseña.equals(contra)) {
                 login = username;
-                codigoLogueado=code;
+                codigoLogueado = code;
                 JOptionPane.showMessageDialog(null, "Bienvenido de vuelta");
                 return true;
             }
         }
-            JOptionPane.showMessageDialog(null, "Acceso denegado");
+        JOptionPane.showMessageDialog(null, "Acceso denegado");
         return false;
     }
-     public static String getLogin() {
+
+    public static String getLogin() {
         return login;
     }
+
     public int contarUsuarios() throws IOException {
         int contador = 0;
         registros.seek(0);

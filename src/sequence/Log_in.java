@@ -15,15 +15,13 @@ import sequence.*;
 
 public class Log_in extends javax.swing.JFrame {
 
-int contjug;
 
-
-    public Log_in(int contjug) {
+    public Log_in() {
         initComponents();
-        this.contjug=contjug;
         
         ImageIcon icon = new ImageIcon("src/images/fondos/fondo_InicioSesion.png");
         f_login.setIcon(icon);
+        
         Date fechaActual = new Date();
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         String formateada = sdf.format(fechaActual);
@@ -158,7 +156,7 @@ int contjug;
             registro reg=new registro();
             try {
                 if(reg.login(name, contra)){
-                    menu_p m=new menu_p(contjug);
+                    menu_p m=new menu_p();
                     m.setVisible(true);
                     this.setVisible(false);
                 }
@@ -172,7 +170,7 @@ int contjug;
     }//GEN-LAST:event_btn_logMouseClicked
 
     private void btn_regMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_regMouseClicked
-        menu_inicio v=new menu_inicio(contjug);
+        menu_inicio v=new menu_inicio();
         v.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btn_regMouseClicked

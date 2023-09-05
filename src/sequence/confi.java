@@ -11,14 +11,13 @@ import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 public class confi extends javax.swing.JFrame {
-    private int cantjugadores=4,contuser;
     registro obrg = new registro();
     
-    public confi(int contjug) {
+    public confi() {
         initComponents();
-        cantjugadores=contjug;
         ImageIcon icon = new ImageIcon("src/images/fondos/fondo_configuracion.png");
         fondo_c.setIcon(icon);
+        //pruebas
         try {
             obrg.sobreModo(5, "ROJOD");
             } catch (IOException e) {
@@ -131,7 +130,7 @@ public class confi extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void tbn_inicioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbn_inicioMouseClicked
-        menu_p mi=new menu_p(cantjugadores);
+        menu_p mi=new menu_p();
         mi.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_tbn_inicioMouseClicked
@@ -157,8 +156,7 @@ public class confi extends javax.swing.JFrame {
            
                 if (numeroSeleccionado <= cantidadUsuarios) {
                     JOptionPane.showMessageDialog(null, "Has seleccionado la cantidad de jugadores de: " + numeroSeleccionado);
-                cantjugadores=numeroSeleccionado;
-                    System.out.println("cantjugadores"+cantjugadores);
+                    System.out.println("cantjugadores");
                 } else {
                     JOptionPane.showMessageDialog(null, "No hay suficientes usuarios registrados\nActualmente hay "+cantidadUsuarios+" registrados", "Error", JOptionPane.ERROR_MESSAGE);
                 }

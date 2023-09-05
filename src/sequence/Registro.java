@@ -15,13 +15,12 @@ import javax.swing.JOptionPane;
 
 
 public class Registro extends javax.swing.JFrame {
-int contjug;
 
-    public Registro(int contjug) {
+    public Registro() {
         initComponents();
         ImageIcon icon=new ImageIcon("src/images/fondos/fondo_registrous.png");
         f_registro.setIcon(icon);
-        this.contjug=contjug;
+        
         Date fechaActual = new Date();
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         String formateada = sdf.format(fechaActual);
@@ -185,7 +184,7 @@ int contjug;
                     registro reg= new registro();
                     if(!reg.usuarioExiste(username)){
                         reg.agregarUsuario(name, username, contra);
-                        menu_p m=new menu_p(contjug);
+                        menu_p m=new menu_p();
                         m.setVisible(true);
                         this.setVisible(false);
                     }
@@ -202,7 +201,7 @@ int contjug;
     }//GEN-LAST:event_btn_iniciarMouseClicked
 
     private void btn_regMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_regMouseClicked
-        menu_inicio mi=new menu_inicio(contjug);
+        menu_inicio mi=new menu_inicio();
         mi.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btn_regMouseClicked
