@@ -162,8 +162,8 @@ int contjug;
                     m.setVisible(true);
                     this.setVisible(false);
                 }
-                reg.listarUsuarios();
-                reg.listarUsuariosT();
+//                reg.listarUsuarios();
+//                reg.listarUsuariosT();
                 
             } catch (IOException ex) {
                 JOptionPane.showMessageDialog(this, "ERROR EN LOGIN", "INICIO DE SESION", JOptionPane.INFORMATION_MESSAGE);    

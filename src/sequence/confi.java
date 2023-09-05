@@ -12,12 +12,23 @@ import javax.swing.JOptionPane;
 
 public class confi extends javax.swing.JFrame {
     private int cantjugadores=4,contuser;
+    registro obrg = new registro();
     
     public confi(int contjug) {
         initComponents();
         cantjugadores=contjug;
         ImageIcon icon = new ImageIcon("src/images/fondos/fondo_configuracion.png");
         fondo_c.setIcon(icon);
+        try {
+            obrg.sobreModo(5, "ROJOD");
+            } catch (IOException e) {
+            e.printStackTrace(); 
+        }
+         try {
+            obrg.agregarReportes("INTENTO 2 PARA VER SI NO SOBREESCIRBE");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
   

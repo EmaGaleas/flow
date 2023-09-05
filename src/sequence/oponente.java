@@ -13,7 +13,9 @@ import javax.swing.JOptionPane;
 
 public class oponente extends javax.swing.JFrame {
     int contjug;
-
+    private int selec;
+    
+    
     public oponente(int contjug) {
         initComponents();
         this.contjug=contjug;
@@ -23,10 +25,19 @@ public class oponente extends javax.swing.JFrame {
         String us=registro.getLogin();
         seleccionados.setText(us);
         oponentes();
+        selec=0;
     }
+    
+    
     
     private void oponentes() {//salida en combobox mostrara todos menos el login ya que ese fijo juega
         try {
+            if(selec==0){
+                JOptionPane.showMessageDialog(null, "Seleeccione un equipo para usted");
+                lista.setEditable(false);
+                selec++;
+            }
+            
             registro reg=new registro();
             String usuarios=reg.listarUsuarios();
             String[] usuariosArray=usuarios.split("\n");
@@ -54,6 +65,7 @@ public class oponente extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         tbn_inicio = new javax.swing.JButton();
         btn_sele = new javax.swing.JButton();
+        equipo = new javax.swing.JComboBox<>();
         fondo_op = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -90,6 +102,8 @@ public class oponente extends javax.swing.JFrame {
             }
         });
 
+        equipo.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -98,13 +112,16 @@ public class oponente extends javax.swing.JFrame {
                 .addContainerGap(199, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lista, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(28, 28, 28)
-                                .addComponent(btn_sele, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(45, 45, 45)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lista, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel1)
+                                    .addComponent(equipo, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(45, 45, 45))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(btn_sele, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(79, 79, 79)))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jScrollPane1)
                             .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -124,7 +141,9 @@ public class oponente extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(lista, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(60, 60, 60)
+                        .addGap(26, 26, 26)
+                        .addComponent(equipo, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(38, 38, 38)
                         .addComponent(btn_sele))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 296, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(29, 29, 29)
@@ -132,19 +151,13 @@ public class oponente extends javax.swing.JFrame {
                 .addGap(54, 54, 54))
         );
 
-        fondo_op.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                fondo_opMouseClicked(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(fondo_op, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(fondo_op, javax.swing.GroupLayout.DEFAULT_SIZE, 1019, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -152,7 +165,7 @@ public class oponente extends javax.swing.JFrame {
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                     .addContainerGap()
-                    .addComponent(fondo_op, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(fondo_op, javax.swing.GroupLayout.DEFAULT_SIZE, 720, Short.MAX_VALUE)))
         );
 
         pack();
@@ -169,10 +182,6 @@ public class oponente extends javax.swing.JFrame {
         //  seleccionados.setText(us); los que vala seleccionando
     }//GEN-LAST:event_btn_seleMouseClicked
 
-    private void fondo_opMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_fondo_opMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_fondo_opMouseClicked
-
     /**
      * @param args the command line arguments
      */
@@ -180,6 +189,7 @@ public class oponente extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_sele;
+    private javax.swing.JComboBox<String> equipo;
     private javax.swing.JLabel fondo_op;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

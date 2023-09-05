@@ -21,6 +21,17 @@ public class menu_p extends javax.swing.JFrame {
         this.contjug = contjug;
         ImageIcon icon = new ImageIcon("src/images/fondos/fondo_menu_principal.png");
         fondo_m.setIcon(icon);
+        
+        try {
+            obrg.imprimirModo();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try {
+            obrg.imprimirReportes();
+            } catch (IOException e) {
+            e.printStackTrace(); 
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -62,7 +73,7 @@ public class menu_p extends javax.swing.JFrame {
         btn_ranking.setBackground(new java.awt.Color(0, 0, 0));
         btn_ranking.setFont(new java.awt.Font("Arial", 0, 32)); // NOI18N
         btn_ranking.setForeground(new java.awt.Color(255, 255, 255));
-        btn_ranking.setText("RANKING");
+        btn_ranking.setText("REPORTES");
         btn_ranking.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btn_rankingMouseClicked(evt);
@@ -153,17 +164,21 @@ public class menu_p extends javax.swing.JFrame {
         //rankiing mi=new ranking(contjug);
         //mi.setVisible(true);
         //this.setVisible(false);
+
     }//GEN-LAST:event_btn_rankingMouseClicked
 
     private void sq_buttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sq_buttonMouseClicked
 
         try {
-            if (obrg.contarUsuarios() > 4) {
+            registro r = new registro();
+           // System.out.println(r.contarUsuarios());
+            System.out.println(contjug);
+            if (r.contarUsuarios() >= 1) {
                 oponente c = new oponente(contjug);
                 c.setVisible(true);
                 this.setVisible(false);
             }else{
-                JOptionPane.showMessageDialog(null, "Necesitan exisistir mas de 4 o mas usuarios para poder jugar");
+                JOptionPane.showMessageDialog(null, "Necesitan exisistir  4 o mas usuarios para poder jugar");
                 
             }
         } catch (IOException e) {
