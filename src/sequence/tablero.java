@@ -3,18 +3,20 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package sequence;
-
+import clases.registro;
 import clases.call_png_baraja;
 import clases.logica_tab;
 import java.awt.Image;
+import java.io.IOException;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 public class tablero extends javax.swing.JFrame {
     private logica_tab lt;
-    int contjug;
+    int contjug,contusuarios;
     confi conf=new confi(contjug);
+    registro obrg=new registro();
     public tablero(int contjug) {
         initComponents();
         this.contjug=contjug;
@@ -23,8 +25,11 @@ public class tablero extends javax.swing.JFrame {
         ponerIconbtnCartas();
         fondoTablero();
         lt.GridLayout(tab);
-        
-        
+        try{
+        System.out.println("usuarios tablero:"+obrg.contarUsuarios());
+        }catch(IOException e){
+            System.out.println("error");
+        }
         
         if(this.contjug>=2){
             if(this.contjug<3){

@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package sequence;
+
 import clases.registro;
 import java.io.IOException;
 import java.util.logging.Level;
@@ -10,16 +11,17 @@ import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
-
 public class menu_p extends javax.swing.JFrame {
+
     int contjug;
+    registro obrg = new registro();
+
     public menu_p(int contjug) {
         initComponents();
-        this.contjug=contjug;
+        this.contjug = contjug;
         ImageIcon icon = new ImageIcon("src/images/fondos/fondo_menu_principal.png");
         fondo_m.setIcon(icon);
     }
-
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -135,14 +137,14 @@ public class menu_p extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void tbn_inicioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbn_inicioMouseClicked
-        menu_inicio mi=new menu_inicio(contjug);
+        menu_inicio mi = new menu_inicio(contjug);
         mi.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_tbn_inicioMouseClicked
 
     private void btn_confiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_confiMouseClicked
         // CONFIGURACION
-        confi objconf=new confi(contjug);
+        confi objconf = new confi(contjug);
         objconf.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btn_confiMouseClicked
@@ -154,16 +156,25 @@ public class menu_p extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_rankingMouseClicked
 
     private void sq_buttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sq_buttonMouseClicked
-        oponente c=new oponente(contjug);
-        c.setVisible(true);
-        this.setVisible(false);
+
+        try {
+            if (obrg.contarUsuarios() > 4) {
+                oponente c = new oponente(contjug);
+                c.setVisible(true);
+                this.setVisible(false);
+            }else{
+                JOptionPane.showMessageDialog(null, "Necesitan exisistir mas de 4 o mas usuarios para poder jugar");
+                
+            }
+        } catch (IOException e) {
+            System.out.println("error");
+
+        }
     }//GEN-LAST:event_sq_buttonMouseClicked
 
     /**
      * @param args the command line arguments
      */
-
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_confi;

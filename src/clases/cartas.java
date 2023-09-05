@@ -28,7 +28,6 @@ public class cartas extends JButton{
 //            this.imagePath = "src/images/trasera.png";
 //        }
     }
-
     public String getTipo() {
         return tipo;
     }
@@ -77,11 +76,7 @@ public class cartas extends JButton{
         this.columna = columna;
     }
     
-    public static int generaNumeroEnteroAleatorio(int minimo, int maximo) {
-        int num = (int) (Math.random() * (minimo - (maximo + 1)) + (maximo + 1));
-        return num;
-    }
-
+    
 
     
 }
