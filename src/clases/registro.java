@@ -85,6 +85,8 @@ public class registro {
             modoArchivo.writeInt(4);//por default es 4
             modoArchivo.writeUTF("NO APLICA");//si no aplica no pasa nada pero cuando se escoja va a cambiar sobreescirbe seek 0
             modoArchivo.close();
+            cantidadJ=4;
+            colorFicha="NO APLICA";
 
             //crea archivo que contendra datos de reportes de este jugador 
             RandomAccessFile repotesArchivo = new RandomAccessFile(carpetaUsuario(code) + "/reportes.emp", "rw");
@@ -123,6 +125,8 @@ public class registro {
             raf.seek(0); //principio del archivo
             raf.writeInt(nModo); //Sobre el int
             raf.writeUTF(ficha); //Sobre color
+            cantidadJ=nModo;
+            colorFicha=ficha;
         } finally {
             raf.close();
         }
@@ -230,4 +234,12 @@ public class registro {
         return contador;
     }
 
+    public static int getCantidadJ() {
+        return cantidadJ;
+    }
+
+    public static String getColorFicha() {
+        return colorFicha;
+    }
+    
 }

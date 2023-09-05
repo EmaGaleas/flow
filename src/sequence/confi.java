@@ -5,8 +5,6 @@
 package sequence;
 import clases.registro;
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
@@ -17,17 +15,17 @@ public class confi extends javax.swing.JFrame {
         initComponents();
         ImageIcon icon = new ImageIcon("src/images/fondos/fondo_configuracion.png");
         fondo_c.setIcon(icon);
-        //pruebas
-        try {
-            obrg.sobreModo(5, "ROJOD");
-            } catch (IOException e) {
-            e.printStackTrace(); 
-        }
-         try {
-            obrg.agregarReportes("INTENTO 2 PARA VER SI NO SOBREESCIRBE");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+//        //pruebas
+//        try {
+//            obrg.sobreModo(5, "ROJOD");
+//            } catch (IOException e) {
+//            e.printStackTrace(); 
+//        }
+//         try {
+//            obrg.agregarReportes("INTENTO 2 PARA VER SI NO SOBREESCIRBE");
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
     }
 
   
@@ -156,6 +154,16 @@ public class confi extends javax.swing.JFrame {
            
                 if (numeroSeleccionado <= cantidadUsuarios) {
                     JOptionPane.showMessageDialog(null, "Has seleccionado la cantidad de jugadores de: " + numeroSeleccionado);
+                    
+                    try {
+                       int contadorJ =miRegistro.getCantidadJ();
+                        String colorFicha = miRegistro.getColorFicha();
+                        System.out.println(colorFicha+""+contadorJ);
+                        miRegistro.sobreModo(numeroSeleccionado, colorFicha);
+                        System.out.println("ya");
+                    } catch (IOException e) {
+                        e.printStackTrace(); 
+                    }   
                     System.out.println("cantjugadores");
                 } else {
                     JOptionPane.showMessageDialog(null, "No hay suficientes usuarios registrados\nActualmente hay "+cantidadUsuarios+" registrados", "Error", JOptionPane.ERROR_MESSAGE);
@@ -180,7 +188,17 @@ public class confi extends javax.swing.JFrame {
                 opciones[0]);
 
         if (seleccion != null) {
-            JOptionPane.showMessageDialog(null, "Has seleccionado el numero: " + seleccion);
+            registro miRegistro = new registro();
+            JOptionPane.showMessageDialog(null, "Has seleccionado el color: " + seleccion);
+                try {
+                       int contadorJ =miRegistro.getCantidadJ();
+                        String colorFicha = miRegistro.getColorFicha();
+                        System.out.println(colorFicha+""+contadorJ);
+                        miRegistro.sobreModo( contadorJ, seleccion);
+                        System.out.println("ya");
+                    } catch (IOException e) {
+                        e.printStackTrace(); 
+                    }   
 
         }
     }//GEN-LAST:event_btn_colorMouseClicked
