@@ -6,6 +6,8 @@ package sequence;
 
 import clases.registro;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
@@ -13,29 +15,42 @@ import javax.swing.JOptionPane;
 
 public class oponente extends javax.swing.JFrame {
     private int selec;
-    
+    private int equipoLog;
+    private String name[];
+    private  String n="";
+    private int cantEquipos=0;
+    private int E1=0;
+    private int E2=0;
+    private int E3=0;
+    private int jper=0;
     
     public oponente() {
         initComponents();
+        registro r = new registro();
+        
         ImageIcon icon = new ImageIcon("src/images/fondos/fondo_selecjug.png");
         fondo_op.setIcon(icon);
         
+        equipoLog=0;
+        selec=0;
+        try {
+        int t=r.getCantidadJ();
+//            confi.setText("MODO:"+t+" jugadores");
+            name=new String[t];
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(null, "Anda dormi mejor");
+        }
         String us=registro.getLogin();
         seleccionados.setText(us);
         oponentes();
-        selec=0;
+        equipos();
+        lista.setVisible(false);
+        
     }
     
-    
-    
+
     private void oponentes() {//salida en combobox mostrara todos menos el login ya que ese fijo juega
-        try {
-            if(selec==0){
-                JOptionPane.showMessageDialog(null, "Seleeccione un equipo para usted");
-                lista.setEditable(false);
-                selec++;
-            }
-            
+        try {           
             registro reg=new registro();
             String usuarios=reg.listarUsuarios();
             String[] usuariosArray=usuarios.split("\n");
@@ -50,6 +65,49 @@ public class oponente extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Anda dormi mejor");
         }
     }
+    
+    private void equipos() {//salida en combobox mostrara EQUIPOS
+        try {
+            equipo.removeAllItems(); 
+            registro reg=new registro();
+            int j=reg.getCantidadJ();
+            if (j == 2) {
+                equipo.addItem("EQUIPO 1");
+                equipo.addItem("EQUIPO 2");
+                cantEquipos=2;
+                jper=1;
+                confi.setText("jugadores por equipo:"+jper);
+
+            } else if (j == 3) {
+                equipo.addItem("EQUIPO 1");
+                equipo.addItem("EQUIPO 2");
+                equipo.addItem("EQUIPO 3");
+                cantEquipos=3;
+                jper=1;
+                confi.setText("jugadores por equipo:"+jper);
+            } else if (j == 4) {
+                equipo.addItem("EQUIPO 1");
+                equipo.addItem("EQUIPO 2");
+                cantEquipos=2;
+                jper=2;
+            } else if (j == 6) {
+                equipo.addItem("EQUIPO 1");
+                equipo.addItem("EQUIPO 2");
+                equipo.addItem("EQUIPO 3");
+                cantEquipos=3;
+                jper=2;
+                confi.setText("jugadores por equipo:"+jper);
+            } else if (j == 8) {
+                equipo.addItem("EQUIPO 1");
+                equipo.addItem("EQUIPO 2");
+                cantEquipos=2;
+                jper=4;
+                confi.setText("Jugadores por equipo: "+jper);
+            } 
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(null, "Anda dormi mejor");
+        }
+    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -59,7 +117,7 @@ public class oponente extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         seleccionados = new javax.swing.JTextArea();
         lista = new javax.swing.JComboBox<>();
-        jLabel1 = new javax.swing.JLabel();
+        confi = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         tbn_inicio = new javax.swing.JButton();
         btn_sele = new javax.swing.JButton();
@@ -78,8 +136,10 @@ public class oponente extends javax.swing.JFrame {
 
         lista.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
 
-        jLabel1.setFont(new java.awt.Font("Arial", 0, 22)); // NOI18N
-        jLabel1.setText("MODO: # + jugadores");
+        confi.setFont(new java.awt.Font("Arial", 0, 22)); // NOI18N
+        confi.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        confi.setText("m");
+        confi.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
         jLabel2.setFont(new java.awt.Font("Arial", 0, 22)); // NOI18N
         jLabel2.setText("Listado de seleccionados");
@@ -107,19 +167,21 @@ public class oponente extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(199, Short.MAX_VALUE)
+                .addGap(179, 179, 179)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lista, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel1)
-                                    .addComponent(equipo, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(lista, 0, 255, Short.MAX_VALUE)
+                                    .addComponent(equipo, 0, 255, Short.MAX_VALUE))
                                 .addGap(45, 45, 45))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(btn_sele, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(79, 79, 79)))
+                                .addGap(79, 79, 79))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(confi, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jScrollPane1)
                             .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -134,7 +196,7 @@ public class oponente extends javax.swing.JFrame {
                 .addContainerGap(262, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(confi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -177,9 +239,80 @@ public class oponente extends javax.swing.JFrame {
     }//GEN-LAST:event_tbn_inicioMouseClicked
 
     private void btn_seleMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_seleMouseClicked
-        //  seleccionados.setText(us); los que vala seleccionando
-    }//GEN-LAST:event_btn_seleMouseClicked
+        String jugadores = lista.getSelectedItem().toString();
+        String equipos = equipo.getSelectedItem().toString(); 
+        registro r = new registro();
 
+        try {
+            if (selec < r.getCantidadJ()) {
+                if (equipoLog == 0) {
+                    if (equipos.equals("EQUIPO 1")) {
+                        E1++;
+                    } else if (equipos.equals("EQUIPO 2")) {
+                        E2++;
+                    } else if (equipos.equals("EQUIPO 3")) {
+                        E3++;
+                    }
+                    String us = registro.getLogin();
+//                    n = us + "-" + equipos + (equipos.equals("EQUIPO 1") ? E1 : equipos.equals("EQUIPO 2") ? E2 : E3) + jper + "\n";
+                    n = us + "-" + equipos+ "\n";
+                    name[selec] = us;
+                    seleccionados.setText(us);
+                    equipoLog++;
+                    selec++;
+                    lista.setVisible(true);
+                    JOptionPane.showMessageDialog(null, "Has seleccionado TU equipo");
+                    seleccionados.setText(n);
+
+                } else {
+                    if (!buscan(name, jugadores)) {
+                        if ((equipos.equals("EQUIPO 1") && E1 < jper) ||
+                            (equipos.equals("EQUIPO 2") && E2 < jper) ||
+                            (equipos.equals("EQUIPO 3") && E3 < jper)) {
+                            name[selec] = jugadores;
+                            selec++;
+                            JOptionPane.showMessageDialog(null, "Jugador añadido");
+//                             n += jugadores + "-" + equipos + (equipos.equals("EQUIPO 1") ? E1 : equipos.equals("EQUIPO 2") ? E2 : E3) + jper + "\n";
+                             n += jugadores + "-" + equipos+ "\n";
+                            seleccionados.setText(n);
+                            if (equipos.equals("EQUIPO 1")) {
+                                E1++;
+                            } else if (equipos.equals("EQUIPO 2")) {
+                                E2++;
+                            } else if (equipos.equals("EQUIPO 3")) {
+                                E3++;
+                            }
+                            if (selec == r.getCantidadJ()) {
+                                JOptionPane.showMessageDialog(null, "Puedes continuar");
+                                tablero t = new tablero();
+                                t.setVisible(true);
+                                this.setVisible(false);
+                            }
+                        } else {
+                            JOptionPane.showMessageDialog(null, "Equipo lleno, son "+jper+" por equipo");
+                        }
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Jugador YA fue seleccionado");
+                    }
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Puedes continuar");
+                tablero t = new tablero();
+                t.setVisible(true);
+                this.setVisible(false);
+            }
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(null, "...");
+        }
+    }//GEN-LAST:event_btn_seleMouseClicked
+    private boolean buscan(String[] array, String player) {
+        for (String b : array) {
+            if (b != null && b.equals(player)) {
+                return true;
+            }
+        }
+        return false;
+    }
     /**
      * @param args the command line arguments
      */
@@ -187,9 +320,9 @@ public class oponente extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_sele;
+    private javax.swing.JLabel confi;
     private javax.swing.JComboBox<String> equipo;
     private javax.swing.JLabel fondo_op;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;

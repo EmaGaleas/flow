@@ -26,9 +26,8 @@ public class menu_p extends javax.swing.JFrame {
             e.printStackTrace();
         }
         try {
-            System.out.println("\nsimulador reportes");
-            obrg.imprimirReportes();
-            } catch (IOException e) {
+            obrg.imprimirReportes();        
+        } catch (IOException e) {
             e.printStackTrace(); 
         }
     }
@@ -160,9 +159,9 @@ public class menu_p extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_confiMouseClicked
 
     private void btn_rankingMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_rankingMouseClicked
-        //rankiing mi=new ranking();
-        //mi.setVisible(true);
-        //this.setVisible(false);
+        reportes mi=new reportes();
+        mi.setVisible(true);
+        this.setVisible(false);
 
     }//GEN-LAST:event_btn_rankingMouseClicked
 
@@ -172,12 +171,12 @@ public class menu_p extends javax.swing.JFrame {
             registro r = new registro();
            // System.out.println(r.contarUsuarios());
             System.out.println();
-            if (r.contarUsuarios() >= 1) {
+            if (r.contarUsuarios() >= r.getCantidadJ()) {
                 oponente c = new oponente();
                 c.setVisible(true);
                 this.setVisible(false);
             }else{
-                JOptionPane.showMessageDialog(null, "Necesitan exisistir  4 o mas usuarios para poder jugar");
+                JOptionPane.showMessageDialog(null, "No hay suficientes jugadores para el modo seleccionado");
                 
             }
         } catch (IOException e) {
