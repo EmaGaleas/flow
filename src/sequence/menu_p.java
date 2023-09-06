@@ -176,7 +176,7 @@ public class menu_p extends javax.swing.JFrame {
                 c.setVisible(true);
                 this.setVisible(false);
             }else{
-                JOptionPane.showMessageDialog(null, "No hay suficientes jugadores para el modo seleccionado");
+                JOptionPane.showMessageDialog(null, "No hay suficientes jugadores para la partida");
                 
             }
         } catch (IOException e) {
