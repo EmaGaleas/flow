@@ -170,6 +170,7 @@ public class menu_p extends javax.swing.JFrame {
         try {
             registro r = new registro();
            // System.out.println(r.contarUsuarios());
+           
             System.out.println();
             if (r.contarUsuarios() >= r.getCantidadJ()) {
                 oponente c = new oponente();
