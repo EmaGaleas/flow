@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.RandomAccessFile;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import javax.swing.JOptionPane;
@@ -114,7 +115,7 @@ public class registro {
             System.out.println("modo:" + entero);
             System.out.println("ficha:" + cadena);
         } catch (EOFException e) {
-            JOptionPane.showMessageDialog(null, "Voa llorar");
+            JOptionPane.showMessageDialog(null, ".");
         } finally {
             raf.close();
         }
@@ -142,7 +143,7 @@ public class registro {
             entero = raf.readInt();
             raf.readUTF();
         } catch (EOFException e) {
-            JOptionPane.showMessageDialog(null, "Voa llorar");
+            JOptionPane.showMessageDialog(null, "..");
         } finally {
             raf.close();
         }
@@ -157,7 +158,7 @@ public class registro {
             raf.readInt();
             ficha = raf.readUTF();
         } catch (EOFException e) {
-            JOptionPane.showMessageDialog(null, "Voa llorar");
+            JOptionPane.showMessageDialog(null, "..");
         } finally {
             raf.close();
         }
@@ -167,22 +168,26 @@ public class registro {
     public String imprimirReportes() throws IOException {
         String path = carpetaUsuario(codigoLogueado) + "/reportes.emp";
         RandomAccessFile raf = new RandomAccessFile(path, "r");
-        String r = "";
+        ArrayList<String> rev = new ArrayList<>();
         try {
             while (raf.getFilePointer() < raf.length()) {
                 Date fecha = new Date(raf.readLong());
                 String dat = raf.readUTF();
-                r += fecha + "\t" + dat + "\n";
+//              r += fecha + "\t" + dat + "\n";
+                rev.add(fecha + "\t" + dat);
             }
-            //esto lo podes usar para insertarlo despues en un text area la letra esta
-            System.out.println(r);
+            String r = "";
+            for (int i = rev.size() - 1; i >= 0; i--) {
+                r += rev.get(i) + "\n";
+            }
             return r;
         } catch (EOFException e) {
-            JOptionPane.showMessageDialog(null, "INTENTO 5 PQ SE LE OLVIDO EL LLAMADO JEJE");
+            JOptionPane.showMessageDialog(null, "...");
+//            e.printStackTrace(); 
         } finally {
             raf.close();
         }
-        System.out.println(r);
+        System.out.println("NO HAY");
         return "";
     }
 
@@ -199,19 +204,6 @@ public class registro {
         }
     }
 
-//
-//    public void listarUsuariosT() throws IOException {//COMENTAR AL TERMINAR
-//        registros.seek(0);
-//        while (registros.getFilePointer() < registros.length()) {
-//            int codigo = registros.readInt();
-//            String nombre = registros.readUTF();
-//            int puntos = registros.readInt();
-//            String username = registros.readUTF();
-//            Date fechaRegistro = new Date(registros.readLong());
-//            String contrasena = registros.readUTF();
-//            System.out.println(codigo + " - " + nombre + " - " + puntos + " - " + username + " - " + fechaRegistro + " - " + contrasena);
-//        }
-//    }
     public String listarUsuarios() throws IOException {//COMENTAR AL TERMINAR
         registros.seek(0);
         String j = "";
@@ -267,3 +259,16 @@ public class registro {
     }
 
 }
+
+//    public void listarUsuariosT() throws IOException {//COMENTAR AL TERMINAR
+//        registros.seek(0);
+//        while (registros.getFilePointer() < registros.length()) {
+//            int codigo = registros.readInt();
+//            String nombre = registros.readUTF();
+//            int puntos = registros.readInt();
+//            String username = registros.readUTF();
+//            Date fechaRegistro = new Date(registros.readLong());
+//            String contrasena = registros.readUTF();
+//            System.out.println(codigo + " - " + nombre + " - " + puntos + " - " + username + " - " + fechaRegistro + " - " + contrasena);
+//        }
+//    }
