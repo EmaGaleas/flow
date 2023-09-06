@@ -204,7 +204,7 @@ public class registro {
         }
     }
 
-    public String listarUsuarios() throws IOException {//COMENTAR AL TERMINAR
+    public String listarUsuarios() throws IOException {//para oponente
         registros.seek(0);
         String j = "";
         while (registros.getFilePointer() < registros.length()) {
