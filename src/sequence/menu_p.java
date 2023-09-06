@@ -26,6 +26,7 @@ public class menu_p extends javax.swing.JFrame {
             e.printStackTrace();
         }
         try {
+            System.out.println("\nsimulador reportes");
             obrg.imprimirReportes();
             } catch (IOException e) {
             e.printStackTrace(); 

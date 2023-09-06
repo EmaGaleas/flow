@@ -144,27 +144,25 @@ public class confi extends javax.swing.JFrame {
                 null,
                 opciones,
                 opciones[0]);
+        
          if (seleccion != null) {
             registro miRegistro = new registro();
             int cantidadUsuarios;
+            
             try {
                 cantidadUsuarios = miRegistro.contarUsuarios();
-                System.out.println("Número de jugadores registrados: " + cantidadUsuarios);
                 int numeroSeleccionado = Integer.parseInt(seleccion);
            
                 if (numeroSeleccionado <= cantidadUsuarios) {
                     JOptionPane.showMessageDialog(null, "Has seleccionado la cantidad de jugadores de: " + numeroSeleccionado);
                     
                     try {
-                       int contadorJ =miRegistro.getCantidadJ();
+                        int contadorJ =miRegistro.getCantidadJ();
                         String colorFicha = miRegistro.getColorFicha();
-                        System.out.println(colorFicha+""+contadorJ);
                         miRegistro.sobreModo(numeroSeleccionado, colorFicha);
-                        System.out.println("ya");
                     } catch (IOException e) {
                         e.printStackTrace(); 
                     }   
-                    System.out.println("cantjugadores");
                 } else {
                     JOptionPane.showMessageDialog(null, "No hay suficientes usuarios registrados\nActualmente hay "+cantidadUsuarios+" registrados", "Error", JOptionPane.ERROR_MESSAGE);
                 }
@@ -192,10 +190,7 @@ public class confi extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Has seleccionado el color: " + seleccion);
                 try {
                        int contadorJ =miRegistro.getCantidadJ();
-                        String colorFicha = miRegistro.getColorFicha();
-                        System.out.println(colorFicha+""+contadorJ);
-                        miRegistro.sobreModo( contadorJ, seleccion);
-                        System.out.println("ya");
+                       miRegistro.sobreModo( contadorJ, seleccion);
                     } catch (IOException e) {
                         e.printStackTrace(); 
                     }   

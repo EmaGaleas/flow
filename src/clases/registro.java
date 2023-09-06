@@ -2,6 +2,7 @@ package clases;
 
 import java.io.EOFException;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.util.Calendar;
@@ -15,7 +16,7 @@ public class registro {
     private static int codigoLogueado;
     private static String colorFicha;
     private RandomAccessFile cods, registros, modo, reportes;
-       
+
     public registro() {
         try {
             File f = new File("usuarios");
@@ -41,6 +42,7 @@ public class registro {
         cods.writeInt(codigo + 1);
         return codigo;
     }
+
     public boolean usuarioExiste(String username) throws IOException {
         registros.seek(0);
         while (registros.getFilePointer() < registros.length()) {
@@ -67,7 +69,7 @@ public class registro {
         File udir = new File(carpetaUsuario(code));
         udir.mkdir();
     }
-    
+
     public void agregarUsuario(String nombreCompleto, String username, String contra) throws IOException {
         if (!usuarioExiste(username)) {
             registros.seek(registros.length());
@@ -85,8 +87,8 @@ public class registro {
             modoArchivo.writeInt(4);//por default es 4
             modoArchivo.writeUTF("NO APLICA");//si no aplica no pasa nada pero cuando se escoja va a cambiar sobreescirbe seek 0
             modoArchivo.close();
-            cantidadJ=4;
-            colorFicha="NO APLICA";
+            cantidadJ = 4;
+            colorFicha = "NO APLICA";
 
             //crea archivo que contendra datos de reportes de este jugador 
             RandomAccessFile repotesArchivo = new RandomAccessFile(carpetaUsuario(code) + "/reportes.emp", "rw");
@@ -125,11 +127,41 @@ public class registro {
             raf.seek(0); //principio del archivo
             raf.writeInt(nModo); //Sobre el int
             raf.writeUTF(ficha); //Sobre color
-            cantidadJ=nModo;
-            colorFicha=ficha;
+            cantidadJ = nModo;
+            colorFicha = ficha;
         } finally {
             raf.close();
         }
+    }
+
+    public int getCantidadJ() throws IOException {
+        String path = carpetaUsuario(codigoLogueado) + "/modo.emp";
+        RandomAccessFile raf = new RandomAccessFile(path, "r");
+        int entero = 4;
+        try {
+            entero = raf.readInt();
+            raf.readUTF();
+        } catch (EOFException e) {
+            JOptionPane.showMessageDialog(null, "Voa llorar");
+        } finally {
+            raf.close();
+        }
+        return entero;
+    }
+
+    public String getColorFicha() throws IOException {
+        String path = carpetaUsuario(codigoLogueado) + "/modo.emp";
+        RandomAccessFile raf = new RandomAccessFile(path, "r");
+        String ficha = "";
+        try {
+            raf.readInt();
+            ficha = raf.readUTF();
+        } catch (EOFException e) {
+            JOptionPane.showMessageDialog(null, "Voa llorar");
+        } finally {
+            raf.close();
+        }
+        return ficha;
     }
 
     public String imprimirReportes() throws IOException {
@@ -234,12 +266,4 @@ public class registro {
         return contador;
     }
 
-    public static int getCantidadJ() {
-        return cantidadJ;
-    }
-
-    public static String getColorFicha() {
-        return colorFicha;
-    }
-    
 }
