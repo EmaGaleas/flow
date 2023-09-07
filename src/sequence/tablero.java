@@ -102,8 +102,8 @@ public class tablero extends javax.swing.JFrame {
        panelJ6.setVisible(false);
         panelJ5.setVisible(false);
        panelJ7.setVisible(false);
-        panelJ3.setVisible(false);
-       panelJ4.setVisible(false);
+//        panelJ3.setVisible(false);
+//       panelJ4.setVisible(false);
     }
 
     @SuppressWarnings("unchecked")
@@ -700,8 +700,8 @@ public class tablero extends javax.swing.JFrame {
             .addGroup(principalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(principalLayout.createSequentialGroup()
                     .addGap(266, 266, 266)
-                    .addComponent(fondo_tab, javax.swing.GroupLayout.PREFERRED_SIZE, 934, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(264, Short.MAX_VALUE)))
+                    .addComponent(fondo_tab, javax.swing.GroupLayout.PREFERRED_SIZE, 938, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(260, Short.MAX_VALUE)))
         );
         principalLayout.setVerticalGroup(
             principalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

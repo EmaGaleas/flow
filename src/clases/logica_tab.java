@@ -55,7 +55,7 @@ public int s=1;
                 button.setPreferredSize(new Dimension(ancho, largo));
                 button.setOpaque(false);
                 button.setContentAreaFilled(false);
-              button.setBorder(BorderFactory.createLineBorder(Color.red));
+             button.setBorder(BorderFactory.createLineBorder(Color.red));
      
                 button.addActionListener(new ActionListener() {
                     @Override
