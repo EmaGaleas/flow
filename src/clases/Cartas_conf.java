@@ -9,7 +9,7 @@ public class Cartas_conf {
     
   private int num;
   private String tipo;
-  public static final int limitecart_palo=12; 
+  public static final int limitecart_palo=13; 
   public static final String[] TIPO={"CORAZON","DIAMANTE","PICA","TREBOL"};
 
     public Cartas_conf(int num, String tipo) {
