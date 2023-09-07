@@ -12,10 +12,10 @@ public class probarbaraja {
        // rp.barajar();
          
         
-        rp.siguienteCarta();
-        rp.siguienteCarta();
-        rp.siguienteCarta();
-        rp.cartasDisponible();
+//        rp.siguienteCarta();
+//        rp.siguienteCarta();
+//        rp.siguienteCarta();
+//        rp.cartasDisponible();
 //       
 //        System.out.println(""+rp.cartasDisponible());
 //        
