@@ -159,7 +159,7 @@ public class confi extends javax.swing.JFrame {
                     try {
                         int contadorJ =miRegistro.getCantidadJ();
                         String colorFicha = miRegistro.getColorFicha();
-                        miRegistro.sobreModo(numeroSeleccionado, colorFicha);
+                    //    miRegistro.sobreModo(numeroSeleccionado, colorFicha);
                     } catch (IOException e) {
                         e.printStackTrace(); 
                     }   
@@ -175,22 +175,34 @@ public class confi extends javax.swing.JFrame {
 
     private void btn_colorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_colorMouseClicked
         // COLOR DE FICHA
-        String[] opciones = {"ROJO", "VERDE", "AZUL", "AMARILLO"};
-        String seleccion = (String) JOptionPane.showInputDialog(
+        registro miRegistro = new registro();
+        String[] mo={"POR EQUIPO","INDIVIDUAL"};
+        String mod = (String) JOptionPane.showInputDialog(
                 null,
-                "Selecciona un color:",
+                "Selecciona como quieres elegir color de ficha:",
                 "Selección de Color",
                 JOptionPane.PLAIN_MESSAGE,
                 null,
-                opciones,
-                opciones[0]);
-
+                mo,
+                mo[0]);
+        if(mod!=null){
+            
+        }
+        String[] color = {"AZUL", "AMARILLO","AZULCLARO","BLANCO","GRIS","MORADO","NEGRO","ROJO","ROSADO","VERDE"};
+        String seleccion = (String) JOptionPane.showInputDialog(
+                null,
+                "Selecciona un color para:",
+                "Selección de Color",
+                JOptionPane.PLAIN_MESSAGE,
+                null,
+                color,
+                color[0]);
         if (seleccion != null) {
-            registro miRegistro = new registro();
+            
             JOptionPane.showMessageDialog(null, "Has seleccionado el color: " + seleccion);
                 try {
                        int contadorJ =miRegistro.getCantidadJ();
-                       miRegistro.sobreModo( contadorJ, seleccion);
+//                       miRegistro.sobreModo( contadorJ, seleccion);
                     } catch (IOException e) {
                         e.printStackTrace(); 
                     }   

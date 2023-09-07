@@ -16,6 +16,8 @@ public class registro {
     private static int cantidadJ;
     private static int codigoLogueado;
     private static String colorFicha;
+    private static String colores_equipo;
+    private static int team_indi;
     private RandomAccessFile cods, registros, modo, reportes;
 
     public registro() {
@@ -86,15 +88,18 @@ public class registro {
             //crea archivo que contendra datos del modo de este jugador
             RandomAccessFile modoArchivo = new RandomAccessFile(carpetaUsuario(code) + "/modo.emp", "rw");
             modoArchivo.writeInt(4);//por default es 4
-            modoArchivo.writeUTF("NO APLICA");//si no aplica no pasa nada pero cuando se escoja va a cambiar sobreescirbe seek 0
+            modoArchivo.writeUTF("NOAPLICA");//si no aplica no pasa nada pero cuando se escoja va a cambiar sobreescirbe seek 0 COLOR INDIVIDUAL
+            modoArchivo.writeInt(0);//modo equipo pa jugar
+            modoArchivo.writeUTF("NOAPLICA");//colores por quipo se hata split del texto por cada guion-
             modoArchivo.close();
             cantidadJ = 4;
-            colorFicha = "NO APLICA";
-
+            colorFicha = "NOAPLICA";
+            team_indi=0;
+            colores_equipo="NOAPLICA";
             //crea archivo que contendra datos de reportes de este jugador 
             RandomAccessFile repotesArchivo = new RandomAccessFile(carpetaUsuario(code) + "/reportes.emp", "rw");
             repotesArchivo.writeLong(Calendar.getInstance().getTimeInMillis());//pruebita
-            repotesArchivo.writeUTF("NO HA JUGADOR");//se le va a ñadir despues
+            repotesArchivo.writeUTF("NO HA JUGADO");//se le va a ñadir despues
             repotesArchivo.close();
 
             login = username;
@@ -110,10 +115,15 @@ public class registro {
         String path = carpetaUsuario(codigoLogueado) + "/modo.emp";
         RandomAccessFile raf = new RandomAccessFile(path, "r");
         try {
-            int entero = raf.readInt();
-            String cadena = raf.readUTF();
-            System.out.println("modo:" + entero);
-            System.out.println("ficha:" + cadena);
+            int cantidad = raf.readInt();
+            String color = raf.readUTF();
+            int modo = raf.readInt();
+            String colores = raf.readUTF();
+            
+            System.out.println("cantidad:" + cantidad);
+            System.out.println("ficha color indi:" + color);
+            System.out.println("equipo(0), indi(1):" + modo);
+            System.out.println("ficha color team:" + colores);
         } catch (EOFException e) {
             JOptionPane.showMessageDialog(null, ".");
         } finally {
@@ -121,15 +131,19 @@ public class registro {
         }
     }
 
-    public void sobreModo(int nModo, String ficha) throws IOException {
+    public void sobreModo(int cantidad, String fichaI,int modo, String coloresEq) throws IOException {
         String path = carpetaUsuario(codigoLogueado) + "/modo.emp";
         RandomAccessFile raf = new RandomAccessFile(path, "rw");
         try {
             raf.seek(0); //principio del archivo
-            raf.writeInt(nModo); //Sobre el int
-            raf.writeUTF(ficha); //Sobre color
-            cantidadJ = nModo;
-            colorFicha = ficha;
+            raf.writeInt(cantidad); //Sobre el int
+            raf.writeUTF(fichaI); //Sobre color
+            raf.writeInt(modo);
+            raf.writeUTF(coloresEq);
+            cantidadJ = cantidad;
+            colorFicha = fichaI;
+            team_indi=modo;
+            colores_equipo=coloresEq;
         } finally {
             raf.close();
         }
