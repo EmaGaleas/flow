@@ -357,6 +357,16 @@ public class registro {
                 System.out.println("ficha color indi:" + fIndi);
                 System.out.println("equipo(0), indi(1):" + modo);
                 System.out.println("ficha color team:" + colores);
+                raf.seek(0);
+                raf.writeInt(cantidad);
+                raf.writeUTF(fichaI);
+                raf.writeInt(modo);
+                raf.writeUTF(colores);
+                System.out.println("cantidad:" + cantidad);
+                System.out.println("ficha color indi:" + fichaI);
+                System.out.println("equipo(0), indi(1):" + modo);
+                System.out.println("ficha color team:" + colores);
+                
             } finally {
                 raf.close();
             }
