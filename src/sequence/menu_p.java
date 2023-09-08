@@ -4,6 +4,7 @@
  */
 package sequence;
 
+import clases.Repartircartas_tab;
 import clases.registro;
 import java.io.IOException;
 import java.util.logging.Level;
@@ -30,6 +31,7 @@ public class menu_p extends javax.swing.JFrame {
         } catch (IOException e) {
             e.printStackTrace(); 
         }
+        
         
     }
 
