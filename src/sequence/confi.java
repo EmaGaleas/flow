@@ -10,11 +10,15 @@ import javax.swing.JOptionPane;
 
 public class confi extends javax.swing.JFrame {
     registro obrg = new registro();
+    private String[] coloresSeleccionados;
+   // private String[] coloresEquipos;
+    private int contClicksFicha;
     
     public confi() {
         initComponents();
         ImageIcon icon = new ImageIcon("src/images/fondos/fondo_configuracion.png");
         fondo_c.setIcon(icon);
+        contClicksFicha=0;
 //        //pruebas
 //        try {
 //            obrg.sobreModo(5, "ROJOD");
@@ -128,13 +132,31 @@ public class confi extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void tbn_inicioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbn_inicioMouseClicked
-        menu_p mi=new menu_p();
-        mi.setVisible(true);
-        this.setVisible(false);
+
+       boolean coloresNoSeleccionados = true;
+        if (coloresSeleccionados != null) {
+            for (String color : coloresSeleccionados) {
+                if (color == null) {
+                    coloresNoSeleccionados = false;
+                    break;
+                }
+            }
+        }
+
+        if (coloresNoSeleccionados) {
+            menu_p mi = new menu_p();
+            mi.setVisible(true);
+            this.setVisible(false);
+            coloresSeleccionados = null;
+          //  coloresEquipos = null;
+            System.out.println("ARREGLOS LIMPIADOS POR SI QUIERE CAMBIAR DESPUS");
+        } else {
+            JOptionPane.showMessageDialog(null, "No ha seleccioando colores para equipos", "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_tbn_inicioMouseClicked
 
     private void btn_cantidadMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_cantidadMouseClicked
-        // SELLECIONAR JUGADORES
+        // SELLECIONAR cant JUGADORES terminado
         String[] opciones = {"2", "3", "4", "6", "8"};
         String seleccion = (String) JOptionPane.showInputDialog(
                 null,
@@ -156,10 +178,11 @@ public class confi extends javax.swing.JFrame {
                 if (numeroSeleccionado <= cantidadUsuarios) {
                     JOptionPane.showMessageDialog(null, "Has seleccionado la cantidad de jugadores de: " + numeroSeleccionado);
                     
-                    try {
-                        int contadorJ =miRegistro.getCantidadJ();
+                    try {                       
                         String colorFicha = miRegistro.getColorFicha();
-                    //    miRegistro.sobreModo(numeroSeleccionado, colorFicha);
+                        int teamind=miRegistro.getModo();
+                        String colorG = miRegistro.getColorEquipo();
+                        miRegistro.sobreModo(numeroSeleccionado, colorFicha,teamind, colorG);
                     } catch (IOException e) {
                         e.printStackTrace(); 
                     }   
@@ -174,7 +197,6 @@ public class confi extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_cantidadMouseClicked
 
     private void btn_colorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_colorMouseClicked
-        // COLOR DE FICHA
         registro miRegistro = new registro();
         String[] mo={"POR EQUIPO","INDIVIDUAL"};
         String mod = (String) JOptionPane.showInputDialog(
@@ -185,30 +207,122 @@ public class confi extends javax.swing.JFrame {
                 null,
                 mo,
                 mo[0]);
+        
         if(mod!=null){
-            
+            if(mod.equals("POR EQUIPO")){
+                try {
+                    int t=2;
+                    int contadorJ =miRegistro.getCantidadJ();
+                    String colorFicha = miRegistro.getColorFicha();
+                    String colorG = miRegistro.getColorEquipo();
+                    miRegistro.sobreModo( contadorJ, colorFicha,0,colorG);
+                    
+                    if (miRegistro.getCantidadJ()== 2) {
+                        t=2;
+                    } else if (miRegistro.getCantidadJ() == 3) {
+                        t=3;
+                    } else if (miRegistro.getCantidadJ() == 4) {
+                        t=2;
+                    } else if (miRegistro.getCantidadJ()== 6) {
+                        t=3;
+                    } else if (miRegistro.getCantidadJ() == 8) {
+                        t=4;
+                    } 
+                    coloresSeleccionados = new String[t]; 
+                   // coloresEquipos = new String[t]; 
+                    for (int i = 0; i < t; i++) {
+                        String equipo = "Equipo " + (i + 1); 
+                        String seleccion = seleccionarColor(equipo);
+                    
+                    if (seleccion != null) {
+                        if (!yaSeleccionado(seleccion, coloresSeleccionados)) {
+                            coloresSeleccionados[i] = seleccion; 
+                        //    coloresEquipos[i] = seleccion; 
+                        } else {
+                            JOptionPane.showMessageDialog(null, "Ese color ya fue elegido por otro equipo.\nElige otro color.");
+                            i--; 
+                        }
+                    }
+                }
+                    listaColores();
+                } catch (IOException e) {
+                    e.printStackTrace(); 
+                }  
+
+                
+            }else{//individual
+                try {
+                    int contadorJ =miRegistro.getCantidadJ();
+                    String colorFicha = miRegistro.getColorFicha();
+                    String colorG = miRegistro.getColorEquipo();
+                    miRegistro.sobreModo( contadorJ, colorFicha,1,colorG);
+                    JOptionPane.showMessageDialog(null, "indi");
+                } catch (IOException e) {
+                    e.printStackTrace(); 
+                }  
+            }
         }
-        String[] color = {"AZUL", "AMARILLO","AZULCLARO","BLANCO","GRIS","MORADO","NEGRO","ROJO","ROSADO","VERDE"};
+
+    }//GEN-LAST:event_btn_colorMouseClicked
+
+    //MOSTRAR ESTO J VECES SEGUN CUANTOS EQUIPOS O INDI MIN
+    private String seleccionarColor(String equipo) {
+        String[] coloresDisponibles = {"AZUL", "AMARILLO", "AZUL CLARO", "BLANCO", "GRIS", "MORADO", "NEGRO", "ROJO", "ROSADO", "VERDE"};
         String seleccion = (String) JOptionPane.showInputDialog(
                 null,
-                "Selecciona un color para:",
+                "Selecciona un color para " + equipo + ":",
                 "Selección de Color",
                 JOptionPane.PLAIN_MESSAGE,
                 null,
-                color,
-                color[0]);
-        if (seleccion != null) {
-            
-            JOptionPane.showMessageDialog(null, "Has seleccionado el color: " + seleccion);
-                try {
-                       int contadorJ =miRegistro.getCantidadJ();
-//                       miRegistro.sobreModo( contadorJ, seleccion);
-                    } catch (IOException e) {
-                        e.printStackTrace(); 
-                    }   
-
+                coloresDisponibles,
+                coloresDisponibles[0]);
+        return seleccion;
+    }
+    //COLORES YA SELECCIONADOS NO SE VALE DE NUEVO
+    private boolean yaSeleccionado(String color, String[] colores) {
+        for (String seleccionado : colores) {
+            if (color.equals(seleccionado)) {
+                return true;
+            }
         }
-    }//GEN-LAST:event_btn_colorMouseClicked
+        return false;
+    }
+    //INDIVIDUAL
+    
+    
+    //GRUPAL
+    //LISTA Y AÑADE LOS COLORES A MI ARCHIVO, SERAN SPLIT CON EL GUIEN DESPUES SIRVE PARA EQUIPO NO INDIVIDUAL
+    private void listaColores() {
+        registro miRegistro = new registro();
+        if (coloresSeleccionados != null && coloresSeleccionados.length > 0) {
+            String mensaje = "Colores elegidos:\n";
+            String coloresConsola = "";
+
+            for (int i = 0; i < coloresSeleccionados.length; i++) {
+                String equipo = "Equipo " + (i + 1);
+                mensaje += equipo + ": " + coloresSeleccionados[i] + "\n";
+                coloresConsola += coloresSeleccionados[i];
+
+                if (i < coloresSeleccionados.length - 1) {
+                    coloresConsola += "-";
+                }
+            }
+
+            System.out.println("Colores en consola: " + coloresConsola);
+            try {
+                int contadorJ =miRegistro.getCantidadJ();
+                String colorFicha = miRegistro.getColorFicha();
+                miRegistro.sobreModo( contadorJ, colorFicha,0, coloresConsola);
+            } catch (IOException e) {
+                e.printStackTrace(); 
+            } 
+            JOptionPane.showMessageDialog(null, mensaje, "Colores Elegidos por Equipos", JOptionPane.INFORMATION_MESSAGE);         
+               
+            
+        } else {
+            JOptionPane.showMessageDialog(null, "NO SE SELECCIONARON COLORES", "Colores Elegidos por Equipos", JOptionPane.INFORMATION_MESSAGE);
+        }
+    }
 
     /**
      * @param args the command line arguments

@@ -156,6 +156,9 @@ public class registro {
         try {
             entero = raf.readInt();
             raf.readUTF();
+            raf.readInt();
+            raf.readUTF();
+            cantidadJ=entero;
         } catch (EOFException e) {
             JOptionPane.showMessageDialog(null, "..");
         } finally {
@@ -171,6 +174,45 @@ public class registro {
         try {
             raf.readInt();
             ficha = raf.readUTF();
+            raf.readInt();
+            raf.readUTF();
+            colorFicha=ficha;
+            
+        } catch (EOFException e) {
+            JOptionPane.showMessageDialog(null, "..");
+        } finally {
+            raf.close();
+        }
+        return ficha;
+    }
+    public int getModo() throws IOException {
+        String path = carpetaUsuario(codigoLogueado) + "/modo.emp";
+        RandomAccessFile raf = new RandomAccessFile(path, "r");
+        int mod = 0;
+        try {
+            raf.readInt();
+            raf.readUTF();
+            mod=raf.readInt();
+            raf.readUTF();
+            team_indi=mod;
+        } catch (EOFException e) {
+            JOptionPane.showMessageDialog(null, "..");
+        } finally {
+            raf.close();
+        }
+        return mod;
+    }
+    public String getColorEquipo() throws IOException {
+        String path = carpetaUsuario(codigoLogueado) + "/modo.emp";
+        RandomAccessFile raf = new RandomAccessFile(path, "r");
+        String ficha = "";
+        try {
+            raf.readInt();
+            raf.readUTF();
+            raf.readInt();
+            ficha = raf.readUTF();
+            colores_equipo=ficha;
+            
         } catch (EOFException e) {
             JOptionPane.showMessageDialog(null, "..");
         } finally {
@@ -188,7 +230,11 @@ public class registro {
                 Date fecha = new Date(raf.readLong());
                 String dat = raf.readUTF();
 //              r += fecha + "\t" + dat + "\n";
-                rev.add(fecha + "\t" + dat);
+                if(dat.equals("NO HA JUGADO")||dat.equals("NO")){
+                    
+                }else{
+                    rev.add(fecha + "\t" + dat);
+                }
             }
             String r = "";
             for (int i = rev.size() - 1; i >= 0; i--) {

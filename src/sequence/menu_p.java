@@ -159,11 +159,11 @@ public class menu_p extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_confiMouseClicked
 
     private void btn_rankingMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_rankingMouseClicked
-//        try {
-//            obrg.agregarReportes("al reves 2");        
-//        } catch (IOException e) {
-//            e.printStackTrace(); 
-//        }
+        try {
+            obrg.agregarReportes("NO");        
+        } catch (IOException e) {
+            e.printStackTrace(); 
+        }
         reportes mi=new reportes();
         mi.setVisible(true);
         this.setVisible(false);
