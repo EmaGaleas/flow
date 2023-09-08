@@ -11,8 +11,8 @@ public class probarbaraja {
        Repartircartas_tab rp=new Repartircartas_tab(); 
         
        
-         //rp.crearbarajear();
-         rp.barajar();
+         rp.crearbarajear();
+         //rp.barajar();
         
          
     }
