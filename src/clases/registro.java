@@ -318,6 +318,54 @@ public class registro {
         return contador;
     }
 
+    public int obtenerCodigo(String nombre) throws IOException {
+        int codigo = -1;
+        registros.seek(0);
+        while (registros.getFilePointer() < registros.length()) {
+            int code = registros.readInt();
+            registros.readUTF();
+            registros.readInt();
+            String name = registros.readUTF();
+            registros.readLong();
+            registros.readUTF();
+            if (nombre.equals(name)) {
+                codigo = code;
+                System.out.println("codigo"+codigo);
+                break;
+            }
+
+            System.out.println("cosigo ");
+
+        }
+        return codigo;
+    }
+
+    public void sobreModoFuera(String nombre, String fichaI) throws IOException {
+        int codigo = obtenerCodigo(nombre);
+
+        if (codigo != -1) {
+            String path = carpetaUsuario(codigo) + "/modo.emp";
+            RandomAccessFile raf = new RandomAccessFile(path, "rw");
+
+            try {
+                int cantidad = raf.readInt();
+                String fIndi=raf.readUTF();
+                int modo = raf.readInt();
+                String colores = raf.readUTF();
+
+                System.out.println("cantidad:" + cantidad);
+                System.out.println("ficha color indi:" + fIndi);
+                System.out.println("equipo(0), indi(1):" + modo);
+                System.out.println("ficha color team:" + colores);
+            } finally {
+                raf.close();
+            }
+        } else {
+            System.out.println("Nombre no encontrado en los registros");
+        }
+    }
+
+
 }
 
 //    public void listarUsuariosT() throws IOException {//COMENTAR AL TERMINAR

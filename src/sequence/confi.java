@@ -20,11 +20,11 @@ public class confi extends javax.swing.JFrame {
         fondo_c.setIcon(icon);
         contClicksFicha=0;
 //        //pruebas
-//        try {
-//            obrg.sobreModo(5, "ROJOD");
-//            } catch (IOException e) {
-//            e.printStackTrace(); 
-//        }
+        try {
+            obrg.sobreModoFuera("rv", "LILA");
+            } catch (IOException e) {
+            e.printStackTrace(); 
+        }
 //         try {
 //            obrg.agregarReportes("INTENTO 2 PARA VER SI NO SOBREESCIRBE");
 //        } catch (IOException e) {
