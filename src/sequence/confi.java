@@ -263,13 +263,13 @@ public class confi extends javax.swing.JFrame {
                                 JOptionPane.showMessageDialog(null, "Se ha añadido el color:  "+seleccion+"\nAl jugador:  "+jugadorCambiar,"Colores Elegidos Individual", JOptionPane.INFORMATION_MESSAGE);         
                              
                             }else{
-                                 JOptionPane.showMessageDialog(null, "Color no disponible");
+                                 JOptionPane.showMessageDialog(null, "Color NO disponible");
                             }
                         }else{
                             JOptionPane.showMessageDialog(null, "No se pudo","Colores Elegidos Individual", JOptionPane.INFORMATION_MESSAGE);         
                         }
                     }else{
-                            JOptionPane.showMessageDialog(null, "No Eligio jugador","Colores Elegidos Individual", JOptionPane.INFORMATION_MESSAGE);         
+                            JOptionPane.showMessageDialog(null, "No selecciono jugador","Colores Elegidos Individual", JOptionPane.INFORMATION_MESSAGE);         
                     }
                     
                 } catch (IOException e) {
