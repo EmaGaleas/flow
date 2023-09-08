@@ -1,52 +1,84 @@
 package clases;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Repartircartas_tab {
 
     private Cartas_conf carta[];
     private int posionsigcart;
+    private int contdiamanete = 0, conttrebol = 0;
     public static final int numcarts = 104;
 
     public Repartircartas_tab() {
 
         this.carta = new Cartas_conf[numcarts];
         this.posionsigcart = 0;
-        crearbarajear();
-        barajar();
-        
+       crearbarajear();
+       barajar();
+
     }
 
     public void crearbarajear() {
-
+        int valorcarta = 1;
+        int valor;
+        int conttemp=0;
         String[] palos = Cartas_conf.TIPO;
+         for (int mazo = 0; mazo < 2; mazo++) {
         for (int i = 0; i < palos.length; i++) {
             for (int j = 0; j < Cartas_conf.limitecart_palo; j++) {
-                
-                carta[i *(Cartas_conf.limitecart_palo) + j] = new Cartas_conf(j + 1, palos[i]);
-              //  System.out.println("ver que hay en carta"+  carta[i *(Cartas_conf.limitecart_palo) + j] );
-          
+
+                int posicionaleatoria = generaNumeroEnteroAleatorio(0, 3);
+               
+                carta[mazo*52+i * (Cartas_conf.limitecart_palo) + j] = new Cartas_conf(j + 1, palos[i], valorcarta++);
+               if(valorcarta==14){
+                   valorcarta=1;
+               }
+               // System.out.println((conttemp++)+""+carta[i * (Cartas_conf.limitecart_palo) + j]);
+//                  System.out.println((conttemp++)+" ver que hay en carta "+  carta[i *(Cartas_conf.limitecart_palo) + j] );
+
             }
         }
     }
+    }
 
     public void barajar() {
-        int posicionaleatoria = 0;
+     
+        int posicionaleatoria = 0,numrandom;
         Cartas_conf cart;
         for (int i = 0; i < carta.length; i++) {
+          
+            posicionaleatoria = generaNumeroEnteroAleatorio(0, 103);
+            while(carta[i].getTipo().equals(carta[posicionaleatoria].getTipo())){
+              posicionaleatoria = generaNumeroEnteroAleatorio(0, 103);
+             
+            }
+           
+            cart = carta[i];
 
-            posicionaleatoria = generaNumeroEnteroAleatorio(0, 103);
-            cart = carta[i];
-            carta[i] = carta[posicionaleatoria];
-          carta[posicionaleatoria] = cart;
-          while(carta[posicionaleatoria] ==null){
-            posicionaleatoria = generaNumeroEnteroAleatorio(0, 103);
-            cart = carta[i];
             carta[i] = carta[posicionaleatoria];
             carta[posicionaleatoria] = cart;
-              
-          }
-            System.out.println(i+""+ carta[posicionaleatoria]);
+            //System.out.println(i + "" + carta[posicionaleatoria]);
 
         }
+         Cartas_conf cart2;
+        for (int i = 0; i < carta.length; i++) {
+          
+            posicionaleatoria = generaNumeroEnteroAleatorio(0, 103);
+            while(carta[i].getTipo().equals(carta[posicionaleatoria].getTipo())){
+              posicionaleatoria = generaNumeroEnteroAleatorio(0, 103);
+             
+            }
+           
+            cart2 = carta[i];
+
+            carta[i] = carta[posicionaleatoria];
+            carta[posicionaleatoria] = cart2;
+         
+            System.out.println(i + "" + carta[posicionaleatoria]);
+
+        }
+
     }
 
 //Va devolver una carta
@@ -55,12 +87,20 @@ public class Repartircartas_tab {
         Cartas_conf cartas = null;
         if (posionsigcart == numcarts) {
             System.out.println("ya no hay mas cartas barajear otra vez");
+            return null;
         } else {
             cartas = this.carta[posionsigcart++];
+            System.out.println("posicion buena=" + posionsigcart);
+            if (cartas == null) {
+                System.out.println("posicion null=" + posionsigcart);
+            }
 
+            while (cartas == null) {
+                cartas = this.carta[posionsigcart++];
+            }
         }
+        System.out.println("cartas dar" + cartas);
         return cartas;
-
     }
 
     public Cartas_conf[] darcartas(int numcartas) {
@@ -86,6 +126,7 @@ public class Repartircartas_tab {
 
     //va adevolver el numero de cartas disponible
     public int cartasDisponible() {
+        System.out.println("cartasDisponible" + (numcarts - posionsigcart));
         return numcarts - posionsigcart;
     }
 
@@ -107,7 +148,7 @@ public class Repartircartas_tab {
             System.out.println("ya no quedan mas cartas");
         } else {
             for (int i = posionsigcart; i < carta.length; i++) {
-                System.out.println(i+""+carta[i]);
+                System.out.println(i + "" + carta[i]);
             }
         }
 
