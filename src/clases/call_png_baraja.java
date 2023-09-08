@@ -15,25 +15,12 @@ public class call_png_baraja {
     }
     
 //codigo fichas
-    public static ImageIcon imagenFichaAz() {
+    public static ImageIcon fichaAzul() {
         ImageIcon icono=new ImageIcon("src/images/ficha_azul.png");
         return icono;
     }
     
-    public static ImageIcon imagenFichaR() {
-        ImageIcon icono=new ImageIcon("src/images/ficha_roja.png");
-        return icono;
-    }
-    
-    public static ImageIcon imagenFichaAm() {
-        ImageIcon icono=new ImageIcon("src/images/ficha_amarilla.png");
-        return icono;
-    }
-    
-    public static ImageIcon imagenFichaV() {
-        ImageIcon icono=new ImageIcon("src/images/ficha_verde.png");
-        return icono;
-    }
+  
      
     
 //codigo para pica

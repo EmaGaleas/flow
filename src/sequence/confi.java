@@ -6,6 +6,7 @@ package sequence;
 import clases.registro;
 import java.io.IOException;
 import javax.swing.ImageIcon;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 
 public class confi extends javax.swing.JFrame {
@@ -19,12 +20,12 @@ public class confi extends javax.swing.JFrame {
         ImageIcon icon = new ImageIcon("src/images/fondos/fondo_configuracion.png");
         fondo_c.setIcon(icon);
         contClicksFicha=0;
-//        //pruebas
-        try {
-            obrg.sobreModoFuera("rv", "LILA");
-            } catch (IOException e) {
-            e.printStackTrace(); 
-        }
+////        //pruebas
+//        try {
+//            obrg.sobreModoFuera("rv", "TURQUESA");
+//            } catch (IOException e) {
+//            e.printStackTrace(); 
+//        }
 //         try {
 //            obrg.agregarReportes("INTENTO 2 PARA VER SI NO SOBREESCIRBE");
 //        } catch (IOException e) {
@@ -141,6 +142,7 @@ public class confi extends javax.swing.JFrame {
                     break;
                 }
             }
+
         }
 
         if (coloresNoSeleccionados) {
@@ -249,13 +251,27 @@ public class confi extends javax.swing.JFrame {
                     e.printStackTrace(); 
                 }  
                 
-            }else{//individual se debe repertir contadorJveces debe haber elegido color para todos, se modifica al archivo de ese jugador no por lisatdo
+            }else{
                 try {
-                    int contadorJ =miRegistro.getCantidadJ();
-                    String colorFicha = miRegistro.getColorFicha();
-                    String colorG = miRegistro.getColorEquipo();
-                    miRegistro.sobreModo( contadorJ, colorFicha,1,colorG);
-                    JOptionPane.showMessageDialog(null, "indi");
+                    String jugadorCambiar=listado();
+                    String seleccion="";
+                    if(jugadorCambiar!=null){
+                        seleccion = seleccionarColor(jugadorCambiar);
+                        if (seleccion != null) {
+                            if(miRegistro.nadieTieneColor(seleccion ) ){
+                                obrg.sobreModoFuera(jugadorCambiar, seleccion);
+                                JOptionPane.showMessageDialog(null, "Se ha añadido el color:  "+seleccion+"\nAl jugador:  "+jugadorCambiar,"Colores Elegidos Individual", JOptionPane.INFORMATION_MESSAGE);         
+                             
+                            }else{
+                                 JOptionPane.showMessageDialog(null, "Color no disponible");
+                            }
+                        }else{
+                            JOptionPane.showMessageDialog(null, "No se pudo","Colores Elegidos Individual", JOptionPane.INFORMATION_MESSAGE);         
+                        }
+                    }else{
+                            JOptionPane.showMessageDialog(null, "No Eligio jugador","Colores Elegidos Individual", JOptionPane.INFORMATION_MESSAGE);         
+                    }
+                    
                 } catch (IOException e) {
                     e.printStackTrace(); 
                 }  
@@ -266,7 +282,7 @@ public class confi extends javax.swing.JFrame {
 
     //MOSTRAR ESTO J VECES SEGUN CUANTOS EQUIPOS O INDI MIN
     private String seleccionarColor(String equipo) {
-        String[] coloresDisponibles = {"AZUL", "AMARILLO", "AZUL CLARO", "BLANCO", "GRIS", "MORADO", "NEGRO", "ROJO", "ROSADO", "VERDE"};
+        String[] coloresDisponibles = {"AMARILLO", "AQUA", "AZUL", "AZUL ELECTRICO", "BORGOÑA", "CELESTE", "CEREZA", "FUSCIA", "LILA", "LIMA","MANGO","MORADO","MOSTAZA","NARANJA","OLIVA","ROJO","ROSA","TURQUESA","VINO","ZAFIRO"};
         String seleccion = (String) JOptionPane.showInputDialog(
                 null,
                 "Selecciona un color para " + equipo + ":",
@@ -275,9 +291,33 @@ public class confi extends javax.swing.JFrame {
                 null,
                 coloresDisponibles,
                 coloresDisponibles[0]);
-        return seleccion;
+        return seleccion.trim();
     }
-    //COLORES YA SELECCIONADOS NO SE VALE DE NUEVO
+     //INDIVIDUAL
+    public String listado() {
+            try {
+                registro reg = new registro();
+                String usuarios = reg.listarUsuarios();
+                String[] usuariosArray = usuarios.split("\n");
+
+                JComboBox<String> comboBox = new JComboBox<>(usuariosArray);
+
+                int opcion = JOptionPane.showConfirmDialog(null,
+                        comboBox,
+                        "Selecciona un usuario:",
+                        JOptionPane.OK_CANCEL_OPTION);
+
+                if (opcion == JOptionPane.OK_OPTION) {
+                    String seleccion = (String) comboBox.getSelectedItem();
+                    return seleccion;
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return "ups";
+        }
+    
+    //COLORES YA SELECCIONADOS NO SE VALE DE NUEVO EQUIPO
     private boolean yaSeleccionado(String color, String[] colores) {
         for (String seleccionado : colores) {
             if (color.equals(seleccionado)) {
@@ -286,9 +326,7 @@ public class confi extends javax.swing.JFrame {
         }
         return false;
     }
-    //INDIVIDUAL
-    
-    
+       
     //GRUPAL
     //LISTA Y AÑADE LOS COLORES A MI ARCHIVO, SERAN SPLIT CON EL GUIEN DESPUES SIRVE PARA EQUIPO NO INDIVIDUAL
     private void listaColores() {

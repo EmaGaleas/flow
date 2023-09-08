@@ -71,7 +71,7 @@ public int s=1;
     }
     private void p(JButton button) {
         if (s % 2==1) {
-            button.setIcon(call_png_baraja.imagenFichaAz());
+            button.setIcon(call_png_baraja.fichaAzul());
         }else{
             button.setIcon(null);
         }
