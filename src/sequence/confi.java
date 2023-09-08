@@ -248,9 +248,8 @@ public class confi extends javax.swing.JFrame {
                 } catch (IOException e) {
                     e.printStackTrace(); 
                 }  
-
                 
-            }else{//individual
+            }else{//individual se debe repertir contadorJveces debe haber elegido color para todos, se modifica al archivo de ese jugador no por lisatdo
                 try {
                     int contadorJ =miRegistro.getCantidadJ();
                     String colorFicha = miRegistro.getColorFicha();
