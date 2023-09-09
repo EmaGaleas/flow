@@ -232,7 +232,7 @@ public class registro {
                 Date fecha = new Date(raf.readLong());
                 String dat = raf.readUTF();
 //              r += fecha + "\t" + dat + "\n";
-                if (dat.equals("NO HA JUGADO") || dat.equals("NO")) {
+                if (dat.equals("NO HA JUGADO") || dat.equals("NO") || dat.equals("yes") || dat.equals("no")) {
 
                 } else {
                     rev.add(fecha + "\t" + dat);
