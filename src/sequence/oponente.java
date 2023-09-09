@@ -36,6 +36,7 @@ public class oponente extends javax.swing.JFrame {
         try {
             int t=r.getCantidadJ();
             name=new String[t];
+
         } catch (IOException e) {
             JOptionPane.showMessageDialog(null, "Anda dormi mejor");
         }
@@ -47,8 +48,7 @@ public class oponente extends javax.swing.JFrame {
         
         
     }
-    
-
+   
     private void oponentes() {//salida en combobox mostrara todos menos el login ya que ese fijo juega
         try {           
             registro reg=new registro();
@@ -76,27 +76,27 @@ public class oponente extends javax.swing.JFrame {
                 equipo.addItem("TURNO 2");
                 cantEquipos=2;
                 jper=1;
-                confi.setText("jugadores por equipo:"+jper);
-
+                confi.setText("Modo de "+j+" jugadores");
             } else if (j == 3) {
                 equipo.addItem("TURNO 1");
                 equipo.addItem("TURNO 2");
                 equipo.addItem("TURNO 3");
                 cantEquipos=3;
                 jper=1;
-                confi.setText("jugadores por equipo:"+jper);
+                confi.setText("Modo de "+j+" jugadores");
             } else if (j == 4) {
                 equipo.addItem("EQUIPO 1");
                 equipo.addItem("EQUIPO 2");
                 cantEquipos=2;
                 jper=2;
+                confi.setText("Jugadores por equipo:"+jper);
             } else if (j == 6) {
                 equipo.addItem("EQUIPO 1");
                 equipo.addItem("EQUIPO 2");
                 equipo.addItem("EQUIPO 3");
                 cantEquipos=3;
                 jper=2;
-                confi.setText("jugadores por equipo:"+jper);
+                confi.setText("Jugadores por equipo:"+jper);
             } else if (j == 8) {
                 equipo.addItem("EQUIPO 1");
                 equipo.addItem("EQUIPO 2");
@@ -254,7 +254,6 @@ public class oponente extends javax.swing.JFrame {
                         E3++;
                     }
                     String us = registro.getLogin();
-//                    n = us + "-" + equipos + (equipos.equals("EQUIPO 1") ? E1 : equipos.equals("EQUIPO 2") ? E2 : E3) + jper + "\n";
                     n = us + "-" + equipos.trim()+ "\n";
                     name[selec] = us;
                     seleccionados.setText(us);

@@ -120,10 +120,8 @@ public class registro {
             int modo = raf.readInt();
             String colores = raf.readUTF();
 
-            System.out.println("cantidad:" + cantidad);
-            System.out.println("ficha color indi:" + color);
-            System.out.println("equipo(0), indi(1):" + modo);
-            System.out.println("ficha color team:" + colores);
+            System.err.println("VIEJO\ncantidad:" + cantidad + "\nficha color indi:" + color);
+            System.err.println("equipo(0), indi(1):" + modo + "\nficha color team:" + colores);
         } catch (EOFException e) {
             JOptionPane.showMessageDialog(null, ".");
         } finally {
@@ -232,7 +230,7 @@ public class registro {
                 Date fecha = new Date(raf.readLong());
                 String dat = raf.readUTF();
 //              r += fecha + "\t" + dat + "\n";
-                if (dat.equals("NO HA JUGADO") || dat.equals("NO") || dat.equals("yes") || dat.equals("no")) {
+                if (dat.equals("NO HA JUGADO")) {
 
                 } else {
                     rev.add(fecha + "\t" + dat);
@@ -245,11 +243,9 @@ public class registro {
             return r;
         } catch (EOFException e) {
             JOptionPane.showMessageDialog(null, "...");
-//            e.printStackTrace(); 
         } finally {
             raf.close();
         }
-        System.out.println("NO HAY");
         return "";
     }
 
