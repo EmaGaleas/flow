@@ -16,11 +16,85 @@ public class call_png_baraja {
     
 //codigo fichas
     public static ImageIcon fichaAzul() {
-        ImageIcon icono=new ImageIcon("src/images/ficha_azul.png");
+        ImageIcon icono=new ImageIcon("src/images/azul.png");
         return icono;
     }
-    
-    
+    public static ImageIcon fichaAmarillo() {
+        ImageIcon icono=new ImageIcon("src/images/amarillo.png");
+        return icono;
+    }
+    public static ImageIcon fichaAqua() {
+        ImageIcon icono=new ImageIcon("src/images/aqua.png");
+        return icono;
+    }
+    public static ImageIcon fichaAzulElectrico() {
+        ImageIcon icono=new ImageIcon("src/images/azul_electrico.png");
+        return icono;
+    }
+    public static ImageIcon fichaBorgoña() {
+        ImageIcon icono=new ImageIcon("src/images/borgoña.png");
+        return icono;
+    }
+    public static ImageIcon fichaCeleste() {
+        ImageIcon icono=new ImageIcon("src/images/celeste.png");
+        return icono;
+    }
+    public static ImageIcon fichaCereza() {
+        ImageIcon icono=new ImageIcon("src/images/cereza.png");
+        return icono;
+    }
+    public static ImageIcon fichaFuscia() {
+        ImageIcon icono=new ImageIcon("src/images/fuscia.png");
+        return icono;
+    }
+    public static ImageIcon fichaLila() {
+        ImageIcon icono=new ImageIcon("src/images/lila.png");
+        return icono;
+    }
+    public static ImageIcon fichaLima() {
+        ImageIcon icono=new ImageIcon("src/images/lima.png");
+        return icono;
+    }
+    public static ImageIcon fichaMango() {
+        ImageIcon icono=new ImageIcon("src/images/mango.png");
+        return icono;
+    }
+    public static ImageIcon fichaMorado() {
+        ImageIcon icono=new ImageIcon("src/images/morado.png");
+        return icono;
+    }
+    public static ImageIcon fichaMostaza() {
+        ImageIcon icono=new ImageIcon("src/images/mostaza.png");
+        return icono;
+    }
+    public static ImageIcon fichaNaranja() {
+        ImageIcon icono=new ImageIcon("src/images/naranja.png");
+        return icono;
+    }
+    public static ImageIcon fichaOliva() {
+        ImageIcon icono=new ImageIcon("src/images/oliva.png");
+        return icono;
+    }
+    public static ImageIcon fichaRojo() {
+        ImageIcon icono=new ImageIcon("src/images/rojo.png");
+        return icono;
+    }
+    public static ImageIcon fichaRosa() {
+        ImageIcon icono=new ImageIcon("src/images/rosa.png");
+        return icono;
+    }
+    public static ImageIcon fichaTurquesa() {
+        ImageIcon icono=new ImageIcon("src/images/turquesa.png");
+        return icono;
+    }
+    public static ImageIcon fichaVino() {
+        ImageIcon icono=new ImageIcon("src/images/vino.png");
+        return icono;
+    }
+    public static ImageIcon fichaZafiro() {
+        ImageIcon icono=new ImageIcon("src/images/zafiro.png");
+        return icono;
+    }
   
      
 //codigo para pica
