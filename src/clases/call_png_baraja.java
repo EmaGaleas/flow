@@ -20,9 +20,9 @@ public class call_png_baraja {
         return icono;
     }
     
+    
   
      
-    
 //codigo para pica
     public static ImageIcon imagenPica1() {
         ImageIcon icono=new ImageIcon("src/images/pica/as_pica.png");

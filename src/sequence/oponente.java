@@ -34,8 +34,7 @@ public class oponente extends javax.swing.JFrame {
         equipoLog=0;
         selec=0;
         try {
-        int t=r.getCantidadJ();
-//            confi.setText("MODO:"+t+" jugadores");
+            int t=r.getCantidadJ();
             name=new String[t];
         } catch (IOException e) {
             JOptionPane.showMessageDialog(null, "Anda dormi mejor");
@@ -45,6 +44,7 @@ public class oponente extends javax.swing.JFrame {
         oponentes();
         equipos();
         lista.setVisible(false);
+        
         
     }
     
@@ -72,16 +72,16 @@ public class oponente extends javax.swing.JFrame {
             registro reg=new registro();
             int j=reg.getCantidadJ();
             if (j == 2) {
-                equipo.addItem("EQUIPO 1");
-                equipo.addItem("EQUIPO 2");
+                equipo.addItem("TURNO 1");
+                equipo.addItem("TURNO 2");
                 cantEquipos=2;
                 jper=1;
                 confi.setText("jugadores por equipo:"+jper);
 
             } else if (j == 3) {
-                equipo.addItem("EQUIPO 1");
-                equipo.addItem("EQUIPO 2");
-                equipo.addItem("EQUIPO 3");
+                equipo.addItem("TURNO 1");
+                equipo.addItem("TURNO 2");
+                equipo.addItem("TURNO 3");
                 cantEquipos=3;
                 jper=1;
                 confi.setText("jugadores por equipo:"+jper);
@@ -246,16 +246,16 @@ public class oponente extends javax.swing.JFrame {
         try {
             if (selec < r.getCantidadJ()) {
                 if (equipoLog == 0) {
-                    if (equipos.equals("EQUIPO 1")) {
+                    if (equipos.equals("EQUIPO 1") || equipos.equals("TURNO 1")) {
                         E1++;
-                    } else if (equipos.equals("EQUIPO 2")) {
+                    } else if (equipos.equals("EQUIPO 2") || equipos.equals("TURNO 2")) {
                         E2++;
-                    } else if (equipos.equals("EQUIPO 3")) {
+                    } else if (equipos.equals("EQUIPO 3") || equipos.equals("TURNO 3")) {
                         E3++;
                     }
                     String us = registro.getLogin();
 //                    n = us + "-" + equipos + (equipos.equals("EQUIPO 1") ? E1 : equipos.equals("EQUIPO 2") ? E2 : E3) + jper + "\n";
-                    n = us + "-" + equipos+ "\n";
+                    n = us + "-" + equipos.trim()+ "\n";
                     name[selec] = us;
                     seleccionados.setText(us);
                     equipoLog++;
@@ -266,25 +266,26 @@ public class oponente extends javax.swing.JFrame {
 
                 } else {
                     if (!buscan(name, jugadores)) {
-                        if ((equipos.equals("EQUIPO 1") && E1 < jper) ||
-                            (equipos.equals("EQUIPO 2") && E2 < jper) ||
-                            (equipos.equals("EQUIPO 3") && E3 < jper)) {
+                        if (((equipos.equals("EQUIPO 1") || equipos.equals("TURNO 1"))&& E1 < jper ) ||
+                            ((equipos.equals("EQUIPO 2")|| equipos.equals("TURNO 2")) && E2 < jper )||
+                            ((equipos.equals("EQUIPO 3") || equipos.equals("TURNO 3")) && E3 < jper )) {
                             name[selec] = jugadores;
                             selec++;
                             JOptionPane.showMessageDialog(null, "Jugador añadido");
 //                             n += jugadores + "-" + equipos + (equipos.equals("EQUIPO 1") ? E1 : equipos.equals("EQUIPO 2") ? E2 : E3) + jper + "\n";
-                             n += jugadores + "-" + equipos+ "\n";
+                             n += jugadores + "-" + equipos.trim()+ "\n";
                             seleccionados.setText(n);
-                            if (equipos.equals("EQUIPO 1")) {
+                            if (equipos.equals("EQUIPO 1") || equipos.equals("TURNO 1")) {
                                 E1++;
-                            } else if (equipos.equals("EQUIPO 2")) {
+                            } else if (equipos.equals("EQUIPO 2") || equipos.equals("TURNO 2")) {
                                 E2++;
-                            } else if (equipos.equals("EQUIPO 3")) {
+                            } else if (equipos.equals("EQUIPO 3") || equipos.equals("TURNO 3")) {
                                 E3++;
                             }
                             if (selec == r.getCantidadJ()) {
                                 JOptionPane.showMessageDialog(null, "Puedes continuar");
-                                tablero t = new tablero();
+                                //obtener todo lo que esta guardado en el textarea seleccionados
+                                tablero t = new tablero(n);
                                 t.setVisible(true);
                                 this.setVisible(false);
                             }
@@ -297,7 +298,7 @@ public class oponente extends javax.swing.JFrame {
                 }
             } else {
                 JOptionPane.showMessageDialog(null, "Puedes continuar");
-                tablero t = new tablero();
+                tablero t = new tablero(n);
                 t.setVisible(true);
                 this.setVisible(false);
             }

@@ -14,96 +14,144 @@ import javax.swing.JOptionPane;
 
 public class tablero extends javax.swing.JFrame {
     private logica_tab lt;
-    int contjug,contusuarios;
+    int contusuarios;
     confi conf=new confi();
     registro obrg=new registro();
-    public tablero() {
+    String nombre;
+    
+    public tablero(String nombre) {
         initComponents();
-        this.contjug=contjug;
-        System.out.println("contajajaa"+contjug);
         logica_tab lt=new logica_tab();
-        ponerIconbtnCartas();
         fondoTablero();
         lt.GridLayout(tab);
         ImageIcon icon = new ImageIcon("src/images/mazo.png");
         sacar_carta.setIcon(icon);
+        this.nombre=nombre;
+        inicializarJugadores();
+
+                            
+    }
+    private void inicializarJugadores(){
+        //JOptionPane.showMessageDialog(null, ""+nombre);
+        String[] id = nombre.split("\n");
+        String nombre1 = "";
+        String nombre2 = "";
+        String nombre3 = "";
+                
+        if (id.length >= 1) {
+            String[] name1 = id[0].split("-");
+            if (name1.length >= 2) {
+                nombre1 = name1[0];
+            }
+        }
+        if (id.length >= 2) {
+            String[] name2 = id[1].split("-");
+            if (name2.length >= 2) {
+                nombre2 = name2[0];
+            }
+        }
+        if (id.length >= 3) {
+            String[] name3 = id[2].split("-");
+            if (name3.length >= 2) {
+                nombre3 = name3[0];
+            }
+        }
         
         try{
-        System.out.println("usuarios tablero:"+obrg.contarUsuarios());
+            System.out.println("usuarios tablero:"+obrg.getCantidadJ());
+            int c=obrg.getCantidadJ();
+             if (c == 2) {
+                nombre_J1.setText(nombre1);
+                equipo_J1.setText("TURNO 1");
+                nombre_J2.setText(nombre2);
+                equipo_J2.setText("TURNO 2");
+
+                // Restablecer la visibilidad de los paneles
+                panelJ3.setVisible(false);
+                panelJ4.setVisible(false);
+                panelJ5.setVisible(false);
+                panelJ6.setVisible(false);
+                panelJ7.setVisible(false);
+                panelJ8.setVisible(false);
+            } else if(c==3){
+                
+                nombre_J1.setText(nombre1);
+                equipo_J1.setText("TURNO 1");
+                nombre_J2.setText(nombre2);
+                equipo_J2.setText("TURNO 2");
+                nombre_J3.setText(nombre3);
+                equipo_J3.setText("TURNO 3");
+                
+                btn_verJ1.setIcon(call_png_baraja.imagenTrasera());
+                btn_verJ2.setIcon(call_png_baraja.imagenTrasera());
+                btn_verJ3.setIcon(call_png_baraja.imagenTrasera());
+                
+                panelJ4.setVisible(false); 
+                panelJ5.setVisible(false);
+                panelJ6.setVisible(false);
+                panelJ7.setVisible(false);
+                panelJ8.setVisible(false);
+            }else if(c==4){
+                
+                
+                btn_verJ1.setIcon(call_png_baraja.imagenTrasera());
+                btn_verJ3.setIcon(call_png_baraja.imagenTrasera());
+                btn_verJ2.setIcon(call_png_baraja.imagenTrasera());
+                btn_verJ4.setIcon(call_png_baraja.imagenTrasera());
+       
+                panelJ5.setVisible(false);
+                panelJ6.setVisible(false);
+                panelJ7.setVisible(false);
+                panelJ8.setVisible(false);
+            }else if(c==6){
+                
+                
+                btn_verJ1.setIcon(call_png_baraja.imagenTrasera());
+                btn_verJ3.setIcon(call_png_baraja.imagenTrasera());
+                btn_verJ5.setIcon(call_png_baraja.imagenTrasera());
+                btn_verJ2.setIcon(call_png_baraja.imagenTrasera());
+                btn_verJ4.setIcon(call_png_baraja.imagenTrasera());
+                btn_verJ6.setIcon(call_png_baraja.imagenTrasera());
+      
+                panelJ7.setVisible(false);
+                panelJ8.setVisible(false);
+            }else if(c==8){
+                
+                
+                btn_verJ1.setIcon(call_png_baraja.imagenTrasera());
+                btn_verJ3.setIcon(call_png_baraja.imagenTrasera());
+                btn_verJ5.setIcon(call_png_baraja.imagenTrasera());
+                btn_verJ7.setIcon(call_png_baraja.imagenTrasera());
+                btn_verJ2.setIcon(call_png_baraja.imagenTrasera());
+                btn_verJ4.setIcon(call_png_baraja.imagenTrasera());
+                btn_verJ6.setIcon(call_png_baraja.imagenTrasera());
+                btn_verJ8.setIcon(call_png_baraja.imagenTrasera());
+
+            }else{
+                
+                
+                btn_verJ1.setIcon(call_png_baraja.imagenTrasera());
+                btn_verJ3.setIcon(call_png_baraja.imagenTrasera());
+                btn_verJ2.setIcon(call_png_baraja.imagenTrasera());
+                btn_verJ4.setIcon(call_png_baraja.imagenTrasera());
+                
+                panelJ5.setVisible(false);
+                panelJ6.setVisible(false);
+                panelJ7.setVisible(false);
+                panelJ8.setVisible(false);
+            }
         }catch(IOException e){
-            System.out.println("error");
+            System.err.println("error");
         }
-        
-        if(this.contjug>=2){
-            if(this.contjug<3){
-           //fila 1 numero 2
-            System.out.println("entro cont3");
-            btn_verJ3.setVisible(false);
-            equipo_J3.setVisible(false);
-            nombre_J3.setVisible(false);
-            
-            }
-            if(this.contjug<4){
-            //fila 2 numero 2
-            nombre_J4.setVisible(false);
-            equipo_J4.setVisible(false);
-            btn_verJ4.setVisible(false);
-            }
-            
-            if(this.contjug<6){
-           //fila 1 el numero 3
-            nombre_J5.setVisible(false);
-            equipo_J5.setVisible(false);
-            btn_verJ5.setVisible(false);
-            
-            //fila 2 numero 3
-            nombre_J6.setVisible(false);
-            equipo_J6.setVisible(false);
-            btn_verJ6.setVisible(false);
-            }
-            if(this.contjug<8){
-            //fila1 el numero4
-            nombre_J7.setVisible(false);
-            equipo_J7.setVisible(false);
-            btn_verJ7.setVisible(false);
-            
-            //fila 2 numero 3
-            nombre_J8.setVisible(false);
-            equipo_J8.setVisible(false);
-            btn_verJ8.setVisible(false);
-            }
-        }
-        
-        
-        
-        
-        
-        
+       
     }
+    
     private void fondoTablero(){
         ImageIcon ig=new ImageIcon("src/images/fondos/fondo_tablero.png");
         Image original=ig.getImage();
         Image scaledImage=original.getScaledInstance(fondo_tab.getWidth(), fondo_tab.getHeight(), Image.SCALE_SMOOTH);
         ImageIcon escala=new ImageIcon(scaledImage);        
         fondo_tab.setIcon(escala);
-    }
-    private void ponerIconbtnCartas(){
-        btn_verJ1.setIcon(call_png_baraja.imagenTrasera());
-        btn_verJ3.setIcon(call_png_baraja.imagenTrasera());
-        btn_verJ5.setIcon(call_png_baraja.imagenTrasera());
-        btn_verJ7.setIcon(call_png_baraja.imagenTrasera());
-        btn_verJ2.setIcon(call_png_baraja.imagenTrasera());
-        btn_verJ4.setIcon(call_png_baraja.imagenTrasera());
-        btn_verJ6.setIcon(call_png_baraja.imagenTrasera());
-        btn_verJ8.setIcon(call_png_baraja.imagenTrasera());
-    //varia segun jugadores, hacer logica en tab    
-       panelJ8.setVisible(false);
-       
-       panelJ6.setVisible(false);
-        panelJ5.setVisible(false);
-       panelJ7.setVisible(false);
-//        panelJ3.setVisible(false);
-//       panelJ4.setVisible(false);
     }
 
     @SuppressWarnings("unchecked")
@@ -755,37 +803,37 @@ public class tablero extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(tablero.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(tablero.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(tablero.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(tablero.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new tablero().setVisible(true);
-            }
-        });
-    }
+//    public static void main(String args[]) {
+//        /* Set the Nimbus look and feel */
+//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+//         */
+//        try {
+//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//                if ("Nimbus".equals(info.getName())) {
+//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//                    break;
+//                }
+//            }
+//        } catch (ClassNotFoundException ex) {
+//            java.util.logging.Logger.getLogger(tablero.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (InstantiationException ex) {
+//            java.util.logging.Logger.getLogger(tablero.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (IllegalAccessException ex) {
+//            java.util.logging.Logger.getLogger(tablero.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+//            java.util.logging.Logger.getLogger(tablero.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        }
+//        //</editor-fold>
+//
+//        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new tablero().setVisible(true);
+//            }
+//        });
+//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_reglas;

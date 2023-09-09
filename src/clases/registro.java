@@ -305,7 +305,7 @@ public class registro {
         return login;
     }
 
-    public int contarUsuarios() throws IOException {
+    public int contarUsuarios() throws IOException {//tire cuantos usuarios hay
         int contador = 0;
         registros.seek(0);
         while (registros.getFilePointer() < registros.length()) {
@@ -366,6 +366,21 @@ public class registro {
             }
         } else {
             System.out.println("Nombre no encontrado en los registros");
+        }
+    }
+    public void agregarReportesTodos(String nombre,String sms) throws IOException {
+        int codigo = obtenerCodigo(nombre);
+        if(codigo!=-1){
+            String path = carpetaUsuario(codigo) + "/reportes.emp";
+            RandomAccessFile raf = new RandomAccessFile(path, "rw");
+            try {
+                raf.seek(raf.length());
+                raf.writeLong(Calendar.getInstance().getTimeInMillis());
+                raf.writeUTF(sms);
+                JOptionPane.showMessageDialog(null, "REPORTE AGREGADO");
+            } finally {
+                raf.close();
+            }
         }
     }
 
