@@ -334,6 +334,9 @@
                     </Property>
                     <Property name="text" type="java.lang.String" value="Ver mis cartas"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btn_verJ8MouseClicked"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>
@@ -408,6 +411,9 @@
                     </Property>
                     <Property name="text" type="java.lang.String" value="Ver mis cartas"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btn_verJ7MouseClicked"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>
@@ -482,6 +488,9 @@
                     </Property>
                     <Property name="text" type="java.lang.String" value="Ver mis cartas"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btn_verJ6MouseClicked"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>
@@ -556,6 +565,9 @@
                     </Property>
                     <Property name="text" type="java.lang.String" value="Ver mis cartas"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btn_verJ5MouseClicked"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>
@@ -707,6 +719,9 @@
                     </Property>
                     <Property name="text" type="java.lang.String" value="Ver mis cartas"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btn_verJ1MouseClicked"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>
@@ -858,6 +873,9 @@
                     </Property>
                     <Property name="text" type="java.lang.String" value="Ver mis cartas"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btn_verJ3MouseClicked"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>
@@ -932,6 +950,9 @@
                     </Property>
                     <Property name="text" type="java.lang.String" value="Ver mis cartas"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btn_verJ4MouseClicked"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>

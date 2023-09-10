@@ -15,17 +15,18 @@ public class probarbaraja {
        
          //rp.crearbarajear();
 //         rp.barajar();
-         Cartas_conf[] c=rp.darcartas(4);
+//         Cartas_conf[] c=rp.darcartas(4);
          
-         for(int i=0;i<c.length;i++){
-             
-             System.out.println(""+c[i]);
-         }
-         rp.cartasDisponible();
-         rp.mostrarbaraja();
-         System.out.println("---------------------------");
-         rp.siguienteCarta();
-         rp.siguienteCarta();
+//         
+//         for(int i=0;i<c.length;i++){
+//             
+//             System.out.println(""+c[i]);
+//         }
+//         rp.cartasDisponible();
+//         rp.mostrarbaraja();
+//         System.out.println("---------------------------");
+//         rp.siguienteCarta();
+//         rp.siguienteCarta();
     }
     
     

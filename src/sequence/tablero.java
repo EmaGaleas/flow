@@ -1,8 +1,6 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package sequence;
+
 import clases.Repartircartas_tab;
 import clases.Cartas_conf;
 import clases.registro;
@@ -14,36 +12,46 @@ import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 public class tablero extends javax.swing.JFrame {
+
     private logica_tab lt;
     int contusuarios;
-    confi conf=new confi();
-    registro obrg=new registro();
-    Repartircartas_tab repart=new Repartircartas_tab();
-    String nombre;
-    
+    confi conf = new confi();
+    registro obrg = new registro();
+    Repartircartas_tab repart = new Repartircartas_tab();
+    String nombre, cartjg1, cartjg2, cartjg3,cartjg4,cartg5,cartg6,cartg7,cartg8;
+    int darcart = 0, contjg1 = 0, contjg2 = 0, contjg3 = 0,contjg4 = 0,contjg5 = 0,contjg6 = 0,contjg7 = 0,contjg8 = 0;
+
     public tablero(String nombre) {
         initComponents();
-        logica_tab lt=new logica_tab();
+        logica_tab lt = new logica_tab();
         fondoTablero();
         lt.GridLayout(tab);
         ImageIcon icon = new ImageIcon("src/images/mazo.png");
         sacar_carta.setIcon(icon);
-        this.nombre=nombre;
+        this.nombre = nombre;
         inicializarJugadores();
 
-                            
     }
-    private void inicializarJugadores(){
+
+    private void inicializarJugadores() {
         String[] id = nombre.split("\n");
-        String nombre1 = ""; String equipo1="";
-        String nombre2 = ""; String equipo2="";
-        String nombre3 = ""; String equipo3="";
-        String nombre4 = ""; String equipo4="";
-        String nombre5 = ""; String equipo5="";
-        String nombre6 = ""; String equipo6="";
-        String nombre7 = ""; String equipo7="";
-        String nombre8 = ""; String equipo8="";
-         if (id.length >= 1) {
+        String nombre1 = "";
+        String equipo1 = "";
+        String nombre2 = "";
+        String equipo2 = "";
+        String nombre3 = "";
+        String equipo3 = "";
+        String nombre4 = "";
+        String equipo4 = "";
+        String nombre5 = "";
+        String equipo5 = "";
+        String nombre6 = "";
+        String equipo6 = "";
+        String nombre7 = "";
+        String equipo7 = "";
+        String nombre8 = "";
+        String equipo8 = "";
+        if (id.length >= 1) {
             String[] split1 = id[0].split("-");
             if (split1.length >= 2) {
                 nombre1 = split1[0];
@@ -99,76 +107,75 @@ public class tablero extends javax.swing.JFrame {
                 equipo8 = split8[1];
             }
         }
-        try{
-            int c=obrg.getCantidadJ();
-             if (c == 2) {
-                if(equipo1.equals("TURNO 1")){
+        try {
+            int c = obrg.getCantidadJ();
+            if (c == 2) {
+                if (equipo1.equals("TURNO 1")) {
                     nombre_J1.setText(nombre1);
                     equipo_J1.setText(equipo1);
-                }else if(equipo1.equals("TURNO 2")){
+                } else if (equipo1.equals("TURNO 2")) {
                     nombre_J8.setText(nombre1);
                     equipo_J8.setText(equipo1);
                 }
-                if(equipo2.equals("TURNO 2")){
+                if (equipo2.equals("TURNO 2")) {
                     nombre_J8.setText(nombre2);
                     equipo_J8.setText(equipo2);
-                }else if(equipo2.equals("TURNO 1")){
+                } else if (equipo2.equals("TURNO 1")) {
                     nombre_J1.setText(nombre2);
                     equipo_J1.setText(equipo2);
                 }
 
                 btn_verJ8.setIcon(call_png_baraja.imagenTrasera());
                 btn_verJ1.setIcon(call_png_baraja.imagenTrasera());
-                
+
                 panelJ7.setVisible(false);
                 panelJ2.setVisible(false);
                 panelJ6.setVisible(false);
                 panelJ3.setVisible(false);
                 panelJ5.setVisible(false);
                 panelJ4.setVisible(false);
-            } else if(c==3){
-                if(equipo1.equals("TURNO 1")){
+            } else if (c == 3) {
+                if (equipo1.equals("TURNO 1")) {
                     nombre_J1.setText(nombre1);
                     equipo_J1.setText(equipo1);
-                }else if(equipo1.equals("TURNO 2")){
+                } else if (equipo1.equals("TURNO 2")) {
                     nombre_J2.setText(nombre1);
                     equipo_J2.setText(equipo1);
-                }else if(equipo1.equals("TURNO 3")){
+                } else if (equipo1.equals("TURNO 3")) {
                     nombre_J8.setText(nombre1);
                     equipo_J8.setText(equipo1);
                 }
-                if(equipo2.equals("TURNO 1")){
+                if (equipo2.equals("TURNO 1")) {
                     nombre_J1.setText(nombre2);
                     equipo_J1.setText(equipo2);
-                }else if(equipo2.equals("TURNO 2")){
+                } else if (equipo2.equals("TURNO 2")) {
                     nombre_J2.setText(nombre2);
                     equipo_J2.setText(equipo2);
-                }else if(equipo2.equals("TURNO 3")){
+                } else if (equipo2.equals("TURNO 3")) {
                     nombre_J8.setText(nombre2);
                     equipo_J8.setText(equipo2);
                 }
-                if(equipo3.equals("TURNO 1")){
+                if (equipo3.equals("TURNO 1")) {
                     nombre_J1.setText(nombre3);
                     equipo_J1.setText(equipo3);
-                }else if(equipo3.equals("TURNO 2")){
+                } else if (equipo3.equals("TURNO 2")) {
                     nombre_J2.setText(nombre3);
                     equipo_J2.setText(equipo3);
-                }else if(equipo3.equals("TURNO 3")){
+                } else if (equipo3.equals("TURNO 3")) {
                     nombre_J8.setText(nombre3);
                     equipo_J8.setText(equipo3);
                 }
-                
-                
+
                 btn_verJ1.setIcon(call_png_baraja.imagenTrasera());
                 btn_verJ2.setIcon(call_png_baraja.imagenTrasera());
                 btn_verJ8.setIcon(call_png_baraja.imagenTrasera());
-                
-                panelJ7.setVisible(false); 
+
+                panelJ7.setVisible(false);
                 panelJ6.setVisible(false);
                 panelJ3.setVisible(false);
                 panelJ5.setVisible(false);
                 panelJ4.setVisible(false);
-            }else if(c==4){
+            } else if (c == 4) {
                 nombre_J1.setText(nombre1);
                 equipo_J1.setText(equipo1);
                 nombre_J2.setText(nombre2);
@@ -177,17 +184,17 @@ public class tablero extends javax.swing.JFrame {
                 equipo_J7.setText(equipo3);
                 nombre_J8.setText(nombre4);
                 equipo_J8.setText(equipo4);
-               
+
                 btn_verJ1.setIcon(call_png_baraja.imagenTrasera());
                 btn_verJ2.setIcon(call_png_baraja.imagenTrasera());
                 btn_verJ8.setIcon(call_png_baraja.imagenTrasera());
                 btn_verJ7.setIcon(call_png_baraja.imagenTrasera());
-       
+
                 panelJ6.setVisible(false);
                 panelJ3.setVisible(false);
                 panelJ5.setVisible(false);
                 panelJ4.setVisible(false);
-            }else if(c==6){
+            } else if (c == 6) {
                 nombre_J1.setText(nombre1);
                 equipo_J1.setText(equipo1);
                 nombre_J2.setText(nombre2);
@@ -200,17 +207,17 @@ public class tablero extends javax.swing.JFrame {
                 equipo_J7.setText(equipo5);
                 nombre_J8.setText(nombre6);
                 equipo_J8.setText(equipo6);
-                
+
                 btn_verJ8.setIcon(call_png_baraja.imagenTrasera());
                 btn_verJ7.setIcon(call_png_baraja.imagenTrasera());
                 btn_verJ6.setIcon(call_png_baraja.imagenTrasera());
                 btn_verJ1.setIcon(call_png_baraja.imagenTrasera());
                 btn_verJ2.setIcon(call_png_baraja.imagenTrasera());
                 btn_verJ3.setIcon(call_png_baraja.imagenTrasera());
-      
+
                 panelJ5.setVisible(false);
                 panelJ4.setVisible(false);
-            }else if(c==8){
+            } else if (c == 8) {
                 nombre_J1.setText(nombre1);
                 equipo_J1.setText(equipo1);
                 nombre_J2.setText(nombre2);
@@ -227,7 +234,7 @@ public class tablero extends javax.swing.JFrame {
                 equipo_J7.setText(equipo7);
                 nombre_J8.setText(nombre8);
                 equipo_J8.setText(equipo8);
-                
+
                 btn_verJ8.setIcon(call_png_baraja.imagenTrasera());
                 btn_verJ7.setIcon(call_png_baraja.imagenTrasera());
                 btn_verJ6.setIcon(call_png_baraja.imagenTrasera());
@@ -237,20 +244,20 @@ public class tablero extends javax.swing.JFrame {
                 btn_verJ3.setIcon(call_png_baraja.imagenTrasera());
                 btn_verJ4.setIcon(call_png_baraja.imagenTrasera());
 
-            }else{
+            } else {
 
             }
-        }catch(IOException e){
+        } catch (IOException e) {
             System.err.println("error");
         }
-       
+
     }
-    
-    private void fondoTablero(){
-        ImageIcon ig=new ImageIcon("src/images/fondos/fondo_tablero.png");
-        Image original=ig.getImage();
-        Image scaledImage=original.getScaledInstance(fondo_tab.getWidth(), fondo_tab.getHeight(), Image.SCALE_SMOOTH);
-        ImageIcon escala=new ImageIcon(scaledImage);        
+
+    private void fondoTablero() {
+        ImageIcon ig = new ImageIcon("src/images/fondos/fondo_tablero.png");
+        Image original = ig.getImage();
+        Image scaledImage = original.getScaledInstance(fondo_tab.getWidth(), fondo_tab.getHeight(), Image.SCALE_SMOOTH);
+        ImageIcon escala = new ImageIcon(scaledImage);
         fondo_tab.setIcon(escala);
     }
 
@@ -411,6 +418,11 @@ public class tablero extends javax.swing.JFrame {
         btn_verJ8.setBackground(new java.awt.Color(255, 232, 255));
         btn_verJ8.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         btn_verJ8.setText("Ver mis cartas");
+        btn_verJ8.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_verJ8MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelJ8Layout = new javax.swing.GroupLayout(panelJ8);
         panelJ8.setLayout(panelJ8Layout);
@@ -448,6 +460,11 @@ public class tablero extends javax.swing.JFrame {
         btn_verJ7.setBackground(new java.awt.Color(255, 232, 255));
         btn_verJ7.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         btn_verJ7.setText("Ver mis cartas");
+        btn_verJ7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_verJ7MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelJ7Layout = new javax.swing.GroupLayout(panelJ7);
         panelJ7.setLayout(panelJ7Layout);
@@ -488,6 +505,11 @@ public class tablero extends javax.swing.JFrame {
         btn_verJ6.setBackground(new java.awt.Color(255, 232, 255));
         btn_verJ6.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         btn_verJ6.setText("Ver mis cartas");
+        btn_verJ6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_verJ6MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelJ6Layout = new javax.swing.GroupLayout(panelJ6);
         panelJ6.setLayout(panelJ6Layout);
@@ -528,6 +550,11 @@ public class tablero extends javax.swing.JFrame {
         btn_verJ5.setBackground(new java.awt.Color(255, 232, 255));
         btn_verJ5.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         btn_verJ5.setText("Ver mis cartas");
+        btn_verJ5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_verJ5MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelJ5Layout = new javax.swing.GroupLayout(panelJ5);
         panelJ5.setLayout(panelJ5Layout);
@@ -619,6 +646,11 @@ public class tablero extends javax.swing.JFrame {
         btn_verJ1.setBackground(new java.awt.Color(255, 232, 255));
         btn_verJ1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         btn_verJ1.setText("Ver mis cartas");
+        btn_verJ1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_verJ1MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelJ1Layout = new javax.swing.GroupLayout(panelJ1);
         panelJ1.setLayout(panelJ1Layout);
@@ -704,6 +736,11 @@ public class tablero extends javax.swing.JFrame {
         btn_verJ3.setBackground(new java.awt.Color(255, 232, 255));
         btn_verJ3.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         btn_verJ3.setText("Ver mis cartas");
+        btn_verJ3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_verJ3MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelJ3Layout = new javax.swing.GroupLayout(panelJ3);
         panelJ3.setLayout(panelJ3Layout);
@@ -744,6 +781,11 @@ public class tablero extends javax.swing.JFrame {
         btn_verJ4.setBackground(new java.awt.Color(255, 232, 255));
         btn_verJ4.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         btn_verJ4.setText("Ver mis cartas");
+        btn_verJ4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_verJ4MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelJ4Layout = new javax.swing.GroupLayout(panelJ4);
         panelJ4.setLayout(panelJ4Layout);
@@ -883,31 +925,410 @@ public class tablero extends javax.swing.JFrame {
 
     private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
         //probar
-        menu_p objmenu=new menu_p();
+        menu_p objmenu = new menu_p();
         objmenu.setVisible(true);
         this.setVisible(false);
-  
-       
+
+
     }//GEN-LAST:event_jButton3MouseClicked
 
     private void btn_verJ2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_verJ2MouseClicked
-        // JUEGO DE 3 EN ADELANTE
-        
+        //JUGADOR 3
+        if (contjg3 == 0) {
+            darcart = 0;
+            contjg3++;
+        }
+        try {
+
+            System.out.println("" + obrg.getCantidadJ());
+
+            if (obrg.getCantidadJ() == 3) {
+
+                if (darcart == 0) {
+                    cartjg3="";
+                    Cartas_conf[] cartas = repart.darcartas(6);
+                    for (int i = 0; i < cartas.length; i++) {
+
+                        cartjg3 += "\n" + cartas[i];
+                    }
+                    darcart = 1;
+                }
+                JOptionPane.showMessageDialog(null, cartjg3);
+
+            }
+            if (obrg.getCantidadJ() == 4) {
+
+                if (darcart == 0) {
+                    cartjg3="";
+                    Cartas_conf[] cartas = repart.darcartas(7);
+                    for (int i = 0; i < cartas.length; i++) {
+
+                        cartjg3 += "\n" + cartas[i];
+                    }
+                    darcart = 1;
+                }
+                JOptionPane.showMessageDialog(null, cartjg3);
+
+            }
+            if (obrg.getCantidadJ() == 6) {
+                if (darcart == 0) {
+                    cartjg3="";
+                    Cartas_conf[] cartas = repart.darcartas(5);
+                    for (int i = 0; i < cartas.length; i++) {
+
+                        cartjg3 += "\n" + cartas[i];
+                    }
+                    darcart = 1;
+                }
+                JOptionPane.showMessageDialog(null, cartjg3);
+
+            }
+            if (obrg.getCantidadJ() == 8) {
+                if (darcart == 0) {
+                    cartjg3="";
+                    Cartas_conf[] cartas = repart.darcartas(4);
+                    for (int i = 0; i < cartas.length; i++) {
+
+                        cartjg3 += "\n" + cartas[i];
+                    }
+                    darcart = 1;
+                }
+                JOptionPane.showMessageDialog(null, cartjg3);
+            }
+
+        } catch (IOException e) {
+
+            System.out.println("error");
+
+        }
     }//GEN-LAST:event_btn_verJ2MouseClicked
 
     private void sacar_cartaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sacar_cartaMouseClicked
         // MAZO
-        
-       JOptionPane.showMessageDialog(null, "Siguiente Carta: "+ repart.siguienteCarta());
-        
-       repart.siguienteCarta();
-        
-        
-        
-        
-        
-        
+        if (repart.siguienteCarta() == null) {
+            JOptionPane.showMessageDialog(null, "Ya no hay mas cartas barajear de nuevo");
+            repart.siguienteCarta();
+        } else {
+            JOptionPane.showMessageDialog(null, "Siguiente Carta: " + repart.siguienteCarta());
+            repart.siguienteCarta();
+        }
     }//GEN-LAST:event_sacar_cartaMouseClicked
+
+    private void btn_verJ8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_verJ8MouseClicked
+        // JUGADOR 2
+
+        if (contjg2 == 0) {
+            darcart = 0;
+            contjg2++;
+        }
+        try {
+
+            System.out.println("" + obrg.getCantidadJ());
+            if (obrg.getCantidadJ() == 2) {
+                if (darcart == 0) {
+                    cartjg2 = "";
+                    Cartas_conf[] cartas = repart.darcartas(7);
+                    for (int i = 0; i < cartas.length; i++) {
+                        cartjg2 += "\n" + cartas[i];
+                    }
+                    darcart = 1;
+                }
+                JOptionPane.showMessageDialog(null, cartjg2);
+            }
+            if (obrg.getCantidadJ() == 3) {
+                if (darcart == 0) {
+                    cartjg2 = "";
+                    Cartas_conf[] cartas = repart.darcartas(6);
+                    for (int i = 0; i < cartas.length; i++) {
+
+                        cartjg2 += "\n" + cartas[i];
+                    }
+                    darcart = 1;
+                }
+                JOptionPane.showMessageDialog(null, cartjg2);
+            }
+            if (obrg.getCantidadJ() == 4) {
+                if (darcart == 0) {
+                    cartjg2 = "";
+                    Cartas_conf[] cartas = repart.darcartas(7);
+                    for (int i = 0; i < cartas.length; i++) {
+
+                        cartjg2 += "\n" + cartas[i];
+                    }
+                    darcart = 1;
+                }
+                JOptionPane.showMessageDialog(null, cartjg2);
+            }
+            if (obrg.getCantidadJ() == 6) {
+                if (darcart == 0) {
+                    cartjg2 = "";
+                    Cartas_conf[] cartas = repart.darcartas(5);
+                    for (int i = 0; i < cartas.length; i++) {
+
+                        cartjg2 += "\n" + cartas[i];
+                    }
+                    darcart = 1;
+                }
+                JOptionPane.showMessageDialog(null, cartjg2);
+            }
+            if (obrg.getCantidadJ() == 8) {
+                if (darcart == 0) {
+                    cartjg2 = "";
+                    Cartas_conf[] cartas = repart.darcartas(4);
+                    for (int i = 0; i < cartas.length; i++) {
+
+                        cartjg2 += "\n" + cartas[i];
+                    }
+                    darcart = 1;
+                }
+                JOptionPane.showMessageDialog(null, cartjg2);
+            }
+
+        } catch (IOException e) {
+
+            System.out.println("error");
+
+        }
+    }//GEN-LAST:event_btn_verJ8MouseClicked
+
+    private void btn_verJ1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_verJ1MouseClicked
+        // JUGADOR 1
+        try {
+            if (contjg1 == 0) {
+                darcart = 0;
+                contjg1++;
+            }
+            System.out.println("" + obrg.getCantidadJ());
+            if (obrg.getCantidadJ() == 2) {
+                if (darcart == 0) {
+                    cartjg1 = "";
+                    Cartas_conf[] cartas = repart.darcartas(7);
+                    for (int i = 0; i < cartas.length; i++) {
+                        cartjg1 += "\n" + cartas[i];
+                    }
+                    darcart = 1;
+                }
+                JOptionPane.showMessageDialog(null, cartjg1);
+            }
+            if (obrg.getCantidadJ() == 3) {
+                if (darcart == 0) {
+                    cartjg1 = "";
+                    Cartas_conf[] cartas = repart.darcartas(6);
+                    for (int i = 0; i < cartas.length; i++) {
+
+                        cartjg1 += "\n" + cartas[i];
+                    }
+                    darcart = 1;
+                }
+                JOptionPane.showMessageDialog(null, cartjg1);
+            }
+            if (obrg.getCantidadJ() == 4) {
+                if (darcart == 0) {
+                    cartjg1 = "";
+                    Cartas_conf[] cartas = repart.darcartas(7);
+                    for (int i = 0; i < cartas.length; i++) {
+
+                        cartjg1 += "\n" + cartas[i];
+                    }
+                    darcart = 1;
+                }
+                JOptionPane.showMessageDialog(null, cartjg1);
+            }
+            if (obrg.getCantidadJ() == 6) {
+                if (darcart == 0) {
+                    cartjg1 = "";
+                    Cartas_conf[] cartas = repart.darcartas(5);
+                    for (int i = 0; i < cartas.length; i++) {
+
+                        cartjg1 += "\n" + cartas[i];
+                    }
+                    darcart = 1;
+                }
+                JOptionPane.showMessageDialog(null, cartjg1);
+            }
+            if (obrg.getCantidadJ() == 8) {
+                if (darcart == 0) {
+                    cartjg1 = "";
+                    Cartas_conf[] cartas = repart.darcartas(4);
+                    for (int i = 0; i < cartas.length; i++) {
+                        cartjg1 += "\n" + cartas[i];
+                    }
+                    darcart = 1;
+                }
+                JOptionPane.showMessageDialog(null, cartjg1);
+            }
+        } catch (IOException e) {
+            System.out.println("error");
+        }
+    }//GEN-LAST:event_btn_verJ1MouseClicked
+
+    private void btn_verJ7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_verJ7MouseClicked
+        // JUGADOR 4
+        try{
+            if (contjg4 == 0) {
+                darcart = 0;
+                contjg4++;
+            }
+        if (obrg.getCantidadJ() == 4) {
+                if (darcart == 0) {
+                    cartjg4 = "";
+                    Cartas_conf[] cartas = repart.darcartas(7);
+                    for (int i = 0; i < cartas.length; i++) {
+
+                        cartjg4 += "\n" + cartas[i];
+                    }
+                    darcart = 1;
+                }
+                JOptionPane.showMessageDialog(null, cartjg4);
+            }
+            if (obrg.getCantidadJ() == 6) {
+                if (darcart == 0) {
+                    cartjg4 = "";
+                    Cartas_conf[] cartas = repart.darcartas(5);
+                    for (int i = 0; i < cartas.length; i++) {
+
+                        cartjg4 += "\n" + cartas[i];
+                    }
+                    darcart = 1;
+                }
+                JOptionPane.showMessageDialog(null, cartjg4);
+            }
+            if (obrg.getCantidadJ() == 8) {
+                if (darcart == 0) {
+                    cartjg4 = "";
+                    Cartas_conf[] cartas = repart.darcartas(4);
+                    for (int i = 0; i < cartas.length; i++) {
+
+                        cartjg4 += "\n" + cartas[i];
+                    }
+                    darcart = 1;
+                }
+                JOptionPane.showMessageDialog(null, cartjg4);
+            }
+        }catch(IOException e){
+            System.out.println("Error");
+        }
+    }//GEN-LAST:event_btn_verJ7MouseClicked
+
+    private void btn_verJ3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_verJ3MouseClicked
+        // JUGADOR 5
+        try{
+            if (contjg5 == 0) {
+                darcart = 0;
+                contjg5++;
+            }
+        if (obrg.getCantidadJ() == 6) {
+                if (darcart == 0) {
+                    cartg5= "";
+                    Cartas_conf[] cartas = repart.darcartas(5);
+                    for (int i = 0; i < cartas.length; i++) {
+
+                        cartg5 += "\n" + cartas[i];
+                    }
+                    darcart = 1;
+                }
+                JOptionPane.showMessageDialog(null, cartg5);
+            }
+            if (obrg.getCantidadJ() == 8) {
+                if (darcart == 0) {
+                    cartg5= "";
+                    Cartas_conf[] cartas = repart.darcartas(4);
+                    for (int i = 0; i < cartas.length; i++) {
+                        cartg5 += "\n" + cartas[i];
+                    }
+                    darcart = 1;
+                }
+                JOptionPane.showMessageDialog(null, cartg5);
+            }
+        }catch(IOException e){  
+            System.out.println("Error");  
+        }
+        
+        
+    }//GEN-LAST:event_btn_verJ3MouseClicked
+
+    private void btn_verJ6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_verJ6MouseClicked
+        // JUGADOR 6
+        try{
+            if (contjg6 == 0) {
+                darcart = 0;
+                contjg6++;
+            }
+        if (obrg.getCantidadJ() == 6) {
+                if (darcart == 0) {
+                    cartg6="";
+                    Cartas_conf[] cartas = repart.darcartas(5);
+                    for (int i = 0; i < cartas.length; i++) {
+                        cartg6 += "\n" + cartas[i];
+                    }
+                    darcart = 1;
+                }
+                JOptionPane.showMessageDialog(null, cartg6);
+            }
+            if (obrg.getCantidadJ() == 8) {
+                if (darcart == 0) {
+                    cartg6="";
+                    Cartas_conf[] cartas = repart.darcartas(4);
+                    for (int i = 0; i < cartas.length; i++) {
+                        cartg6 += "\n" + cartas[i];
+                    }
+                    darcart = 1;
+                }
+                JOptionPane.showMessageDialog(null, cartg6);
+            }
+        }catch(IOException e){  
+            System.out.println("Error");
+        }
+        
+    }//GEN-LAST:event_btn_verJ6MouseClicked
+
+    private void btn_verJ5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_verJ5MouseClicked
+        // JUGADOR 7
+        try{
+            if (contjg7 == 0) {
+                darcart = 0;
+                contjg7++;
+            }
+        if (obrg.getCantidadJ() == 8) {
+                if (darcart == 0) {
+                    cartg7="";
+                    Cartas_conf[] cartas = repart.darcartas(4);
+                    for (int i = 0; i < cartas.length; i++) {
+
+                        cartg7 += "\n" + cartas[i];
+                    }
+                    darcart = 1;
+                }
+                JOptionPane.showMessageDialog(null, cartg7);
+            }
+        }catch(IOException e){
+            System.out.println("Error");
+        }
+    }//GEN-LAST:event_btn_verJ5MouseClicked
+
+    private void btn_verJ4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_verJ4MouseClicked
+        // JUGADOR 8
+         try{
+             if (contjg8 == 0) {
+                darcart = 0;
+                contjg8++;
+            }
+        if (obrg.getCantidadJ() == 8) {
+                if (darcart == 0) {
+                    cartg8="";
+                    Cartas_conf[] cartas = repart.darcartas(4);
+                    for (int i = 0; i < cartas.length; i++) {
+
+                        cartg8 += "\n" + cartas[i];
+                    }
+                    darcart = 1;
+                }
+                JOptionPane.showMessageDialog(null, cartg8);
+            }
+        }catch(IOException e){
+            System.out.println("Error");
+        }
+    }//GEN-LAST:event_btn_verJ4MouseClicked
 
     /**
      * @param args the command line arguments

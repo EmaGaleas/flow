@@ -117,7 +117,7 @@ public class Repartircartas_tab {
                 Cartas_conf[] cartdar = new Cartas_conf[numcartas];
                 for (int i = 0; i < cartdar.length; i++) {
                     cartdar[i] = siguienteCarta();
-                    System.out.println(" cartdar[i]"+ cartdar[i]);
+                  //  System.out.println(" Siguiente carta"+ cartdar[i]);
                 }
                
                 return cartdar;
