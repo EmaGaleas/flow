@@ -14,7 +14,7 @@ public class probarbaraja {
         Scanner lea=new Scanner(System.in);
        
          //rp.crearbarajear();
-//         rp.barajar();
+         rp.barajar();
 //         Cartas_conf[] c=rp.darcartas(4);
          
 //         
@@ -24,8 +24,8 @@ public class probarbaraja {
 //         }
 //         rp.cartasDisponible();
 //         rp.mostrarbaraja();
-//         System.out.println("---------------------------");
-//         rp.siguienteCarta();
+ System.out.println("---------------------------");
+ //rp.siguienteCarta();
 //         rp.siguienteCarta();
     }
     

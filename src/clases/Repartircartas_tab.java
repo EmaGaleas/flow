@@ -9,7 +9,7 @@ public class Repartircartas_tab {
     private int posionsigcart;
     private int contdiamanete = 0, conttrebol = 0;
     public static final int numcarts = 104;
-
+    int cont=0;
     public Repartircartas_tab() {
 
         this.carta = new Cartas_conf[numcarts];
@@ -93,7 +93,7 @@ public class Repartircartas_tab {
 
 //Va devolver una carta
     public Cartas_conf siguienteCarta() {
-
+    
         Cartas_conf cartas = null;
         if (posionsigcart == numcarts) {
             System.out.println("ya no hay mas cartas barajear otra vez");
@@ -101,7 +101,8 @@ public class Repartircartas_tab {
         } else {
             cartas = this.carta[posionsigcart++];
         }
-        System.out.println("cartas dar" + cartas);
+       System.out.println("cartas dar" + cartas);
+        System.out.println(""+cont++);
         return cartas;
     }
 

@@ -1005,13 +1005,12 @@ public class tablero extends javax.swing.JFrame {
 
     private void sacar_cartaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sacar_cartaMouseClicked
         // MAZO
-        if (repart.siguienteCarta() == null) {
-            JOptionPane.showMessageDialog(null, "Ya no hay mas cartas barajear de nuevo");
-            repart.siguienteCarta();
-        } else {
-            JOptionPane.showMessageDialog(null, "Siguiente Carta: " + repart.siguienteCarta());
-            repart.siguienteCarta();
-        }
+       Cartas_conf siguienteCarta = repart.siguienteCarta();
+    if (siguienteCarta != null) {
+        JOptionPane.showMessageDialog(null, "Siguiente Carta: " + siguienteCarta);
+    } else {
+        JOptionPane.showMessageDialog(null, "Ya no hay más cartas, barajear de nuevo");
+    }
     }//GEN-LAST:event_sacar_cartaMouseClicked
 
     private void btn_verJ8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_verJ8MouseClicked
