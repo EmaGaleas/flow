@@ -141,11 +141,6 @@
       </SubComponents>
     </Container>
     <Component class="javax.swing.JLabel" name="fondo_c">
-      <Properties>
-        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/images/fondos/fondo_configuracion.png"/>
-        </Property>
-      </Properties>
     </Component>
   </SubComponents>
 </Form>

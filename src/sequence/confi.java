@@ -107,8 +107,6 @@ public class confi extends javax.swing.JFrame {
                 .addContainerGap(178, Short.MAX_VALUE))
         );
 
-        fondo_c.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/fondos/fondo_configuracion.png"))); // NOI18N
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
