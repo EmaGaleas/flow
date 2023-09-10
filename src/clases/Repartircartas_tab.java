@@ -46,7 +46,7 @@ public class Repartircartas_tab {
         carta[i].setValor(14);
         
      }   
-        System.out.println(""+carta[i]);
+        //System.out.println(""+carta[i]);
     }
          
          
@@ -85,7 +85,7 @@ public class Repartircartas_tab {
             carta[i] = carta[posicionaleatoria];
             carta[posicionaleatoria] = cart2;
          
-            System.out.println(i + "" + carta[posicionaleatoria]);
+           // System.out.println(i + "" + carta[posicionaleatoria]);
 
         }
 
@@ -100,44 +100,41 @@ public class Repartircartas_tab {
             return null;
         } else {
             cartas = this.carta[posionsigcart++];
-            System.out.println("posicion buena=" + posionsigcart);
-            if (cartas == null) {
-                System.out.println("posicion null=" + posionsigcart);
-            }
-
-            while (cartas == null) {
-                cartas = this.carta[posionsigcart++];
-            }
         }
         System.out.println("cartas dar" + cartas);
         return cartas;
     }
 
     public Cartas_conf[] darcartas(int numcartas) {
-        if (numcartas > numcarts) {
+        if (numcartas > numcartas) {
             System.out.println("no hay esa cantidad de cartas");
-
+         
         } else {
-            if (cartasDisponible() < numcarts) {
-                System.out.println("No hay suficientes cartas que moestrar");
+            if (cartasDisponible() < numcartas) {
+                System.out.println("No hay suficientes cartas que mostrar");
 
             } else {
-                Cartas_conf[] cartdar = new Cartas_conf[numcarts];
+                Cartas_conf[] cartdar = new Cartas_conf[numcartas];
                 for (int i = 0; i < cartdar.length; i++) {
                     cartdar[i] = siguienteCarta();
+                    System.out.println(" cartdar[i]"+ cartdar[i]);
                 }
+               
                 return cartdar;
             }
         }
 
         return null;
-
+     
     }
 
     //va adevolver el numero de cartas disponible
     public int cartasDisponible() {
-        System.out.println("cartasDisponible" + (numcarts - posionsigcart));
-        return numcarts - posionsigcart;
+        
+        int cartasdisponibles=numcarts - posionsigcart;
+        System.out.println("cartasdisponibles"+cartasdisponibles);
+        return cartasdisponibles;
+        
     }
 
     //esta funcion es para mostrar las cartas que ya han salido o si no han salido

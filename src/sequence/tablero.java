@@ -3,18 +3,22 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package sequence;
+import clases.Repartircartas_tab;
+import clases.Cartas_conf;
 import clases.registro;
 import clases.call_png_baraja;
 import clases.logica_tab;
 import java.awt.Image;
 import java.io.IOException;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 
 public class tablero extends javax.swing.JFrame {
     private logica_tab lt;
     int contusuarios;
     confi conf=new confi();
     registro obrg=new registro();
+    Repartircartas_tab repart=new Repartircartas_tab();
     String nombre;
     
     public tablero(String nombre) {
@@ -323,6 +327,11 @@ public class tablero extends javax.swing.JFrame {
         sacar_carta.setBackground(new java.awt.Color(0, 0, 0));
         sacar_carta.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         sacar_carta.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        sacar_carta.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sacar_cartaMouseClicked(evt);
+            }
+        });
 
         jButton3.setText("volver menu");
         jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -885,6 +894,20 @@ public class tablero extends javax.swing.JFrame {
         // JUEGO DE 3 EN ADELANTE
         
     }//GEN-LAST:event_btn_verJ2MouseClicked
+
+    private void sacar_cartaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sacar_cartaMouseClicked
+        // MAZO
+        
+       JOptionPane.showMessageDialog(null, "Siguiente Carta: "+ repart.siguienteCarta());
+        
+       repart.siguienteCarta();
+        
+        
+        
+        
+        
+        
+    }//GEN-LAST:event_sacar_cartaMouseClicked
 
     /**
      * @param args the command line arguments
