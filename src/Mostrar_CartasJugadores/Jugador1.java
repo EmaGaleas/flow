@@ -10,23 +10,56 @@ import clases.registro;
 import clases.call_png_baraja;
 import clases.logica_tab;
 import java.awt.Image;
+import java.io.IOException;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import sequence.tablero;
 
 public class Jugador1 extends javax.swing.JFrame {
     
+    private tablero tab;
+    registro r = new registro();
+
     public Jugador1() {
   
+        this.tab=tab;
         initComponents();
-        fondoTablero();
-        
+        try {
+            int t=r.getCantidadJ();
+            if(t==3){
+                carta7.setVisible(false);
+            }else if(t==6){
+                carta7.setVisible(false);
+                carta6.setVisible(false);
+            }else if(t==8){
+                carta5.setVisible(false);
+                carta7.setVisible(false);
+                carta6.setVisible(false);
+            }
+
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(null, "fallo en contar");
+        }
+          fondoTablero();
+              /*
+          n
+          n=skdsds-1\n
+          n+=frfgd-2\n
+          split n
+          
+          */
+        //FORMA DE PONER IMAGEN tbm esta llamar baraja
+        carta1.setIcon(call_png_baraja.imagenCorazon6());
+        carta7.setIcon(call_png_baraja.imagenCorazon7());
     }
+    //funcion 
+    
     private void fondoTablero() {
         ImageIcon ig = new ImageIcon("src/images/fondos/fondo_cartasjug.png");
         Image original = ig.getImage();
-        Image scaledImage = original.getScaledInstance(fondo_cartjug.getWidth(),fondo_cartjug.getHeight(), Image.SCALE_SMOOTH );
+        Image scaledImage = original.getScaledInstance(fondo_carta.getWidth(),fondo_carta.getHeight(), Image.SCALE_SMOOTH );
         ImageIcon escala = new ImageIcon(scaledImage);
-        fondo_cartjug.setIcon(escala);
+        fondo_carta.setIcon(escala);
     }
 
     @SuppressWarnings("unchecked")
@@ -34,30 +67,111 @@ public class Jugador1 extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        fondo_cartjug = new javax.swing.JLabel();
+        ordenar = new javax.swing.JButton();
+        poner = new javax.swing.JButton();
+        descartar = new javax.swing.JButton();
+        carta2 = new javax.swing.JButton();
+        carta4 = new javax.swing.JButton();
+        carta3 = new javax.swing.JButton();
+        carta5 = new javax.swing.JButton();
+        carta1 = new javax.swing.JButton();
+        carta6 = new javax.swing.JButton();
+        carta7 = new javax.swing.JButton();
+        fondo_carta = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
-        jLabel1.setText("Jugador 1");
+        jPanel1.setOpaque(false);
+
+        ordenar.setBackground(new java.awt.Color(0, 0, 0));
+        ordenar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        ordenar.setForeground(new java.awt.Color(255, 255, 255));
+        ordenar.setText("Ordenar");
+
+        poner.setBackground(new java.awt.Color(0, 0, 0));
+        poner.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        poner.setForeground(new java.awt.Color(255, 255, 255));
+        poner.setText("Poner(dafault)");
+
+        descartar.setBackground(new java.awt.Color(0, 0, 0));
+        descartar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        descartar.setForeground(new java.awt.Color(255, 255, 255));
+        descartar.setText("Descartar");
+
+        carta2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+
+        carta4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+
+        carta3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+
+        carta5.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+
+        carta1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        carta1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                carta1MouseClicked(evt);
+            }
+        });
+
+        carta6.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+
+        carta7.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(396, 396, 396)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(fondo_cartjug, javax.swing.GroupLayout.DEFAULT_SIZE, 183, Short.MAX_VALUE))
+                .addGap(91, 91, 91)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(ordenar)
+                                .addGap(77, 77, 77)
+                                .addComponent(poner)
+                                .addGap(87, 87, 87))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(carta1, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(72, 72, 72)
+                                .addComponent(carta2, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(carta3, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(44, 44, 44)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(descartar)
+                            .addComponent(carta4, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(69, 69, 69)
+                        .addComponent(carta5, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(77, 77, 77)
+                        .addComponent(carta6, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(80, 80, 80)
+                        .addComponent(carta7, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(94, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(fondo_cartjug, javax.swing.GroupLayout.DEFAULT_SIZE, 442, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(89, 89, 89)
-                .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(69, 69, 69)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(ordenar)
+                    .addComponent(poner)
+                    .addComponent(descartar))
+                .addGap(48, 48, 48)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(carta3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(carta2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(carta1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(carta4))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 227, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(carta6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(carta5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(carta7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(110, 110, 110))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -65,15 +179,27 @@ public class Jugador1 extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(fondo_carta, javax.swing.GroupLayout.DEFAULT_SIZE, 700, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(fondo_carta, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE))
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void carta1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_carta1MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_carta1MouseClicked
+
+    /**
+     * @param args the command line arguments
+     */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -107,8 +233,17 @@ public class Jugador1 extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel fondo_cartjug;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton carta1;
+    private javax.swing.JButton carta2;
+    private javax.swing.JButton carta3;
+    private javax.swing.JButton carta4;
+    private javax.swing.JButton carta5;
+    private javax.swing.JButton carta6;
+    private javax.swing.JButton carta7;
+    private javax.swing.JButton descartar;
+    private javax.swing.JLabel fondo_carta;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JButton ordenar;
+    private javax.swing.JButton poner;
     // End of variables declaration//GEN-END:variables
 }

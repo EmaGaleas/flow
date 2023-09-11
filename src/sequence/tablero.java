@@ -32,7 +32,7 @@ public class tablero extends javax.swing.JFrame {
     int darcart = 0, contjg1 = 0, contjg2 = 0, contjg3 = 0, contjg4 = 0, contjg5 = 0, contjg6 = 0, contjg7 = 0, contjg8 = 0;
     private Timer timer;
     private int segundos = 0;
-    Jugador1 objjg1 = new Jugador1();
+    Jugador1 objjg1=new Jugador1();
     Jugador2 objjg2 = new Jugador2();
     Jugador3 objjg3 = new Jugador3();
     Jugador4 objjg4 = new Jugador4();
