@@ -30,11 +30,12 @@ public class Repartircartas_tab {
 
                 int posicionaleatoria = generaNumeroEnteroAleatorio(0, 3);
                
-                carta[mazo*52+i * (Cartas_conf.limitecart_palo) + j] = new Cartas_conf(j + 1, palos[i], valorcarta++);
+                carta[mazo*52+i * (Cartas_conf.limitecart_palo) + j] = new Cartas_conf(palos[i], valorcarta++);
+             
                if(valorcarta==14){
                    valorcarta=1;
                }
-               // System.out.println((conttemp++)+""+carta[i * (Cartas_conf.limitecart_palo) + j]);
+                System.out.println(carta[i * (Cartas_conf.limitecart_palo) + j]);
 //                  System.out.println((conttemp++)+" ver que hay en carta "+  carta[i *(Cartas_conf.limitecart_palo) + j] );
 
             }
@@ -46,7 +47,7 @@ public class Repartircartas_tab {
         carta[i].setValor(14);
         
      }   
-        //System.out.println(""+carta[i]);
+       
     }
          
          
@@ -85,7 +86,7 @@ public class Repartircartas_tab {
             carta[i] = carta[posicionaleatoria];
             carta[posicionaleatoria] = cart2;
          
-           // System.out.println(i + "" + carta[posicionaleatoria]);
+           // System.out.println(carta[posicionaleatoria].getTipo()+"-"+carta[posicionaleatoria].getValor());
 
         }
 

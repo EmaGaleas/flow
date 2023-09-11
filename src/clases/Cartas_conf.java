@@ -14,7 +14,7 @@ public class Cartas_conf {
    
   public static final String[] TIPO={"CORAZON","DIAMANTE","PICA","TREBOL"};
 
-    public Cartas_conf(int num, String tipo,int valor) {
+    public Cartas_conf(String tipo,int valor) {
         this.num = num;
         this.tipo = tipo;
         this.valor=valor;
@@ -41,7 +41,7 @@ public class Cartas_conf {
 
     @Override
     public String toString() {
-        return "numero=" + num + ", tipo=" + tipo+"valor="+valor;
+        return tipo+"-"+valor;
     }
 
   

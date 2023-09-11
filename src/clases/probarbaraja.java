@@ -13,8 +13,8 @@ public class probarbaraja {
        Repartircartas_tab rp=new Repartircartas_tab(); 
         Scanner lea=new Scanner(System.in);
        
-         //rp.crearbarajear();
-         rp.barajar();
+        rp.crearbarajear();
+        // rp.barajar();
 //         Cartas_conf[] c=rp.darcartas(4);
          
 //         
