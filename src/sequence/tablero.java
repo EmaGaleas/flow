@@ -2,6 +2,14 @@
 package sequence;
 
 import clases.Repartircartas_tab;
+import Mostrar_CartasJugadores.Jugador1;
+import Mostrar_CartasJugadores.Jugador2;
+import Mostrar_CartasJugadores.Jugador3;
+import Mostrar_CartasJugadores.Jugador4;
+import Mostrar_CartasJugadores.Jugador5;
+import Mostrar_CartasJugadores.Jugador6;
+import Mostrar_CartasJugadores.Jugador7;
+import Mostrar_CartasJugadores.Jugador8;
 import clases.Cartas_conf;
 import clases.registro;
 import clases.call_png_baraja;
@@ -1026,6 +1034,8 @@ public class tablero extends javax.swing.JFrame {
                         }
                         darcart = 1;
                     }
+                    Jugador3 objjg=new Jugador3();
+                    objjg.setVisible(true);
                     JOptionPane.showMessageDialog(null, cartjg3);
 
                 }
@@ -1040,6 +1050,8 @@ public class tablero extends javax.swing.JFrame {
                         }
                         darcart = 1;
                     }
+                    Jugador3 objjg=new Jugador3();
+                    objjg.setVisible(true);
                     JOptionPane.showMessageDialog(null, cartjg3);
 
                 }
@@ -1053,6 +1065,8 @@ public class tablero extends javax.swing.JFrame {
                         }
                         darcart = 1;
                     }
+                    Jugador3 objjg=new Jugador3();
+                    objjg.setVisible(true);
                     JOptionPane.showMessageDialog(null, cartjg3);
 
                 }
@@ -1066,6 +1080,8 @@ public class tablero extends javax.swing.JFrame {
                         }
                         darcart = 1;
                     }
+                    Jugador3 objjg=new Jugador3();
+                    objjg.setVisible(true);
                     JOptionPane.showMessageDialog(null, cartjg3);
                 }
 
@@ -1116,6 +1132,8 @@ public class tablero extends javax.swing.JFrame {
                         }
                         darcart = 1;
                     }
+                    Jugador2 objjg=new Jugador2();
+                    objjg.setVisible(true);
                     JOptionPane.showMessageDialog(null, cartjg2);
                 }
                 if (obrg.getCantidadJ() == 3) {
@@ -1128,6 +1146,8 @@ public class tablero extends javax.swing.JFrame {
                         }
                         darcart = 1;
                     }
+                    Jugador2 objjg=new Jugador2();
+                    objjg.setVisible(true);
                     JOptionPane.showMessageDialog(null, cartjg2);
                 }
                 if (obrg.getCantidadJ() == 4) {
@@ -1140,6 +1160,8 @@ public class tablero extends javax.swing.JFrame {
                         }
                         darcart = 1;
                     }
+                    Jugador2 objjg=new Jugador2();
+                    objjg.setVisible(true);
                     JOptionPane.showMessageDialog(null, cartjg2);
                 }
                 if (obrg.getCantidadJ() == 6) {
@@ -1152,6 +1174,8 @@ public class tablero extends javax.swing.JFrame {
                         }
                         darcart = 1;
                     }
+                    Jugador2 objjg=new Jugador2();
+                    objjg.setVisible(true);
                     JOptionPane.showMessageDialog(null, cartjg2);
                 }
                 if (obrg.getCantidadJ() == 8) {
@@ -1164,6 +1188,8 @@ public class tablero extends javax.swing.JFrame {
                         }
                         darcart = 1;
                     }
+                    Jugador2 objjg=new Jugador2();
+                    objjg.setVisible(true);
                     JOptionPane.showMessageDialog(null, cartjg2);
                 }
 
@@ -1184,7 +1210,8 @@ public class tablero extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_verJ8MouseClicked
 
     private void btn_verJ1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_verJ1MouseClicked
-      if(lt.txtTurnoSting().equals(nombre_J1.getText())){
+      //JUGADOR 1
+        if(lt.txtTurnoSting().equals(nombre_J1.getText())){
             timer.stop();//para timer y turno
             try {
                 if (contjg1 == 0) {
@@ -1201,6 +1228,9 @@ public class tablero extends javax.swing.JFrame {
                         }
                         darcart = 1;
                     }
+                     Jugador1 segundoFrame = new Jugador1(this);
+        segundoFrame.setVisible(true);
+                    this.setVisible(true);
                     JOptionPane.showMessageDialog(null, cartjg1);
                 }
                 if (obrg.getCantidadJ() == 3) {
@@ -1213,6 +1243,9 @@ public class tablero extends javax.swing.JFrame {
                         }
                         darcart = 1;
                     }
+                    Jugador1 objjg=new Jugador1(this);
+                    objjg.setVisible(true);
+                  
                     JOptionPane.showMessageDialog(null, cartjg1);
                 }
                 if (obrg.getCantidadJ() == 4) {
@@ -1225,6 +1258,9 @@ public class tablero extends javax.swing.JFrame {
                         }
                         darcart = 1;
                     }
+                    Jugador1 objjg=new Jugador1(this);
+                    objjg.setVisible(true);
+                
                     JOptionPane.showMessageDialog(null, cartjg1);
                 }
                 if (obrg.getCantidadJ() == 6) {
@@ -1237,6 +1273,8 @@ public class tablero extends javax.swing.JFrame {
                         }
                         darcart = 1;
                     }
+                    Jugador1 objjg=new Jugador1(this);
+                    objjg.setVisible(true);
                     JOptionPane.showMessageDialog(null, cartjg1);
                 }
                 if (obrg.getCantidadJ() == 8) {
@@ -1248,6 +1286,8 @@ public class tablero extends javax.swing.JFrame {
                         }
                         darcart = 1;
                     }
+                    Jugador1 objjg=new Jugador1(this);
+                    objjg.setVisible(true);
                     JOptionPane.showMessageDialog(null, cartjg1);
                 }
             } catch (IOException e) {
@@ -1283,6 +1323,8 @@ public class tablero extends javax.swing.JFrame {
                         }
                         darcart = 1;
                     }
+                    Jugador4 objjg=new Jugador4();
+                    objjg.setVisible(true);
                     JOptionPane.showMessageDialog(null, cartjg4);
                 }
                 if (obrg.getCantidadJ() == 6) {
@@ -1295,6 +1337,8 @@ public class tablero extends javax.swing.JFrame {
                         }
                         darcart = 1;
                     }
+                    Jugador4 objjg=new Jugador4();
+                    objjg.setVisible(true);
                     JOptionPane.showMessageDialog(null, cartjg4);
                 }
                 if (obrg.getCantidadJ() == 8) {
@@ -1307,6 +1351,8 @@ public class tablero extends javax.swing.JFrame {
                         }
                         darcart = 1;
                     }
+                    Jugador4 objjg=new Jugador4();
+                    objjg.setVisible(true);
                     JOptionPane.showMessageDialog(null, cartjg4);
                 }
             }catch(IOException e){
@@ -1343,6 +1389,8 @@ public class tablero extends javax.swing.JFrame {
                         }
                         darcart = 1;
                     }
+                    Jugador5 objjg=new Jugador5();
+                    objjg.setVisible(true);
                     JOptionPane.showMessageDialog(null, cartg5);
                 }
                 if (obrg.getCantidadJ() == 8) {
@@ -1354,6 +1402,8 @@ public class tablero extends javax.swing.JFrame {
                         }
                         darcart = 1;
                     }
+                    Jugador5 objjg=new Jugador5();
+                    objjg.setVisible(true);
                     JOptionPane.showMessageDialog(null, cartg5);
                 }
             }catch(IOException e){  
@@ -1388,6 +1438,8 @@ public class tablero extends javax.swing.JFrame {
                         }
                         darcart = 1;
                     }
+                    Jugador6 objjg=new Jugador6();
+                    objjg.setVisible(true);
                     JOptionPane.showMessageDialog(null, cartg6);
                 }
                 if (obrg.getCantidadJ() == 8) {
@@ -1399,6 +1451,8 @@ public class tablero extends javax.swing.JFrame {
                         }
                         darcart = 1;
                     }
+                    Jugador6 objjg=new Jugador6();
+                    objjg.setVisible(true);
                     JOptionPane.showMessageDialog(null, cartg6);
                 }
             }catch(IOException e){  
@@ -1435,6 +1489,8 @@ public class tablero extends javax.swing.JFrame {
                         }
                         darcart = 1;
                     }
+                    Jugador7 objjg=new Jugador7();
+                    objjg.setVisible(true);
                     JOptionPane.showMessageDialog(null, cartg7);
                 }
             }catch(IOException e){
@@ -1470,6 +1526,8 @@ public class tablero extends javax.swing.JFrame {
                        }
                        darcart = 1;
                    }
+                   Jugador8 objjg=new Jugador8();
+                    objjg.setVisible(true);
                    JOptionPane.showMessageDialog(null, cartg8);
                }
            }catch(IOException e){
