@@ -12,7 +12,6 @@ import javax.swing.JOptionPane;
 public class confi extends javax.swing.JFrame {
     registro obrg = new registro();
     private String[] coloresSeleccionados;
-   // private String[] coloresEquipos;
     private int contClicksFicha;
     
     public confi() {
@@ -148,8 +147,6 @@ public class confi extends javax.swing.JFrame {
             mi.setVisible(true);
             this.setVisible(false);
             coloresSeleccionados = null;
-          //  coloresEquipos = null;
-            System.out.println("ARREGLOS LIMPIADOS POR SI QUIERE CAMBIAR DESPUS");
         } else {
             JOptionPane.showMessageDialog(null, "No ha seleccioando colores para equipos", "Error", JOptionPane.ERROR_MESSAGE);
         }
@@ -229,7 +226,6 @@ public class confi extends javax.swing.JFrame {
                         t=4;
                     } 
                     coloresSeleccionados = new String[t]; 
-                   // coloresEquipos = new String[t]; 
                     for (int i = 0; i < t; i++) {
                         String equipo = "Equipo " + (i + 1); 
                         String seleccion = seleccionarColor(equipo);
@@ -237,7 +233,6 @@ public class confi extends javax.swing.JFrame {
                     if (seleccion != null) {
                         if (!yaSeleccionado(seleccion, coloresSeleccionados)) {
                             coloresSeleccionados[i] = seleccion; 
-                        //    coloresEquipos[i] = seleccion; 
                         } else {
                             JOptionPane.showMessageDialog(null, "Ese color ya fue elegido por otro equipo.\nElige otro color.");
                             i--; 

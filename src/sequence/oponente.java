@@ -260,7 +260,7 @@ public class oponente extends javax.swing.JFrame {
                     equipoLog++;
                     selec++;
                     lista.setVisible(true);
-                    JOptionPane.showMessageDialog(null, "Has seleccionado TU equipo");
+                    JOptionPane.showMessageDialog(null, "Has seleccionado el tuyo");
                     seleccionados.setText(n);
 
                 } else {

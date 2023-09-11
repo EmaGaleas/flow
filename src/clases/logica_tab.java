@@ -12,6 +12,7 @@ import java.awt.GridLayout;
 import java.awt.List;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.util.ArrayList;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -27,11 +28,29 @@ public class logica_tab {
     public JButton[][] matrizButtonsUI;//ACCEDE A LOS BOTONES
     public cartas[][] matrizBotones; //de JButton a Pieza por valores
     private call_png_baraja baraja; 
-public int s=1;
+    public int s=1;
+    public String t1;//nombre turno1
+    public String t2;//nombre turno2
+    public String t3;//nombre turno3
+    public String t4;//nombre turno4 
+    public String t5;//nombre turno5 
+    public String t6;//nombre turno6
+    public String t7;//nombre turno7 
+    public String t8;//nombre turno8 
+    public int turno=1;
+    
     public logica_tab() {
         matrizButtonsUI = new JButton[10][10]; 
         baraja = new call_png_baraja(); 
-        
+        turno=1;
+        t1="";
+        t2="";
+        t3="";
+        t4="";
+        t5="";
+        t6="";
+        t7="";
+        t8="";
     } 
     public void GridLayout(JPanel tab) {
         int filas=10;
@@ -220,6 +239,166 @@ public int s=1;
             matrizBotones[f][8]=new cartas("PICA",   valorPicaColumna8, posesionInicial,f,8);
             valorPicaColumna8++;//llega hasta 6
         }   
+    }
+    //TODO LO QUE TENGA QUE VER CON TURNOS
+    public void cambiorturno(){
+        registro r=new registro();
+        try {
+        if(r.getCantidadJ()==2){
+            if(turno==1){ turno=2;
+            }else{ turno=1;
+            }
+        }else if(r.getCantidadJ()==3){
+            if(turno==1){ turno=2;
+            }else if(turno==2){ turno=3;
+            }else if(turno==3){ turno=1;
+            }
+        }else if(r.getCantidadJ()==4){
+            if(turno==1){ turno=2;
+            }else if(turno==2){ turno=3;
+            }else if(turno==3){ turno=4;
+            }else if(turno==4){ turno=1;
+            }
+        }else if(r.getCantidadJ()==6){
+            if(turno==1){ turno=2;
+            }else if(turno==2){ turno=3;
+            }else if(turno==3){ turno=4;
+            }else if(turno==4){ turno=5;
+            }else if(turno==5){ turno=6;
+            }else if(turno==6){ turno=1;
+            }               
+        } else if(r.getCantidadJ()==8){
+            if(turno==1){ turno=2;
+            }else if(turno==2){ turno=3;
+            }else if(turno==3){ turno=4;
+            }else if(turno==4){ turno=5;
+            }else if(turno==5){ turno=6;
+            }else if(turno==6){ turno=7;
+            }else if(turno==7){ turno=8;
+            }else if(turno==8){ turno=1;
+            }
+        }
+        } catch (IOException e) {
+             
+        }
+    }
+    public String txtTurnoSting(){//LISTO
+//        if(turno==1){
+//            return t1;
+//        }else if(turno==2){
+//            return t2;
+//        }
+        registro r=new registro();
+        try {
+            if(r.getCantidadJ()==2){
+                if(turno==1){ return t1;
+                }else{        return t2;
+                }
+            }else if(r.getCantidadJ()==3){
+                if(turno==1){       return t1;
+                }else if(turno==2){ return t2;
+                }else if(turno==3){ return t3;
+                }
+            }else if(r.getCantidadJ()==4){
+                if(turno==1){       return t1;
+                }else if(turno==2){ return t2;
+                }else if(turno==3){ return t3;
+                }else if(turno==4){ return t4;
+                }
+            }else if(r.getCantidadJ()==6){
+                if(turno==1){       return t1;
+                }else if(turno==2){ return t2;
+                }else if(turno==3){ return t3;
+                }else if(turno==4){ return t4;
+                }else if(turno==5){ return t5;
+                }else if(turno==6){ return t6;
+                }               
+            } else if(r.getCantidadJ()==8){
+                if(turno==1){       return t1;
+                }else if(turno==2){ return t2;
+                }else if(turno==3){ return t3;
+                }else if(turno==4){ return t4;
+                }else if(turno==5){ return t5;
+                }else if(turno==6){ return t6;
+                }else if(turno==7){ return t7;
+                }else if(turno==8){ return t8;
+                }
+            }
+        } catch (IOException e) {
+             
+        }
+        return ";";
+    }
+    public String nombreTurno(){
+     return "";   
+    }
+
+    public int getTurno() {
+        return turno;
+    }
+
+    public String getT1() {
+        return t1;
+    }
+
+    public void setT1(String t1) {
+        this.t1 = t1;
+    }
+
+    public String getT2() {
+        return t2;
+    }
+
+    public void setT2(String t2) {
+        this.t2 = t2;
+    }
+
+    public String getT3() {
+        return t3;
+    }
+
+    public void setT3(String t3) {
+        this.t3 = t3;
+    }
+
+    public String getT4() {
+        return t4;
+    }
+
+    public void setT4(String t4) {
+        this.t4 = t4;
+    }
+
+    public String getT5() {
+        return t5;
+    }
+
+    public void setT5(String t5) {
+        this.t5 = t5;
+    }
+
+    public String getT6() {
+        return t6;
+    }
+
+    public void setT6(String t6) {
+        this.t6 = t6;
+    }
+
+    public String getT7() {
+        return t7;
+    }
+
+    public void setT7(String t7) {
+        this.t7 = t7;
+    }
+
+    public String getT8() {
+        return t8;
+    }
+
+    public void setT8(String t8) {
+        this.t8 = t8;
     }
     
     

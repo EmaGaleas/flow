@@ -7,50 +7,78 @@ import clases.registro;
 import clases.call_png_baraja;
 import clases.logica_tab;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.IOException;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import javax.swing.Timer;
 
 public class tablero extends javax.swing.JFrame {
 
-    private logica_tab lt;
+    private logica_tab lt= new logica_tab();
     int contusuarios;
     confi conf = new confi();
     registro obrg = new registro();
     Repartircartas_tab repart = new Repartircartas_tab();
     String nombre, cartjg1, cartjg2, cartjg3,cartjg4,cartg5,cartg6,cartg7,cartg8;
     int darcart = 0, contjg1 = 0, contjg2 = 0, contjg3 = 0,contjg4 = 0,contjg5 = 0,contjg6 = 0,contjg7 = 0,contjg8 = 0;
-
+    private Timer timer;
+    private int segundos = 0;
+    
     public tablero(String nombre) {
         initComponents();
-        logica_tab lt = new logica_tab();
         fondoTablero();
         lt.GridLayout(tab);
         ImageIcon icon = new ImageIcon("src/images/mazo.png");
-        sacar_carta.setIcon(icon);
+        sacarCarta.setIcon(icon);
         this.nombre = nombre;
         inicializarJugadores();
-
+        segundos = 0;
+        timer = new Timer(1000, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                segundos++;
+                actLabelTIME();
+                if (segundos >= 120) {
+                    timer.stop();
+                    finTIME();
+                }
+            }
+        });
+        timer.start();  
     }
 
+    private void actLabelTIME() {
+        int minutos = segundos / 60;
+        int segundosRestantes = segundos % 60;
+        String tiempoFormateado = String.format("%02d:%02d", minutos, segundosRestantes);
+        time.setText(tiempoFormateado);
+    }
+
+    private void finTIME() {
+        JOptionPane.showMessageDialog(this, ":(\nSE TE ACABO EL TIEMPO\nCambio de turno", "Fin turno", JOptionPane.INFORMATION_MESSAGE);
+        segundos = 0; 
+        actLabelTIME();
+        timer.start();
+        actualizarLabelT();
+    }
+     public void actualizarLabelT() {
+        lt.cambiorturno();
+        String turnoString = lt.txtTurnoSting();
+        turno.setText("Turno de: " + turnoString);
+    }
+    
     private void inicializarJugadores() {
         String[] id = nombre.split("\n");
-        String nombre1 = "";
-        String equipo1 = "";
-        String nombre2 = "";
-        String equipo2 = "";
-        String nombre3 = "";
-        String equipo3 = "";
-        String nombre4 = "";
-        String equipo4 = "";
-        String nombre5 = "";
-        String equipo5 = "";
-        String nombre6 = "";
-        String equipo6 = "";
-        String nombre7 = "";
-        String equipo7 = "";
-        String nombre8 = "";
-        String equipo8 = "";
+        String nombre1 = ""; String equipo1="";
+        String nombre2 = ""; String equipo2="";
+        String nombre3 = ""; String equipo3="";
+        String nombre4 = ""; String equipo4="";
+        String nombre5 = ""; String equipo5="";
+        String nombre6 = ""; String equipo6="";
+        String nombre7 = ""; String equipo7="";
+        String nombre8 = ""; String equipo8="";
         if (id.length >= 1) {
             String[] split1 = id[0].split("-");
             if (split1.length >= 2) {
@@ -107,134 +135,176 @@ public class tablero extends javax.swing.JFrame {
                 equipo8 = split8[1];
             }
         }
-        try {
-            int c = obrg.getCantidadJ();
-            if (c == 2) {
-                if (equipo1.equals("TURNO 1")) {
+       try{
+            int c=obrg.getCantidadJ();
+             if (c == 2) {
+                if(equipo1.equals("TURNO 1")){
                     nombre_J1.setText(nombre1);
                     equipo_J1.setText(equipo1);
-                } else if (equipo1.equals("TURNO 2")) {
+                    lt.setT1(nombre1);
+                    turno.setText("Turno de: "+lt.getT1());
+                }else if(equipo1.equals("TURNO 2")){
                     nombre_J8.setText(nombre1);
                     equipo_J8.setText(equipo1);
+                    lt.setT2(nombre1);
+                   // turno.setText("Turno de: "+lt.getT1());
                 }
-                if (equipo2.equals("TURNO 2")) {
+                if(equipo2.equals("TURNO 2")){
                     nombre_J8.setText(nombre2);
                     equipo_J8.setText(equipo2);
-                } else if (equipo2.equals("TURNO 1")) {
+                    lt.setT2(nombre2);
+                 //   turno.setText("Turno de: "+lt.getT2());
+                }else if(equipo2.equals("TURNO 1")){
                     nombre_J1.setText(nombre2);
                     equipo_J1.setText(equipo2);
+                    lt.setT1(nombre2);
+                    turno.setText("Turno de: "+lt.getT1());
                 }
 
                 btn_verJ8.setIcon(call_png_baraja.imagenTrasera());
                 btn_verJ1.setIcon(call_png_baraja.imagenTrasera());
-
+                
                 panelJ7.setVisible(false);
                 panelJ2.setVisible(false);
                 panelJ6.setVisible(false);
                 panelJ3.setVisible(false);
                 panelJ5.setVisible(false);
                 panelJ4.setVisible(false);
-            } else if (c == 3) {
-                if (equipo1.equals("TURNO 1")) {
+            } else if(c==3){
+                if(equipo1.equals("TURNO 1")){
                     nombre_J1.setText(nombre1);
                     equipo_J1.setText(equipo1);
-                } else if (equipo1.equals("TURNO 2")) {
+                    lt.setT1(nombre1);
+                    turno.setText("Turno de: "+lt.getT1());
+                }else if(equipo1.equals("TURNO 2")){
                     nombre_J2.setText(nombre1);
                     equipo_J2.setText(equipo1);
-                } else if (equipo1.equals("TURNO 3")) {
+                    lt.setT2(nombre1);
+                }else if(equipo1.equals("TURNO 3")){
                     nombre_J8.setText(nombre1);
                     equipo_J8.setText(equipo1);
+                    lt.setT3(nombre1);
                 }
-                if (equipo2.equals("TURNO 1")) {
+                if(equipo2.equals("TURNO 1")){
                     nombre_J1.setText(nombre2);
                     equipo_J1.setText(equipo2);
-                } else if (equipo2.equals("TURNO 2")) {
+                    lt.setT1(nombre2);
+                    turno.setText("Turno de: "+lt.getT1());
+                }else if(equipo2.equals("TURNO 2")){
                     nombre_J2.setText(nombre2);
                     equipo_J2.setText(equipo2);
-                } else if (equipo2.equals("TURNO 3")) {
+                    lt.setT2(nombre2);
+                }else if(equipo2.equals("TURNO 3")){
                     nombre_J8.setText(nombre2);
                     equipo_J8.setText(equipo2);
+                    lt.setT3(nombre2);
                 }
-                if (equipo3.equals("TURNO 1")) {
+                if(equipo3.equals("TURNO 1")){
                     nombre_J1.setText(nombre3);
                     equipo_J1.setText(equipo3);
-                } else if (equipo3.equals("TURNO 2")) {
+                    lt.setT1(nombre3);
+                    turno.setText("Turno de: "+lt.getT1());
+                }else if(equipo3.equals("TURNO 2")){
                     nombre_J2.setText(nombre3);
                     equipo_J2.setText(equipo3);
-                } else if (equipo3.equals("TURNO 3")) {
+                    lt.setT2(nombre3);
+                }else if(equipo3.equals("TURNO 3")){
                     nombre_J8.setText(nombre3);
                     equipo_J8.setText(equipo3);
+                    lt.setT3(nombre3);
                 }
-
+                
+                
                 btn_verJ1.setIcon(call_png_baraja.imagenTrasera());
                 btn_verJ2.setIcon(call_png_baraja.imagenTrasera());
                 btn_verJ8.setIcon(call_png_baraja.imagenTrasera());
-
-                panelJ7.setVisible(false);
+                
+                panelJ7.setVisible(false); 
                 panelJ6.setVisible(false);
                 panelJ3.setVisible(false);
                 panelJ5.setVisible(false);
                 panelJ4.setVisible(false);
-            } else if (c == 4) {
+            }else if(c==4){
                 nombre_J1.setText(nombre1);
                 equipo_J1.setText(equipo1);
+                lt.setT1(nombre1);
+                turno.setText("Turno de: "+lt.getT1());
                 nombre_J2.setText(nombre2);
                 equipo_J2.setText(equipo2);
+                lt.setT2(nombre2);
                 nombre_J7.setText(nombre3);
                 equipo_J7.setText(equipo3);
+                lt.setT3(nombre3);
                 nombre_J8.setText(nombre4);
                 equipo_J8.setText(equipo4);
-
+                lt.setT4(nombre4);
+               
                 btn_verJ1.setIcon(call_png_baraja.imagenTrasera());
                 btn_verJ2.setIcon(call_png_baraja.imagenTrasera());
                 btn_verJ8.setIcon(call_png_baraja.imagenTrasera());
                 btn_verJ7.setIcon(call_png_baraja.imagenTrasera());
-
+       
                 panelJ6.setVisible(false);
                 panelJ3.setVisible(false);
                 panelJ5.setVisible(false);
                 panelJ4.setVisible(false);
-            } else if (c == 6) {
+            }else if(c==6){
                 nombre_J1.setText(nombre1);
                 equipo_J1.setText(equipo1);
+                lt.setT1(nombre1);
+                turno.setText("Turno de: "+lt.getT1());
                 nombre_J2.setText(nombre2);
                 equipo_J2.setText(equipo2);
+                lt.setT2(nombre2);
                 nombre_J3.setText(nombre3);
                 equipo_J3.setText(equipo3);
+                lt.setT3(nombre3);
                 nombre_J6.setText(nombre4);
                 equipo_J6.setText(equipo4);
+                lt.setT4(nombre4);
                 nombre_J7.setText(nombre5);
                 equipo_J7.setText(equipo5);
+                lt.setT5(nombre5);
                 nombre_J8.setText(nombre6);
                 equipo_J8.setText(equipo6);
-
+                lt.setT6(nombre6);
+                
                 btn_verJ8.setIcon(call_png_baraja.imagenTrasera());
                 btn_verJ7.setIcon(call_png_baraja.imagenTrasera());
                 btn_verJ6.setIcon(call_png_baraja.imagenTrasera());
                 btn_verJ1.setIcon(call_png_baraja.imagenTrasera());
                 btn_verJ2.setIcon(call_png_baraja.imagenTrasera());
                 btn_verJ3.setIcon(call_png_baraja.imagenTrasera());
-
+      
                 panelJ5.setVisible(false);
                 panelJ4.setVisible(false);
-            } else if (c == 8) {
+            }else if(c==8){
                 nombre_J1.setText(nombre1);
                 equipo_J1.setText(equipo1);
+                lt.setT1(nombre1);
+                turno.setText("Turno de: "+lt.getT1());
                 nombre_J2.setText(nombre2);
                 equipo_J2.setText(equipo2);
+                lt.setT2(nombre2);
                 nombre_J3.setText(nombre3);
                 equipo_J3.setText(equipo3);
+                lt.setT3(nombre3);
                 nombre_J4.setText(nombre4);
                 equipo_J4.setText(equipo4);
+                lt.setT4(nombre4);
                 nombre_J5.setText(nombre5);
                 equipo_J5.setText(equipo5);
+                lt.setT5(nombre5);
                 nombre_J6.setText(nombre6);
                 equipo_J6.setText(equipo6);
+                lt.setT6(nombre6);
                 nombre_J7.setText(nombre7);
                 equipo_J7.setText(equipo7);
+                lt.setT7(nombre7);
                 nombre_J8.setText(nombre8);
                 equipo_J8.setText(equipo8);
-
+                lt.setT8(nombre8);
+                
                 btn_verJ8.setIcon(call_png_baraja.imagenTrasera());
                 btn_verJ7.setIcon(call_png_baraja.imagenTrasera());
                 btn_verJ6.setIcon(call_png_baraja.imagenTrasera());
@@ -244,13 +314,13 @@ public class tablero extends javax.swing.JFrame {
                 btn_verJ3.setIcon(call_png_baraja.imagenTrasera());
                 btn_verJ4.setIcon(call_png_baraja.imagenTrasera());
 
-            } else {
+            }else{
 
             }
-        } catch (IOException e) {
+        }catch(IOException e){
             System.err.println("error");
         }
-
+       
     }
 
     private void fondoTablero() {
@@ -267,11 +337,11 @@ public class tablero extends javax.swing.JFrame {
 
         principal = new javax.swing.JPanel();
         panel_info = new javax.swing.JPanel();
-        label_turno = new javax.swing.JLabel();
-        lbl_turno_equipo = new javax.swing.JLabel();
+        turno = new javax.swing.JLabel();
+        time = new javax.swing.JLabel();
         btn_reglas = new javax.swing.JButton();
-        sacar_carta = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        sacarCarta = new javax.swing.JButton();
+        menu = new javax.swing.JButton();
         maz = new javax.swing.JLabel();
         panel_5al8 = new javax.swing.JPanel();
         panelJ8 = new javax.swing.JPanel();
@@ -321,29 +391,29 @@ public class tablero extends javax.swing.JFrame {
 
         panel_info.setBackground(new java.awt.Color(51, 0, 51));
 
-        label_turno.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
-        label_turno.setForeground(new java.awt.Color(255, 255, 255));
-        label_turno.setText("Turno de:");
+        turno.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
+        turno.setForeground(new java.awt.Color(255, 255, 255));
+        turno.setText("Turno de:");
 
-        lbl_turno_equipo.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
-        lbl_turno_equipo.setForeground(new java.awt.Color(255, 255, 255));
-        lbl_turno_equipo.setText("Turno de equipo:");
+        time.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
+        time.setForeground(new java.awt.Color(255, 255, 255));
+        time.setText("Turno de equipo:");
 
         btn_reglas.setText("?");
 
-        sacar_carta.setBackground(new java.awt.Color(0, 0, 0));
-        sacar_carta.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        sacar_carta.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        sacar_carta.addMouseListener(new java.awt.event.MouseAdapter() {
+        sacarCarta.setBackground(new java.awt.Color(0, 0, 0));
+        sacarCarta.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        sacarCarta.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        sacarCarta.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                sacar_cartaMouseClicked(evt);
+                sacarCartaMouseClicked(evt);
             }
         });
 
-        jButton3.setText("volver menu");
-        jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
+        menu.setText("volver menu");
+        menu.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton3MouseClicked(evt);
+                menuMouseClicked(evt);
             }
         });
 
@@ -360,16 +430,16 @@ public class tablero extends javax.swing.JFrame {
             .addGroup(panel_infoLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(panel_infoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(lbl_turno_equipo, javax.swing.GroupLayout.DEFAULT_SIZE, 344, Short.MAX_VALUE)
-                    .addComponent(label_turno, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(time, javax.swing.GroupLayout.DEFAULT_SIZE, 344, Short.MAX_VALUE)
+                    .addComponent(turno, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 300, Short.MAX_VALUE)
                 .addGroup(panel_infoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(maz, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(sacar_carta, javax.swing.GroupLayout.DEFAULT_SIZE, 109, Short.MAX_VALUE))
+                    .addComponent(sacarCarta, javax.swing.GroupLayout.DEFAULT_SIZE, 109, Short.MAX_VALUE))
                 .addGap(54, 54, 54)
                 .addGroup(panel_infoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel_infoLayout.createSequentialGroup()
-                        .addComponent(jButton3)
+                        .addComponent(menu)
                         .addGap(24, 24, 24))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel_infoLayout.createSequentialGroup()
                         .addComponent(btn_reglas)
@@ -384,8 +454,8 @@ public class tablero extends javax.swing.JFrame {
                         .addGroup(panel_infoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(panel_infoLayout.createSequentialGroup()
                                 .addGap(28, 28, 28)
-                                .addComponent(jButton3))
-                            .addComponent(sacar_carta, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(menu))
+                            .addComponent(sacarCarta, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(panel_infoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(panel_infoLayout.createSequentialGroup()
@@ -394,14 +464,14 @@ public class tablero extends javax.swing.JFrame {
                             .addComponent(maz, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)))
                     .addGroup(panel_infoLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(label_turno, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(turno, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lbl_turno_equipo, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(time, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
-        sacar_carta.getAccessibleContext().setAccessibleName("mazo");
+        sacarCarta.getAccessibleContext().setAccessibleName("mazo");
 
         panel_5al8.setBackground(new java.awt.Color(51, 0, 51));
 
@@ -923,410 +993,497 @@ public class tablero extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
+    private void menuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuMouseClicked
         //probar
-        menu_p objmenu = new menu_p();
+        timer.stop();
+        menu_p objmenu=new menu_p();
         objmenu.setVisible(true);
         this.setVisible(false);
 
 
-    }//GEN-LAST:event_jButton3MouseClicked
+    }//GEN-LAST:event_menuMouseClicked
 
     private void btn_verJ2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_verJ2MouseClicked
         //JUGADOR 3
-        if (contjg3 == 0) {
-            darcart = 0;
-            contjg3++;
-        }
-        try {
+        if(lt.txtTurnoSting().equals(nombre_J2.getText())){//VERIFICA QUE SEA SU TURNO, ES DECIR SI EL NOMBRE DE TURNO ES IGUAL AL NOMBRE DEL PANEL QUE ESTA EN ESTE BOTON
+            timer.stop();//para timer y turno
+            if (contjg3 == 0) {
+                darcart = 0;
+                contjg3++;
+            }
+            try {
 
-            System.out.println("" + obrg.getCantidadJ());
+                System.out.println("" + obrg.getCantidadJ());
 
-            if (obrg.getCantidadJ() == 3) {
+                if (obrg.getCantidadJ() == 3) {
 
-                if (darcart == 0) {
-                    cartjg3="";
-                    Cartas_conf[] cartas = repart.darcartas(6);
-                    for (int i = 0; i < cartas.length; i++) {
+                    if (darcart == 0) {
+                        cartjg3="";
+                        Cartas_conf[] cartas = repart.darcartas(6);
+                        for (int i = 0; i < cartas.length; i++) {
 
-                        cartjg3 += "\n" + cartas[i];
+                            cartjg3 += "\n" + cartas[i];
+                        }
+                        darcart = 1;
                     }
-                    darcart = 1;
+                    JOptionPane.showMessageDialog(null, cartjg3);
+
                 }
-                JOptionPane.showMessageDialog(null, cartjg3);
+                if (obrg.getCantidadJ() == 4) {
+
+                    if (darcart == 0) {
+                        cartjg3="";
+                        Cartas_conf[] cartas = repart.darcartas(7);
+                        for (int i = 0; i < cartas.length; i++) {
+
+                            cartjg3 += "\n" + cartas[i];
+                        }
+                        darcart = 1;
+                    }
+                    JOptionPane.showMessageDialog(null, cartjg3);
+
+                }
+                if (obrg.getCantidadJ() == 6) {
+                    if (darcart == 0) {
+                        cartjg3="";
+                        Cartas_conf[] cartas = repart.darcartas(5);
+                        for (int i = 0; i < cartas.length; i++) {
+
+                            cartjg3 += "\n" + cartas[i];
+                        }
+                        darcart = 1;
+                    }
+                    JOptionPane.showMessageDialog(null, cartjg3);
+
+                }
+                if (obrg.getCantidadJ() == 8) {
+                    if (darcart == 0) {
+                        cartjg3="";
+                        Cartas_conf[] cartas = repart.darcartas(4);
+                        for (int i = 0; i < cartas.length; i++) {
+
+                            cartjg3 += "\n" + cartas[i];
+                        }
+                        darcart = 1;
+                    }
+                    JOptionPane.showMessageDialog(null, cartjg3);
+                }
+
+            } catch (IOException e) {
+
+                System.out.println("error");
 
             }
-            if (obrg.getCantidadJ() == 4) {
-
-                if (darcart == 0) {
-                    cartjg3="";
-                    Cartas_conf[] cartas = repart.darcartas(7);
-                    for (int i = 0; i < cartas.length; i++) {
-
-                        cartjg3 += "\n" + cartas[i];
-                    }
-                    darcart = 1;
-                }
-                JOptionPane.showMessageDialog(null, cartjg3);
-
-            }
-            if (obrg.getCantidadJ() == 6) {
-                if (darcart == 0) {
-                    cartjg3="";
-                    Cartas_conf[] cartas = repart.darcartas(5);
-                    for (int i = 0; i < cartas.length; i++) {
-
-                        cartjg3 += "\n" + cartas[i];
-                    }
-                    darcart = 1;
-                }
-                JOptionPane.showMessageDialog(null, cartjg3);
-
-            }
-            if (obrg.getCantidadJ() == 8) {
-                if (darcart == 0) {
-                    cartjg3="";
-                    Cartas_conf[] cartas = repart.darcartas(4);
-                    for (int i = 0; i < cartas.length; i++) {
-
-                        cartjg3 += "\n" + cartas[i];
-                    }
-                    darcart = 1;
-                }
-                JOptionPane.showMessageDialog(null, cartjg3);
-            }
-
-        } catch (IOException e) {
-
-            System.out.println("error");
-
+            //esto cambia de turno y actualiza el timer
+            JOptionPane.showMessageDialog(null, "Cambio de turno");//para timer y turno
+            segundos = 0; //para timer y turno
+            actLabelTIME();//para timer y turno
+            timer.start();//para timer y turno
+            actualizarLabelT();//para timer y turno
+        }else{
+            
+            JOptionPane.showMessageDialog(null, "No es tu turno");
         }
     }//GEN-LAST:event_btn_verJ2MouseClicked
 
-    private void sacar_cartaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sacar_cartaMouseClicked
+    private void sacarCartaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sacarCartaMouseClicked
         // MAZO
        Cartas_conf siguienteCarta = repart.siguienteCarta();
-    if (siguienteCarta != null) {
-        JOptionPane.showMessageDialog(null, "Siguiente Carta: " + siguienteCarta);
-    } else {
-        JOptionPane.showMessageDialog(null, "Ya no hay más cartas, barajear de nuevo");
-    }
-    }//GEN-LAST:event_sacar_cartaMouseClicked
+        if (siguienteCarta != null) {
+            JOptionPane.showMessageDialog(null, "Carta sacada: " + siguienteCarta);
+        } else {
+            JOptionPane.showMessageDialog(null, "Ya no hay más cartas, barajear de nuevo");
+        }
+    }//GEN-LAST:event_sacarCartaMouseClicked
 
     private void btn_verJ8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_verJ8MouseClicked
         // JUGADOR 2
-
-        if (contjg2 == 0) {
-            darcart = 0;
-            contjg2++;
-        }
-        try {
-
-            System.out.println("" + obrg.getCantidadJ());
-            if (obrg.getCantidadJ() == 2) {
-                if (darcart == 0) {
-                    cartjg2 = "";
-                    Cartas_conf[] cartas = repart.darcartas(7);
-                    for (int i = 0; i < cartas.length; i++) {
-                        cartjg2 += "\n" + cartas[i];
-                    }
-                    darcart = 1;
-                }
-                JOptionPane.showMessageDialog(null, cartjg2);
+         if(lt.txtTurnoSting().equals(nombre_J8.getText())){
+            timer.stop();//para timer y turno
+            if (contjg2 == 0) {
+                darcart = 0;
+                contjg2++;
             }
-            if (obrg.getCantidadJ() == 3) {
-                if (darcart == 0) {
-                    cartjg2 = "";
-                    Cartas_conf[] cartas = repart.darcartas(6);
-                    for (int i = 0; i < cartas.length; i++) {
+            try {
 
-                        cartjg2 += "\n" + cartas[i];
+                System.out.println("" + obrg.getCantidadJ());
+                if (obrg.getCantidadJ() == 2) {
+                    if (darcart == 0) {
+                        cartjg2 = "";
+                        Cartas_conf[] cartas = repart.darcartas(7);
+                        for (int i = 0; i < cartas.length; i++) {
+                            cartjg2 += "\n" + cartas[i];
+                        }
+                        darcart = 1;
                     }
-                    darcart = 1;
+                    JOptionPane.showMessageDialog(null, cartjg2);
                 }
-                JOptionPane.showMessageDialog(null, cartjg2);
-            }
-            if (obrg.getCantidadJ() == 4) {
-                if (darcart == 0) {
-                    cartjg2 = "";
-                    Cartas_conf[] cartas = repart.darcartas(7);
-                    for (int i = 0; i < cartas.length; i++) {
+                if (obrg.getCantidadJ() == 3) {
+                    if (darcart == 0) {
+                        cartjg2 = "";
+                        Cartas_conf[] cartas = repart.darcartas(6);
+                        for (int i = 0; i < cartas.length; i++) {
 
-                        cartjg2 += "\n" + cartas[i];
+                            cartjg2 += "\n" + cartas[i];
+                        }
+                        darcart = 1;
                     }
-                    darcart = 1;
+                    JOptionPane.showMessageDialog(null, cartjg2);
                 }
-                JOptionPane.showMessageDialog(null, cartjg2);
-            }
-            if (obrg.getCantidadJ() == 6) {
-                if (darcart == 0) {
-                    cartjg2 = "";
-                    Cartas_conf[] cartas = repart.darcartas(5);
-                    for (int i = 0; i < cartas.length; i++) {
+                if (obrg.getCantidadJ() == 4) {
+                    if (darcart == 0) {
+                        cartjg2 = "";
+                        Cartas_conf[] cartas = repart.darcartas(7);
+                        for (int i = 0; i < cartas.length; i++) {
 
-                        cartjg2 += "\n" + cartas[i];
+                            cartjg2 += "\n" + cartas[i];
+                        }
+                        darcart = 1;
                     }
-                    darcart = 1;
+                    JOptionPane.showMessageDialog(null, cartjg2);
                 }
-                JOptionPane.showMessageDialog(null, cartjg2);
-            }
-            if (obrg.getCantidadJ() == 8) {
-                if (darcart == 0) {
-                    cartjg2 = "";
-                    Cartas_conf[] cartas = repart.darcartas(4);
-                    for (int i = 0; i < cartas.length; i++) {
+                if (obrg.getCantidadJ() == 6) {
+                    if (darcart == 0) {
+                        cartjg2 = "";
+                        Cartas_conf[] cartas = repart.darcartas(5);
+                        for (int i = 0; i < cartas.length; i++) {
 
-                        cartjg2 += "\n" + cartas[i];
+                            cartjg2 += "\n" + cartas[i];
+                        }
+                        darcart = 1;
                     }
-                    darcart = 1;
+                    JOptionPane.showMessageDialog(null, cartjg2);
                 }
-                JOptionPane.showMessageDialog(null, cartjg2);
+                if (obrg.getCantidadJ() == 8) {
+                    if (darcart == 0) {
+                        cartjg2 = "";
+                        Cartas_conf[] cartas = repart.darcartas(4);
+                        for (int i = 0; i < cartas.length; i++) {
+
+                            cartjg2 += "\n" + cartas[i];
+                        }
+                        darcart = 1;
+                    }
+                    JOptionPane.showMessageDialog(null, cartjg2);
+                }
+
+            } catch (IOException e) {
+
+                System.out.println("error");
+
             }
-
-        } catch (IOException e) {
-
-            System.out.println("error");
-
-        }
+            //esto cambia de turno y actualiza el timer
+            JOptionPane.showMessageDialog(null, "Cambio de turno");//para timer y turno
+            segundos = 0; //para timer y turno
+            actLabelTIME();//para timer y turno
+            timer.start();//para timer y turno
+            actualizarLabelT();//para timer y turno
+        }else{
+             JOptionPane.showMessageDialog(null, "No es tu turno");
+         }    
     }//GEN-LAST:event_btn_verJ8MouseClicked
 
     private void btn_verJ1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_verJ1MouseClicked
-        // JUGADOR 1
-        try {
-            if (contjg1 == 0) {
-                darcart = 0;
-                contjg1++;
-            }
-            System.out.println("" + obrg.getCantidadJ());
-            if (obrg.getCantidadJ() == 2) {
-                if (darcart == 0) {
-                    cartjg1 = "";
-                    Cartas_conf[] cartas = repart.darcartas(7);
-                    for (int i = 0; i < cartas.length; i++) {
-                        cartjg1 += "\n" + cartas[i];
-                    }
-                    darcart = 1;
+      if(lt.txtTurnoSting().equals(nombre_J1.getText())){
+            timer.stop();//para timer y turno
+            try {
+                if (contjg1 == 0) {
+                    darcart = 0;
+                    contjg1++;
                 }
-                JOptionPane.showMessageDialog(null, cartjg1);
-            }
-            if (obrg.getCantidadJ() == 3) {
-                if (darcart == 0) {
-                    cartjg1 = "";
-                    Cartas_conf[] cartas = repart.darcartas(6);
-                    for (int i = 0; i < cartas.length; i++) {
+                System.out.println("" + obrg.getCantidadJ());
+                if (obrg.getCantidadJ() == 2) {
+                    if (darcart == 0) {
+                        cartjg1 = "";
+                        Cartas_conf[] cartas = repart.darcartas(7);
+                        for (int i = 0; i < cartas.length; i++) {
+                            cartjg1 += "\n" + cartas[i];
+                        }
+                        darcart = 1;
+                    }
+                    JOptionPane.showMessageDialog(null, cartjg1);
+                }
+                if (obrg.getCantidadJ() == 3) {
+                    if (darcart == 0) {
+                        cartjg1 = "";
+                        Cartas_conf[] cartas = repart.darcartas(6);
+                        for (int i = 0; i < cartas.length; i++) {
 
-                        cartjg1 += "\n" + cartas[i];
+                            cartjg1 += "\n" + cartas[i];
+                        }
+                        darcart = 1;
                     }
-                    darcart = 1;
+                    JOptionPane.showMessageDialog(null, cartjg1);
                 }
-                JOptionPane.showMessageDialog(null, cartjg1);
-            }
-            if (obrg.getCantidadJ() == 4) {
-                if (darcart == 0) {
-                    cartjg1 = "";
-                    Cartas_conf[] cartas = repart.darcartas(7);
-                    for (int i = 0; i < cartas.length; i++) {
+                if (obrg.getCantidadJ() == 4) {
+                    if (darcart == 0) {
+                        cartjg1 = "";
+                        Cartas_conf[] cartas = repart.darcartas(7);
+                        for (int i = 0; i < cartas.length; i++) {
 
-                        cartjg1 += "\n" + cartas[i];
+                            cartjg1 += "\n" + cartas[i];
+                        }
+                        darcart = 1;
                     }
-                    darcart = 1;
+                    JOptionPane.showMessageDialog(null, cartjg1);
                 }
-                JOptionPane.showMessageDialog(null, cartjg1);
-            }
-            if (obrg.getCantidadJ() == 6) {
-                if (darcart == 0) {
-                    cartjg1 = "";
-                    Cartas_conf[] cartas = repart.darcartas(5);
-                    for (int i = 0; i < cartas.length; i++) {
+                if (obrg.getCantidadJ() == 6) {
+                    if (darcart == 0) {
+                        cartjg1 = "";
+                        Cartas_conf[] cartas = repart.darcartas(5);
+                        for (int i = 0; i < cartas.length; i++) {
 
-                        cartjg1 += "\n" + cartas[i];
+                            cartjg1 += "\n" + cartas[i];
+                        }
+                        darcart = 1;
                     }
-                    darcart = 1;
+                    JOptionPane.showMessageDialog(null, cartjg1);
                 }
-                JOptionPane.showMessageDialog(null, cartjg1);
-            }
-            if (obrg.getCantidadJ() == 8) {
-                if (darcart == 0) {
-                    cartjg1 = "";
-                    Cartas_conf[] cartas = repart.darcartas(4);
-                    for (int i = 0; i < cartas.length; i++) {
-                        cartjg1 += "\n" + cartas[i];
+                if (obrg.getCantidadJ() == 8) {
+                    if (darcart == 0) {
+                        cartjg1 = "";
+                        Cartas_conf[] cartas = repart.darcartas(4);
+                        for (int i = 0; i < cartas.length; i++) {
+                            cartjg1 += "\n" + cartas[i];
+                        }
+                        darcart = 1;
                     }
-                    darcart = 1;
+                    JOptionPane.showMessageDialog(null, cartjg1);
                 }
-                JOptionPane.showMessageDialog(null, cartjg1);
+            } catch (IOException e) {
+                System.out.println("error");
             }
-        } catch (IOException e) {
-            System.out.println("error");
-        }
+            //actiulaiza turno y timer
+            JOptionPane.showMessageDialog(null, "Cambio de turno");//para timer y turno
+            segundos = 0; //para timer y turno
+            actLabelTIME();//para timer y turno
+            timer.start();//para timer y turno
+            actualizarLabelT();//para timer y turno
+        }else{
+            JOptionPane.showMessageDialog(null, "No es tu turno");
+      }
     }//GEN-LAST:event_btn_verJ1MouseClicked
 
     private void btn_verJ7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_verJ7MouseClicked
         // JUGADOR 4
-        try{
-            if (contjg4 == 0) {
-                darcart = 0;
-                contjg4++;
-            }
-        if (obrg.getCantidadJ() == 4) {
-                if (darcart == 0) {
-                    cartjg4 = "";
-                    Cartas_conf[] cartas = repart.darcartas(7);
-                    for (int i = 0; i < cartas.length; i++) {
-
-                        cartjg4 += "\n" + cartas[i];
-                    }
-                    darcart = 1;
+        if(lt.txtTurnoSting().equals(nombre_J7.getText())){
+            timer.stop();//para timer y turno
+            try{
+                if (contjg4 == 0) {
+                    darcart = 0;
+                    contjg4++;
                 }
-                JOptionPane.showMessageDialog(null, cartjg4);
-            }
-            if (obrg.getCantidadJ() == 6) {
-                if (darcart == 0) {
-                    cartjg4 = "";
-                    Cartas_conf[] cartas = repart.darcartas(5);
-                    for (int i = 0; i < cartas.length; i++) {
+                if (obrg.getCantidadJ() == 4) {
+                    if (darcart == 0) {
+                        cartjg4 = "";
+                        Cartas_conf[] cartas = repart.darcartas(7);
+                        for (int i = 0; i < cartas.length; i++) {
 
-                        cartjg4 += "\n" + cartas[i];
+                            cartjg4 += "\n" + cartas[i];
+                        }
+                        darcart = 1;
                     }
-                    darcart = 1;
+                    JOptionPane.showMessageDialog(null, cartjg4);
                 }
-                JOptionPane.showMessageDialog(null, cartjg4);
-            }
-            if (obrg.getCantidadJ() == 8) {
-                if (darcart == 0) {
-                    cartjg4 = "";
-                    Cartas_conf[] cartas = repart.darcartas(4);
-                    for (int i = 0; i < cartas.length; i++) {
+                if (obrg.getCantidadJ() == 6) {
+                    if (darcart == 0) {
+                        cartjg4 = "";
+                        Cartas_conf[] cartas = repart.darcartas(5);
+                        for (int i = 0; i < cartas.length; i++) {
 
-                        cartjg4 += "\n" + cartas[i];
+                            cartjg4 += "\n" + cartas[i];
+                        }
+                        darcart = 1;
                     }
-                    darcart = 1;
+                    JOptionPane.showMessageDialog(null, cartjg4);
                 }
-                JOptionPane.showMessageDialog(null, cartjg4);
+                if (obrg.getCantidadJ() == 8) {
+                    if (darcart == 0) {
+                        cartjg4 = "";
+                        Cartas_conf[] cartas = repart.darcartas(4);
+                        for (int i = 0; i < cartas.length; i++) {
+
+                            cartjg4 += "\n" + cartas[i];
+                        }
+                        darcart = 1;
+                    }
+                    JOptionPane.showMessageDialog(null, cartjg4);
+                }
+            }catch(IOException e){
+                System.out.println("Error");
             }
-        }catch(IOException e){
-            System.out.println("Error");
+                    //actualiza timer y turnp
+            JOptionPane.showMessageDialog(null, "Cambio de turno");//para timer y turno
+            segundos = 0; //para timer y turno
+            actLabelTIME();//para timer y turno
+            timer.start();//para timer y turno
+            actualizarLabelT();//para timer y turno
+        }else{
+
+            JOptionPane.showMessageDialog(null, "No es tu turno");
         }
     }//GEN-LAST:event_btn_verJ7MouseClicked
 
     private void btn_verJ3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_verJ3MouseClicked
         // JUGADOR 5
-        try{
-            if (contjg5 == 0) {
-                darcart = 0;
-                contjg5++;
-            }
-        if (obrg.getCantidadJ() == 6) {
-                if (darcart == 0) {
-                    cartg5= "";
-                    Cartas_conf[] cartas = repart.darcartas(5);
-                    for (int i = 0; i < cartas.length; i++) {
+        if(lt.txtTurnoSting().equals(nombre_J3.getText())){
+            timer.stop();//para timer y turno
+            try{
+                if (contjg5 == 0) {
+                    darcart = 0;
+                    contjg5++;
+                }
+                if (obrg.getCantidadJ() == 6) {
+                    if (darcart == 0) {
+                        cartg5= "";
+                        Cartas_conf[] cartas = repart.darcartas(5);
+                        for (int i = 0; i < cartas.length; i++) {
 
-                        cartg5 += "\n" + cartas[i];
+                            cartg5 += "\n" + cartas[i];
+                        }
+                        darcart = 1;
                     }
-                    darcart = 1;
+                    JOptionPane.showMessageDialog(null, cartg5);
                 }
-                JOptionPane.showMessageDialog(null, cartg5);
-            }
-            if (obrg.getCantidadJ() == 8) {
-                if (darcart == 0) {
-                    cartg5= "";
-                    Cartas_conf[] cartas = repart.darcartas(4);
-                    for (int i = 0; i < cartas.length; i++) {
-                        cartg5 += "\n" + cartas[i];
+                if (obrg.getCantidadJ() == 8) {
+                    if (darcart == 0) {
+                        cartg5= "";
+                        Cartas_conf[] cartas = repart.darcartas(4);
+                        for (int i = 0; i < cartas.length; i++) {
+                            cartg5 += "\n" + cartas[i];
+                        }
+                        darcart = 1;
                     }
-                    darcart = 1;
+                    JOptionPane.showMessageDialog(null, cartg5);
                 }
-                JOptionPane.showMessageDialog(null, cartg5);
+            }catch(IOException e){  
+                System.out.println("Error");  
             }
-        }catch(IOException e){  
-            System.out.println("Error");  
+            JOptionPane.showMessageDialog(null, "Cambio de turno");//para timer y turno
+            segundos = 0; //para timer y turno
+            actLabelTIME();//para timer y turno
+            timer.start();//para timer y turno
+            actualizarLabelT();//para timer y turno
+        }else{
+            JOptionPane.showMessageDialog(null, "No es tu turno");
         }
-        
         
     }//GEN-LAST:event_btn_verJ3MouseClicked
 
     private void btn_verJ6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_verJ6MouseClicked
         // JUGADOR 6
-        try{
-            if (contjg6 == 0) {
-                darcart = 0;
-                contjg6++;
-            }
-        if (obrg.getCantidadJ() == 6) {
-                if (darcart == 0) {
-                    cartg6="";
-                    Cartas_conf[] cartas = repart.darcartas(5);
-                    for (int i = 0; i < cartas.length; i++) {
-                        cartg6 += "\n" + cartas[i];
-                    }
-                    darcart = 1;
+         if(lt.txtTurnoSting().equals(nombre_J6.getText())){
+            timer.stop();//para timer y turno
+            try{
+                if (contjg6 == 0) {
+                    darcart = 0;
+                    contjg6++;
                 }
-                JOptionPane.showMessageDialog(null, cartg6);
-            }
-            if (obrg.getCantidadJ() == 8) {
-                if (darcart == 0) {
-                    cartg6="";
-                    Cartas_conf[] cartas = repart.darcartas(4);
-                    for (int i = 0; i < cartas.length; i++) {
-                        cartg6 += "\n" + cartas[i];
+                if (obrg.getCantidadJ() == 6) {
+                    if (darcart == 0) {
+                        cartg6="";
+                        Cartas_conf[] cartas = repart.darcartas(5);
+                        for (int i = 0; i < cartas.length; i++) {
+                            cartg6 += "\n" + cartas[i];
+                        }
+                        darcart = 1;
                     }
-                    darcart = 1;
+                    JOptionPane.showMessageDialog(null, cartg6);
                 }
-                JOptionPane.showMessageDialog(null, cartg6);
+                if (obrg.getCantidadJ() == 8) {
+                    if (darcart == 0) {
+                        cartg6="";
+                        Cartas_conf[] cartas = repart.darcartas(4);
+                        for (int i = 0; i < cartas.length; i++) {
+                            cartg6 += "\n" + cartas[i];
+                        }
+                        darcart = 1;
+                    }
+                    JOptionPane.showMessageDialog(null, cartg6);
+                }
+            }catch(IOException e){  
+                System.out.println("Error");
             }
-        }catch(IOException e){  
-            System.out.println("Error");
-        }
+            
+            JOptionPane.showMessageDialog(null, "Cambio de turno");//para timer y turno
+            segundos = 0; //para timer y turno
+            actLabelTIME();//para timer y turno
+            timer.start();//para timer y turno
+            actualizarLabelT();        //para timer y turno
+        }else{
+            JOptionPane.showMessageDialog(null, "No es tu turno");
+         }
         
     }//GEN-LAST:event_btn_verJ6MouseClicked
 
     private void btn_verJ5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_verJ5MouseClicked
         // JUGADOR 7
-        try{
-            if (contjg7 == 0) {
-                darcart = 0;
-                contjg7++;
-            }
-        if (obrg.getCantidadJ() == 8) {
-                if (darcart == 0) {
-                    cartg7="";
-                    Cartas_conf[] cartas = repart.darcartas(4);
-                    for (int i = 0; i < cartas.length; i++) {
-
-                        cartg7 += "\n" + cartas[i];
-                    }
-                    darcart = 1;
+        if(lt.txtTurnoSting().equals(nombre_J5.getText())){
+            timer.stop();
+            try{
+                if (contjg7 == 0) {
+                    darcart = 0;
+                    contjg7++;
                 }
-                JOptionPane.showMessageDialog(null, cartg7);
+                if (obrg.getCantidadJ() == 8) {
+                    if (darcart == 0) {
+                        cartg7="";
+                        Cartas_conf[] cartas = repart.darcartas(4);
+                        for (int i = 0; i < cartas.length; i++) {
+
+                            cartg7 += "\n" + cartas[i];
+                        }
+                        darcart = 1;
+                    }
+                    JOptionPane.showMessageDialog(null, cartg7);
+                }
+            }catch(IOException e){
+                System.out.println("Error");
             }
-        }catch(IOException e){
-            System.out.println("Error");
+            JOptionPane.showMessageDialog(null, "Cambio de turno");
+            segundos = 0; 
+            actLabelTIME();
+            timer.start();
+            actualizarLabelT();
+        }else{
+            JOptionPane.showMessageDialog(null, "No es tu turno");
         }
+        
     }//GEN-LAST:event_btn_verJ5MouseClicked
 
     private void btn_verJ4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_verJ4MouseClicked
         // JUGADOR 8
-         try{
-             if (contjg8 == 0) {
-                darcart = 0;
-                contjg8++;
-            }
-        if (obrg.getCantidadJ() == 8) {
-                if (darcart == 0) {
-                    cartg8="";
-                    Cartas_conf[] cartas = repart.darcartas(4);
-                    for (int i = 0; i < cartas.length; i++) {
-
-                        cartg8 += "\n" + cartas[i];
-                    }
-                    darcart = 1;
+        if(lt.txtTurnoSting().equals(nombre_J4.getText())){
+            timer.stop();
+            try{
+                if (contjg8 == 0) {
+                   darcart = 0;
+                   contjg8++;
                 }
-                JOptionPane.showMessageDialog(null, cartg8);
-            }
-        }catch(IOException e){
-            System.out.println("Error");
+                if (obrg.getCantidadJ() == 8) {
+                   if (darcart == 0) {
+                       cartg8="";
+                       Cartas_conf[] cartas = repart.darcartas(4);
+                       for (int i = 0; i < cartas.length; i++) {
+
+                           cartg8 += "\n" + cartas[i];
+                       }
+                       darcart = 1;
+                   }
+                   JOptionPane.showMessageDialog(null, cartg8);
+               }
+           }catch(IOException e){
+               System.out.println("Error");
+           }
+            JOptionPane.showMessageDialog(null, "Cambio de turno");
+            segundos = 0; 
+            actLabelTIME();
+            timer.start();
+            actualizarLabelT();
+        }else{
+            JOptionPane.showMessageDialog(null, "No es tu turno");
         }
+         
     }//GEN-LAST:event_btn_verJ4MouseClicked
 
     /**
@@ -1383,12 +1540,10 @@ public class tablero extends javax.swing.JFrame {
     private javax.swing.JLabel equipo_J7;
     private javax.swing.JLabel equipo_J8;
     private javax.swing.JLabel fondo_tab;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel label_turno;
-    private javax.swing.JLabel lbl_turno_equipo;
     private javax.swing.JLabel maz;
+    private javax.swing.JButton menu;
     private javax.swing.JPanel noBorrar;
     private javax.swing.JPanel noBorrar2;
     private javax.swing.JLabel nombre_J1;
@@ -1411,7 +1566,9 @@ public class tablero extends javax.swing.JFrame {
     private javax.swing.JPanel panel_5al8;
     private javax.swing.JPanel panel_info;
     private javax.swing.JPanel principal;
-    private javax.swing.JButton sacar_carta;
+    private javax.swing.JButton sacarCarta;
     private javax.swing.JPanel tab;
+    private javax.swing.JLabel time;
+    private javax.swing.JLabel turno;
     // End of variables declaration//GEN-END:variables
 }
