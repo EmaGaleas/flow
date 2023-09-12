@@ -35,7 +35,7 @@ public class Repartircartas_tab {
                if(valorcarta==14){
                    valorcarta=1;
                }
-                System.out.println(carta[i * (Cartas_conf.limitecart_palo) + j]);
+                //System.out.println(carta[i * (Cartas_conf.limitecart_palo) + j]);
 //                  System.out.println((conttemp++)+" ver que hay en carta "+  carta[i *(Cartas_conf.limitecart_palo) + j] );
 
             }

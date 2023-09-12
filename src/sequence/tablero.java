@@ -60,9 +60,23 @@ public class tablero extends javax.swing.JFrame {
         time.setText(tiempoFormateado);
     }
 
-    private void mostrarCuadroDialogoConImagenes(int numcarts) {
-        JPanel panel = new JPanel();
-
+    private void mostrarCuadroDialogoConImagenes(int numcarts,String infocartas) {
+       System.out.println("infocartas"+infocartas);
+       JPanel panel = new JPanel();
+       String[] cartasunidas = infocartas.split("\n");
+       
+       String[] cartas = new String[numcarts];
+       for (int i = 0; i < numcarts; i++) {
+            if (i < cartasunidas.length) {
+                cartas[i] = cartasunidas[i];
+            } 
+        }
+        System.out.println("");
+        for (String palabra : cartas) {
+            System.out.println("CARTAS:"+palabra);
+        }
+       
+       
         panel.setLayout(new BoxLayout(panel, BoxLayout.X_AXIS)); // Establece el layout vertical
         panel.add(Box.createRigidArea(new Dimension(15, 0)));
         for (int i = 0; i < numcarts; i++) {
@@ -1043,7 +1057,7 @@ public class tablero extends javax.swing.JFrame {
 
     private void btn_verJ2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_verJ2MouseClicked
         //JUGADOR 3
-
+        
         if (lt.txtTurnoSting().equals(nombre_J2.getText())) {//VERIFICA QUE SEA SU TURNO, ES DECIR SI EL NOMBRE DE TURNO ES IGUAL AL NOMBRE DEL PANEL QUE ESTA EN ESTE BOTON
             timer.stop();//para timer y turno
             if (contjg3 == 0) {
@@ -1055,7 +1069,7 @@ public class tablero extends javax.swing.JFrame {
                 System.out.println("" + obrg.getCantidadJ());
 
                 if (obrg.getCantidadJ() == 3) {
-
+                    
                     if (darcart == 0) {
                         cartjg3 = "";
                         Cartas_conf[] cartas = repart.darcartas(6);
@@ -1065,7 +1079,7 @@ public class tablero extends javax.swing.JFrame {
                         }
                         darcart = 1;
                     }
-                    mostrarCuadroDialogoConImagenes(6);
+                    mostrarCuadroDialogoConImagenes(6,cartjg3);
                     JOptionPane.showMessageDialog(null, cartjg3);
 
                 }
@@ -1080,7 +1094,7 @@ public class tablero extends javax.swing.JFrame {
                         }
                         darcart = 1;
                     }
-                    mostrarCuadroDialogoConImagenes(7);
+                    mostrarCuadroDialogoConImagenes(7,cartjg3);
                     JOptionPane.showMessageDialog(null, cartjg3);
 
                 }
@@ -1094,7 +1108,7 @@ public class tablero extends javax.swing.JFrame {
                         }
                         darcart = 1;
                     }
-                    mostrarCuadroDialogoConImagenes(5);
+                    mostrarCuadroDialogoConImagenes(5,cartjg3);
                     JOptionPane.showMessageDialog(null, cartjg3);
 
                 }
@@ -1108,7 +1122,7 @@ public class tablero extends javax.swing.JFrame {
                         }
                         darcart = 1;
                     }
-                    mostrarCuadroDialogoConImagenes(4);
+                    mostrarCuadroDialogoConImagenes(4,cartjg3);
                     JOptionPane.showMessageDialog(null, cartjg3);
                 }
 
@@ -1161,7 +1175,7 @@ public class tablero extends javax.swing.JFrame {
                         }
                         darcart = 1;
                     }
-                    mostrarCuadroDialogoConImagenes(7);
+                    mostrarCuadroDialogoConImagenes(7,cartjg2);
                     JOptionPane.showMessageDialog(null, cartjg2);
                 }
                 if (obrg.getCantidadJ() == 3) {
@@ -1174,7 +1188,7 @@ public class tablero extends javax.swing.JFrame {
                         }
                         darcart = 1;
                     }
-                    mostrarCuadroDialogoConImagenes(6);
+                    mostrarCuadroDialogoConImagenes(6,cartjg2);
                     JOptionPane.showMessageDialog(null, cartjg2);
                 }
                 if (obrg.getCantidadJ() == 4) {
@@ -1187,7 +1201,7 @@ public class tablero extends javax.swing.JFrame {
                         }
                         darcart = 1;
                     }
-                    mostrarCuadroDialogoConImagenes(7);
+                    mostrarCuadroDialogoConImagenes(7,cartjg2);
                     JOptionPane.showMessageDialog(null, cartjg2);
                 }
                 if (obrg.getCantidadJ() == 6) {
@@ -1200,7 +1214,7 @@ public class tablero extends javax.swing.JFrame {
                         }
                         darcart = 1;
                     }
-                    mostrarCuadroDialogoConImagenes(5);
+                    mostrarCuadroDialogoConImagenes(5,cartjg2);
                     JOptionPane.showMessageDialog(null, cartjg2);
                 }
                 if (obrg.getCantidadJ() == 8) {
@@ -1213,7 +1227,7 @@ public class tablero extends javax.swing.JFrame {
                         }
                         darcart = 1;
                     }
-                    mostrarCuadroDialogoConImagenes(4);
+                    mostrarCuadroDialogoConImagenes(4,cartjg2);
                     JOptionPane.showMessageDialog(null, cartjg2);
                 }
 
@@ -1235,7 +1249,7 @@ public class tablero extends javax.swing.JFrame {
 
     private void btn_verJ1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_verJ1MouseClicked
         //JUGADOR 1
-
+        
         if (lt.txtTurnoSting().equals(nombre_J1.getText())) {
             timer.stop();//para timer y turno
             try {
@@ -1253,7 +1267,7 @@ public class tablero extends javax.swing.JFrame {
                         }
                         darcart = 1;
                     }
-                    mostrarCuadroDialogoConImagenes(7);
+                    mostrarCuadroDialogoConImagenes(7,cartjg1);
                     JOptionPane.showMessageDialog(null, cartjg1);
                 }
                 if (obrg.getCantidadJ() == 3) {
@@ -1266,7 +1280,7 @@ public class tablero extends javax.swing.JFrame {
                         }
                         darcart = 1;
                     }
-                    mostrarCuadroDialogoConImagenes(6);
+                    mostrarCuadroDialogoConImagenes(6,cartjg1);
                     JOptionPane.showMessageDialog(null, cartjg1);
                 }
                 if (obrg.getCantidadJ() == 4) {
@@ -1279,7 +1293,7 @@ public class tablero extends javax.swing.JFrame {
                         }
                         darcart = 1;
                     }
-                    mostrarCuadroDialogoConImagenes(7);
+                    mostrarCuadroDialogoConImagenes(7,cartjg1);
                     JOptionPane.showMessageDialog(null, cartjg1);
                 }
                 if (obrg.getCantidadJ() == 6) {
@@ -1292,7 +1306,7 @@ public class tablero extends javax.swing.JFrame {
                         }
                         darcart = 1;
                     }
-                    mostrarCuadroDialogoConImagenes(5);
+                    mostrarCuadroDialogoConImagenes(5,cartjg1);
                     JOptionPane.showMessageDialog(null, cartjg1);
                 }
                 if (obrg.getCantidadJ() == 8) {
@@ -1304,7 +1318,7 @@ public class tablero extends javax.swing.JFrame {
                         }
                         darcart = 1;
                     }
-                    mostrarCuadroDialogoConImagenes(4);
+                    mostrarCuadroDialogoConImagenes(4,cartjg1);
                     JOptionPane.showMessageDialog(null, cartjg1);
                 }
             } catch (IOException e) {
@@ -1341,7 +1355,7 @@ public class tablero extends javax.swing.JFrame {
                         }
                         darcart = 1;
                     }
-                    mostrarCuadroDialogoConImagenes(7);
+                    mostrarCuadroDialogoConImagenes(7,cartjg4);
                     JOptionPane.showMessageDialog(null, cartjg4);
                 }
                 if (obrg.getCantidadJ() == 6) {
@@ -1354,7 +1368,7 @@ public class tablero extends javax.swing.JFrame {
                         }
                         darcart = 1;
                     }
-                    mostrarCuadroDialogoConImagenes(5);
+                    mostrarCuadroDialogoConImagenes(5,cartjg4);
                     JOptionPane.showMessageDialog(null, cartjg4);
                 }
                 if (obrg.getCantidadJ() == 8) {
@@ -1367,7 +1381,7 @@ public class tablero extends javax.swing.JFrame {
                         }
                         darcart = 1;
                     }
-                    mostrarCuadroDialogoConImagenes(4);
+                    mostrarCuadroDialogoConImagenes(4,cartjg4);
                     JOptionPane.showMessageDialog(null, cartjg4);
                 }
             } catch (IOException e) {
@@ -1405,7 +1419,7 @@ public class tablero extends javax.swing.JFrame {
                         }
                         darcart = 1;
                     }
-                    mostrarCuadroDialogoConImagenes(5);
+                    mostrarCuadroDialogoConImagenes(5,cartg5);
                     JOptionPane.showMessageDialog(null, cartg5);
                 }
                 if (obrg.getCantidadJ() == 8) {
@@ -1417,7 +1431,7 @@ public class tablero extends javax.swing.JFrame {
                         }
                         darcart = 1;
                     }
-                    mostrarCuadroDialogoConImagenes(4);
+                    mostrarCuadroDialogoConImagenes(4,cartg5);
                     JOptionPane.showMessageDialog(null, cartg5);
                 }
             } catch (IOException e) {
@@ -1453,7 +1467,7 @@ public class tablero extends javax.swing.JFrame {
                         }
                         darcart = 1;
                     }
-                    mostrarCuadroDialogoConImagenes(5);
+                    mostrarCuadroDialogoConImagenes(5,cartg6);
                     JOptionPane.showMessageDialog(null, cartg6);
                 }
                 if (obrg.getCantidadJ() == 8) {
@@ -1465,7 +1479,7 @@ public class tablero extends javax.swing.JFrame {
                         }
                         darcart = 1;
                     }
-                    mostrarCuadroDialogoConImagenes(4);
+                    mostrarCuadroDialogoConImagenes(4,cartg6);
                     JOptionPane.showMessageDialog(null, cartg6);
                 }
             } catch (IOException e) {
@@ -1503,7 +1517,7 @@ public class tablero extends javax.swing.JFrame {
                         }
                         darcart = 1;
                     }
-                    mostrarCuadroDialogoConImagenes(4);
+                    mostrarCuadroDialogoConImagenes(4,cartg7);
                     JOptionPane.showMessageDialog(null, cartg7);
                 }
             } catch (IOException e) {
@@ -1540,7 +1554,7 @@ public class tablero extends javax.swing.JFrame {
                         }
                         darcart = 1;
                     }
-                    mostrarCuadroDialogoConImagenes(4);
+                    mostrarCuadroDialogoConImagenes(4,cartg8);
                     JOptionPane.showMessageDialog(null, cartg8);
                 }
             } catch (IOException e) {
