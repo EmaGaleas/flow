@@ -289,7 +289,6 @@ public class oponente extends javax.swing.JFrame {
                                 name[selec] = jugadores;
                                 selec++;
                                 //aqui se hara setColor para 2
-                                JOptionPane.showMessageDialog(null, "Jugador añadido");
     //                             n += jugadores + "-" + equipos + (equipos.equals("EQUIPO 1") ? E1 : equipos.equals("EQUIPO 2") ? E2 : E3) + jper + "\n";
                                  n += jugadores + "-" + equipos.trim()+ "\n";
                                 seleccionados.setText(n);
@@ -301,7 +300,7 @@ public class oponente extends javax.swing.JFrame {
                                     E3++;
                                 }
                                 if (selec == r.getCantidadJ()) {
-                                    JOptionPane.showMessageDialog(null, "Puedes continuar");
+                                    JOptionPane.showMessageDialog(null, "PREPARENSE PARA JUGAR");
                                     tablero t = new tablero(n);
                                     t.setVisible(true);
                                     this.setVisible(false);

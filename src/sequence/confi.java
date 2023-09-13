@@ -246,7 +246,12 @@ public class confi extends javax.swing.JFrame {
                     String seleccion="";
                     if(jugadorCambiar!=null){
                         seleccion = seleccionarColor(jugadorCambiar);
+                        
                         if (seleccion != null) {
+                            int contadorJ =miRegistro.getCantidadJ();
+                            String colorFicha = miRegistro.getColorFicha();
+                            String colorG = miRegistro.getColorEquipo();
+                             miRegistro.sobreModo( contadorJ, colorFicha,1,colorG);
                             if(miRegistro.nadieTieneColor(seleccion ) ){
                                 obrg.sobreModoFuera(jugadorCambiar, seleccion);
                                 JOptionPane.showMessageDialog(null, "Se ha añadido el color:  "+seleccion+"\nAl jugador:  "+jugadorCambiar,"Colores Elegidos Individual", JOptionPane.INFORMATION_MESSAGE);         
@@ -266,7 +271,6 @@ public class confi extends javax.swing.JFrame {
                 }  
             }
         }
-
     }//GEN-LAST:event_btn_colorMouseClicked
 
     //MOSTRAR ESTO J VECES SEGUN CUANTOS EQUIPOS O INDI MIN

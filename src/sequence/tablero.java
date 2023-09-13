@@ -40,10 +40,8 @@ public class tablero extends javax.swing.JFrame {
         sacarCarta.setIcon(icon);
         this.nombre = nombre;
         inicializarJugadores();
-        segundos = 0;
-        lt.buscarModo(registro.getLogin());
-        lt.setFichaActual(lt.getColor1());
-        System.out.println(lt.getColor1()+"a2"+lt.getColor2()+"aaa3"+lt.getColor3()+"aaac4"+lt.getColor4()+"aa5"+lt.getColor5()+"aaa6"+lt.getColor6()+"aaa7"+lt.getColor7()+"aaac8"+lt.getColor8()+"aaactual"+lt.fichaActual);
+        segundos = 0;lt.buscarModo(registro.getLogin());
+        
         timer = new Timer(1000, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -56,6 +54,10 @@ public class tablero extends javax.swing.JFrame {
             }
         });
         timer.start();  
+        lt.buscarModo(registro.getLogin());
+        lt.setFichaActual(lt.getColor1());
+        System.out.println(" a1"+lt.getColor1()+" a2"+lt.getColor2()+ "a3"+lt.getColor3()+" a4"+lt.getColor4()+" a5"+lt.getColor5()+" a6"+lt.getColor6()+" a7"+lt.getColor7()+" a8"+lt.getColor8()+"aaactual"+lt.fichaActual);
+        
     }
 
     private void actLabelTIME() {

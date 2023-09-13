@@ -11,8 +11,7 @@ import java.util.Date;
 import javax.swing.JOptionPane;
 
 public class registro {
-
-    private static String login;
+ private static String login;
     private static int cantidadJ;
     private static int codigoLogueado;
     private static String colorFicha;
@@ -352,7 +351,7 @@ public class registro {
                 raf.seek(0);
                 raf.writeInt(cantidad);
                 raf.writeUTF(fichaI);
-                raf.writeInt(1);
+                raf.writeInt(modo);
                 raf.writeUTF(colores);
                 System.err.println("NUEVO\ncantidad:" + cantidad + "\nficha color indi:" + fichaI);
                 System.err.println("equipo(0), indi(1):1\nficha color team:" + colores);
@@ -435,4 +434,3 @@ public class registro {
 //            System.out.println(codigo + " - " + nombre + " - " + puntos + " - " + username + " - " + fechaRegistro + " - " + contrasena);
 //        }
 //    }
-

@@ -388,8 +388,6 @@ public class logica_tab {
             }else{
                 System.out.println("modo individual");
                 coloresIndividual();
-                //PENDIENTE TODO DE ESTE JEJE
-                //llama la funcion que obtiene los colores individual y los aplica a mi clase logica_tab
             }
         }catch(IOException ex){
             System.out.println("ERROR AL OBTENER MODO EN OPONENTE");
@@ -554,7 +552,104 @@ public class logica_tab {
     }
 
     private void coloresIndividual(){
-        
+        ArrayList<String> todos = new ArrayList<>();
+        ArrayList<String> nuevo = new ArrayList<>();
+        registro r = new registro();
+        logica_tab l=new logica_tab();
+        try{
+            int c = r.getCantidadJ();
+            if(c>=2){
+                String color="";
+                if(c==2){
+                    color=r.getColorIndividual(t1);
+                    todos.add(color);
+                    System.out.println(color);
+                    todos.add(color);
+                }else if(c==3){
+                    color=r.getColorIndividual(t1);
+                    todos.add(color);
+                    color=r.getColorIndividual(t2);
+                    todos.add(color);
+                    color=r.getColorIndividual(t3);
+                    todos.add(color);
+                }else if(c==4){
+                    color=r.getColorIndividual(t1);
+                    todos.add(color);
+                    color=r.getColorIndividual(t2);
+                    todos.add(color);
+                    color=r.getColorIndividual(t3);
+                    todos.add(color);
+                    color=r.getColorIndividual(t4);
+                    todos.add(color);
+                }else if(c==6){
+                    color=r.getColorIndividual(t1);
+                    todos.add(color);
+                    color=r.getColorIndividual(t2);
+                    todos.add(color);
+                    color=r.getColorIndividual(t3);
+                    todos.add(color);
+                    color=r.getColorIndividual(t4);
+                    todos.add(color);
+                    color=r.getColorIndividual(t5);
+                    todos.add(color);
+                    color=r.getColorIndividual(t6);
+                    todos.add(color);
+                }else if(c==8){
+                    color=r.getColorIndividual(t1);
+                    todos.add(color);
+                    color=r.getColorIndividual(t2);
+                    todos.add(color);
+                    color=r.getColorIndividual(t3);
+                    todos.add(color);
+                    color=r.getColorIndividual(t4);
+                    todos.add(color);
+                    color=r.getColorIndividual(t5);
+                    todos.add(color);
+                    color=r.getColorIndividual(t6);
+                    todos.add(color);
+                    color=r.getColorIndividual(t7);
+                    todos.add(color);
+                    color=r.getColorIndividual(t8);
+                    todos.add(color);
+                }
+                for (int i = 0; i < todos.size(); i++) {
+                    String co = todos.get(i);
+                    if (co.equals("NO APLICA") || co.equals("NOAPLICA")) {
+                        todos.remove(i);
+                        String nuevoColor = obtenerColorNoUtilizado(todos); // Generar nuevo color
+
+                        todos.add(i, nuevoColor); // Agregar el nuevo color en el mismo índice
+                    }
+                    System.out.println(todos.get(i)); // Imprimir el color
+                }
+
+            }
+            for(String t: todos){
+                System.out.println(t);
+            }
+            for (int i = 0; i < c; i++) {
+                if (i == 0 ) {
+                    setColor1(todos.get(0));
+                    fichaActual=color1;
+                } else if (i == 1  ) {
+                    setColor2(todos.get(1));
+                } else if (i == 2 ) {
+                    setColor3(todos.get(2));
+                } else if (i == 3 ) {
+                    setColor4(todos.get(3));
+                } else if (i == 4 ) {
+                    setColor5(todos.get(4));
+                } else if (i == 5  ) {
+                    setColor6(todos.get(5));
+                } else if (i == 6 ) {
+                    setColor7(todos.get(6));
+                } else if (i == 7  ) {
+                    setColor8(todos.get(4));
+                } 
+            }
+        }catch(IOException ex){
+            
+        }  
     }
     
     public String getColor1() {
