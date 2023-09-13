@@ -88,14 +88,14 @@ public class registro {
             //crea archivo que contendra datos del modo de este jugador
             RandomAccessFile modoArchivo = new RandomAccessFile(carpetaUsuario(code) + "/modo.emp", "rw");
             modoArchivo.writeInt(4);//por default es 4
-            modoArchivo.writeUTF("NOAPLICA");//si no aplica no pasa nada pero cuando se escoja va a cambiar sobreescirbe seek 0 COLOR INDIVIDUAL
+            modoArchivo.writeUTF("NO APLICA");//si no aplica no pasa nada pero cuando se escoja va a cambiar sobreescirbe seek 0 COLOR INDIVIDUAL
             modoArchivo.writeInt(0);//modo equipo pa jugar
-            modoArchivo.writeUTF("NOAPLICA");//colores por quipo se hata split del texto por cada guion-
+            modoArchivo.writeUTF("NO APLICA");//colores por quipo se hata split del texto por cada guion-
             modoArchivo.close();
             cantidadJ = 4;
-            colorFicha = "NOAPLICA";
+            colorFicha = "";
             team_indi = 0;
-            colores_equipo = "NOAPLICA";
+            colores_equipo = "";
             //crea archivo que contendra datos de reportes de este jugador 
             RandomAccessFile repotesArchivo = new RandomAccessFile(carpetaUsuario(code) + "/reportes.emp", "rw");
             repotesArchivo.writeLong(Calendar.getInstance().getTimeInMillis());//pruebita
@@ -120,8 +120,8 @@ public class registro {
             int modo = raf.readInt();
             String colores = raf.readUTF();
 
-            System.err.println("VIEJO\ncantidad:" + cantidad + "\nficha color indi:" + color);
-            System.err.println("equipo(0), indi(1):" + modo + "\nficha color team:" + colores);
+            System.out.println("\ncantidad:" + cantidad + "\nficha color indi:" + color);
+            System.out.println("equipo(0), indi(1):" + modo + "\nficha color team:" + colores);
         } catch (EOFException e) {
             JOptionPane.showMessageDialog(null, ".");
         } finally {
@@ -400,7 +400,27 @@ public class registro {
 
         return true;
     }
-    
+    public String getColorIndividual(String nombre) throws IOException {
+        int codigo = obtenerCodigo(nombre); // Obtener el código del nombre
+        if (codigo == -1) {
+            return "NO TA";
+        }
+        String path = carpetaUsuario(codigo) + "/modo.emp";
+        RandomAccessFile raf = new RandomAccessFile(path, "r");
+        String ficha = "";
+        try {
+            raf.readInt();
+            ficha = raf.readUTF();
+            raf.readInt();
+            raf.readUTF();
+        } catch (EOFException e) {
+            JOptionPane.showMessageDialog(null, "..");
+        } finally {
+            raf.close();
+        }
+        return ficha;
+    }
+
 }
 
 //    public void listarUsuariosT() throws IOException {//COMENTAR AL TERMINAR
@@ -415,3 +435,4 @@ public class registro {
 //            System.out.println(codigo + " - " + nombre + " - " + puntos + " - " + username + " - " + fechaRegistro + " - " + contrasena);
 //        }
 //    }
+

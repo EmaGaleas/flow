@@ -4,8 +4,10 @@
  */
 package sequence;
 
+import clases.logica_tab;
 import clases.registro;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
@@ -23,6 +25,8 @@ public class oponente extends javax.swing.JFrame {
     private int E2=0;
     private int E3=0;
     private int jper=0;
+    private int swis=0;
+    private int conta=0;
     
     public oponente() {
         initComponents();
@@ -33,6 +37,7 @@ public class oponente extends javax.swing.JFrame {
         
         equipoLog=0;
         selec=0;
+        swis=2;
         try {
             int t=r.getCantidadJ();
             name=new String[t];
@@ -43,8 +48,8 @@ public class oponente extends javax.swing.JFrame {
         String us=registro.getLogin();
         seleccionados.setText(us);
         oponentes();
-        equipos();
         lista.setVisible(false);
+        equipos();
         
         
     }
@@ -85,24 +90,38 @@ public class oponente extends javax.swing.JFrame {
                 jper=1;
                 confi.setText("Modo de "+j+" jugadores");
             } else if (j == 4) {
-                equipo.addItem("EQUIPO 1");
-                equipo.addItem("EQUIPO 2");
+                equipo.setVisible(false);
+                lista.setVisible(true);
+                String us=registro.getLogin();
+                seleccionados.setText(us+"-"+"EQUIPO 1");
+                n=us+"-"+"EQUIPO 1\n";
+                conta++;
+                E1++;
                 cantEquipos=2;
                 jper=2;
-                confi.setText("Jugadores por equipo:"+jper);
+                confi.setText("Selecciona para equipo 2");
             } else if (j == 6) {
-                equipo.addItem("EQUIPO 1");
-                equipo.addItem("EQUIPO 2");
-                equipo.addItem("EQUIPO 3");
+                equipo.setVisible(false);
+                lista.setVisible(true);
+                String us=registro.getLogin();
+                seleccionados.setText(us+"-"+"EQUIPO 1");
+                n=us+"-"+"EQUIPO 1\n";
+                conta++;
+                E1++;
                 cantEquipos=3;
                 jper=2;
-                confi.setText("Jugadores por equipo:"+jper);
+                confi.setText("Selecciona para equipo 2");
             } else if (j == 8) {
-                equipo.addItem("EQUIPO 1");
-                equipo.addItem("EQUIPO 2");
+                equipo.setVisible(false);
+                lista.setVisible(true);
+                String us=registro.getLogin();
+                seleccionados.setText(us+"-"+"EQUIPO 1");
+                n=us+"-"+"EQUIPO 1\n";
                 cantEquipos=2;
+                E1++;
+                conta++;
                 jper=4;
-                confi.setText("Jugadores por equipo: "+jper);
+                confi.setText("Selecciona para equipo 2");
             } 
         } catch (IOException e) {
             JOptionPane.showMessageDialog(null, "Anda dormi mejor");
@@ -239,18 +258,18 @@ public class oponente extends javax.swing.JFrame {
     }//GEN-LAST:event_tbn_inicioMouseClicked
 
     private void btn_seleMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_seleMouseClicked
-        String jugadores = lista.getSelectedItem().toString();
-        String equipos = equipo.getSelectedItem().toString(); 
         registro r = new registro();
-
+        String jugadores = lista.getSelectedItem().toString();
         try {
-            if (selec < r.getCantidadJ()) {
-                if (equipoLog == 0) {
-                    if (equipos.equals("EQUIPO 1") || equipos.equals("TURNO 1")) {
+            //para modo 2 y 3
+            if (selec < r.getCantidadJ() && (r.getCantidadJ()==2 || r.getCantidadJ()==3)) {
+                        String equipos = equipo.getSelectedItem().toString(); 
+                if(equipoLog==0){
+                    if (equipos.equals("TURNO 1")) {
                         E1++;
-                    } else if (equipos.equals("EQUIPO 2") || equipos.equals("TURNO 2")) {
+                    } else if ( equipos.equals("TURNO 2")) {
                         E2++;
-                    } else if (equipos.equals("EQUIPO 3") || equipos.equals("TURNO 3")) {
+                    } else if ( equipos.equals("TURNO 3")) {
                         E3++;
                     }
                     String us = registro.getLogin();
@@ -260,30 +279,84 @@ public class oponente extends javax.swing.JFrame {
                     equipoLog++;
                     selec++;
                     lista.setVisible(true);
-                    JOptionPane.showMessageDialog(null, "Has seleccionado el tuyo");
+                    JOptionPane.showMessageDialog(null, "Has seleccionado tu turno");
                     seleccionados.setText(n);
-
-                } else {
+                }else if(equipoLog>=1){
+                        if (!buscan(name, jugadores)) {
+                            if (( equipos.equals("TURNO 1")&& E1 < jper ) ||
+                                (equipos.equals("TURNO 2") && E2 < jper )||
+                                (equipos.equals("TURNO 3") && E3 < jper )) {
+                                name[selec] = jugadores;
+                                selec++;
+                                //aqui se hara setColor para 2
+                                JOptionPane.showMessageDialog(null, "Jugador añadido");
+    //                             n += jugadores + "-" + equipos + (equipos.equals("EQUIPO 1") ? E1 : equipos.equals("EQUIPO 2") ? E2 : E3) + jper + "\n";
+                                 n += jugadores + "-" + equipos.trim()+ "\n";
+                                seleccionados.setText(n);
+                                if (equipos.equals("TURNO 1")) {
+                                    E1++;
+                                } else if (equipos.equals("TURNO 2")) {
+                                    E2++;
+                                } else if (equipos.equals("TURNO 3")) {
+                                    E3++;
+                                }
+                                if (selec == r.getCantidadJ()) {
+                                    JOptionPane.showMessageDialog(null, "Puedes continuar");
+                                    tablero t = new tablero(n);
+                                    t.setVisible(true);
+                                    this.setVisible(false);
+                                }
+                            } else {
+                                JOptionPane.showMessageDialog(null, "Turno ocupado");
+                            }
+                        } else {
+                            JOptionPane.showMessageDialog(null, "Jugador YA fue seleccionado");
+                        }
+                    }
+                //para modo 4, 6 y 8 EQUIPOS
+            }else if(selec < r.getCantidadJ() && (r.getCantidadJ()>3) ){
+                //que seleccione segun jugador por equipo alternado
+                    
+                    String eq="EQUIPO 2";
                     if (!buscan(name, jugadores)) {
-                        if (((equipos.equals("EQUIPO 1") || equipos.equals("TURNO 1"))&& E1 < jper ) ||
-                            ((equipos.equals("EQUIPO 2")|| equipos.equals("TURNO 2")) && E2 < jper )||
-                            ((equipos.equals("EQUIPO 3") || equipos.equals("TURNO 3")) && E3 < jper )) {
+                        if ((E1 < jper ) ||
+                            (  E2 < jper )||
+                            ( E3 < jper )) {
                             name[selec] = jugadores;
                             selec++;
                             JOptionPane.showMessageDialog(null, "Jugador añadido");
-//                             n += jugadores + "-" + equipos + (equipos.equals("EQUIPO 1") ? E1 : equipos.equals("EQUIPO 2") ? E2 : E3) + jper + "\n";
-                             n += jugadores + "-" + equipos.trim()+ "\n";
                             seleccionados.setText(n);
-                            if (equipos.equals("EQUIPO 1") || equipos.equals("TURNO 1")) {
+                            if (swis==1 && E1 < jper) {
                                 E1++;
-                            } else if (equipos.equals("EQUIPO 2") || equipos.equals("TURNO 2")) {
+                                eq="EQUIPO 1";
+                                swis=2;
+                                confi.setText("Selecciona para equipo 2");
+                                conta++;
+                            } else if (swis==2 && E2 < jper) {
                                 E2++;
-                            } else if (equipos.equals("EQUIPO 3") || equipos.equals("TURNO 3")) {
+                                eq="EQUIPO 2";
+                                conta++;
+                                if(r.getCantidadJ()==6){
+                                    swis=3;
+                                    confi.setText("Selecciona para equipo 3");
+                                }else{
+                                    swis=1;
+                                    confi.setText("Selecciona para equipo 1");
+                                }
+                            } else if (swis==3 && E3 < jper) {
                                 E3++;
+                                eq="EQUIPO 3";
+                                swis=1;
+                                conta++;
+                                confi.setText("Selecciona para equipo 1");
                             }
-                            if (selec == r.getCantidadJ()) {
+                    
+                            n += jugadores + "-" + eq+ "\n";
+                            seleccionados.setText(n);
+
+                            if (r.getCantidadJ()==conta ) {
                                 JOptionPane.showMessageDialog(null, "Puedes continuar");
-                                //obtener todo lo que esta guardado en el textarea seleccionados
+                                //aqui se llama la funcion que le va a dar set color a todo
                                 tablero t = new tablero(n);
                                 t.setVisible(true);
                                 this.setVisible(false);
@@ -294,7 +367,7 @@ public class oponente extends javax.swing.JFrame {
                     } else {
                         JOptionPane.showMessageDialog(null, "Jugador YA fue seleccionado");
                     }
-                }
+                 
             } else {
                 JOptionPane.showMessageDialog(null, "Puedes continuar");
                 tablero t = new tablero(n);

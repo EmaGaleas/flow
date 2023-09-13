@@ -26,13 +26,7 @@ public class menu_p extends javax.swing.JFrame {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        try {
-            obrg.imprimirReportes();        
-        } catch (IOException e) {
-            e.printStackTrace(); 
-        }
-        
-        
+ 
     }
 
     @SuppressWarnings("unchecked")
