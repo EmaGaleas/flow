@@ -1,6 +1,8 @@
 package sequence;
 
 import clases.Repartircartas_tab;
+import clases.call_png_fichas;
+
 import clases.Cartas_conf;
 import clases.registro;
 import clases.call_png_baraja;
@@ -89,7 +91,7 @@ public class tablero extends javax.swing.JFrame {
                 infoCartaDialog.showMessageDialog(null, cartaSeleccionada, "Información de la Carta", JOptionPane.INFORMATION_MESSAGE);
             }
         });
-        boton.setIcon(call_png_baraja.imagenCorazon12());
+        boton.setIcon(call_png_baraja.obtenerFicha("DIAMANTE1"));
         panel.add(boton);
     }
 
@@ -216,8 +218,8 @@ public class tablero extends javax.swing.JFrame {
                     turno.setText("Turno de: " + lt.getT1());
                 }
 
-                btn_verJ8.setIcon(call_png_baraja.imagenTrasera());
-                btn_verJ1.setIcon(call_png_baraja.imagenTrasera());
+                btn_verJ8.setIcon(call_png_fichas.imagenTrasera());
+                btn_verJ1.setIcon(call_png_fichas.imagenTrasera());
 
                 panelJ7.setVisible(false);
                 panelJ2.setVisible(false);
@@ -269,9 +271,9 @@ public class tablero extends javax.swing.JFrame {
                     lt.setT3(nombre3);
                 }
 
-                btn_verJ1.setIcon(call_png_baraja.imagenTrasera());
-                btn_verJ2.setIcon(call_png_baraja.imagenTrasera());
-                btn_verJ8.setIcon(call_png_baraja.imagenTrasera());
+                btn_verJ1.setIcon(call_png_fichas.imagenTrasera());
+                btn_verJ2.setIcon(call_png_fichas.imagenTrasera());
+                btn_verJ8.setIcon(call_png_fichas.imagenTrasera());
 
                 panelJ7.setVisible(false);
                 panelJ6.setVisible(false);
@@ -293,10 +295,10 @@ public class tablero extends javax.swing.JFrame {
                 equipo_J8.setText(equipo4);
                 lt.setT4(nombre4);
 
-                btn_verJ1.setIcon(call_png_baraja.imagenTrasera());
-                btn_verJ2.setIcon(call_png_baraja.imagenTrasera());
-                btn_verJ8.setIcon(call_png_baraja.imagenTrasera());
-                btn_verJ7.setIcon(call_png_baraja.imagenTrasera());
+                btn_verJ1.setIcon(call_png_fichas.imagenTrasera());
+                btn_verJ2.setIcon(call_png_fichas.imagenTrasera());
+                btn_verJ8.setIcon(call_png_fichas.imagenTrasera());
+                btn_verJ7.setIcon(call_png_fichas.imagenTrasera());
 
                 panelJ6.setVisible(false);
                 panelJ3.setVisible(false);
@@ -323,12 +325,12 @@ public class tablero extends javax.swing.JFrame {
                 equipo_J8.setText(equipo6);
                 lt.setT6(nombre6);
 
-                btn_verJ8.setIcon(call_png_baraja.imagenTrasera());
-                btn_verJ7.setIcon(call_png_baraja.imagenTrasera());
-                btn_verJ6.setIcon(call_png_baraja.imagenTrasera());
-                btn_verJ1.setIcon(call_png_baraja.imagenTrasera());
-                btn_verJ2.setIcon(call_png_baraja.imagenTrasera());
-                btn_verJ3.setIcon(call_png_baraja.imagenTrasera());
+                btn_verJ8.setIcon(call_png_fichas.imagenTrasera());
+                btn_verJ7.setIcon(call_png_fichas.imagenTrasera());
+                btn_verJ6.setIcon(call_png_fichas.imagenTrasera());
+                btn_verJ1.setIcon(call_png_fichas.imagenTrasera());
+                btn_verJ2.setIcon(call_png_fichas.imagenTrasera());
+                btn_verJ3.setIcon(call_png_fichas.imagenTrasera());
 
                 panelJ5.setVisible(false);
                 panelJ4.setVisible(false);
@@ -359,14 +361,14 @@ public class tablero extends javax.swing.JFrame {
                 equipo_J8.setText(equipo8);
                 lt.setT8(nombre8);
 
-                btn_verJ8.setIcon(call_png_baraja.imagenTrasera());
-                btn_verJ7.setIcon(call_png_baraja.imagenTrasera());
-                btn_verJ6.setIcon(call_png_baraja.imagenTrasera());
-                btn_verJ5.setIcon(call_png_baraja.imagenTrasera());
-                btn_verJ1.setIcon(call_png_baraja.imagenTrasera());
-                btn_verJ2.setIcon(call_png_baraja.imagenTrasera());
-                btn_verJ3.setIcon(call_png_baraja.imagenTrasera());
-                btn_verJ4.setIcon(call_png_baraja.imagenTrasera());
+                btn_verJ8.setIcon(call_png_fichas.imagenTrasera());
+                btn_verJ7.setIcon(call_png_fichas.imagenTrasera());
+                btn_verJ6.setIcon(call_png_fichas.imagenTrasera());
+                btn_verJ5.setIcon(call_png_fichas.imagenTrasera());
+                btn_verJ1.setIcon(call_png_fichas.imagenTrasera());
+                btn_verJ2.setIcon(call_png_fichas.imagenTrasera());
+                btn_verJ3.setIcon(call_png_fichas.imagenTrasera());
+                btn_verJ4.setIcon(call_png_fichas.imagenTrasera());
 
             } else {
 

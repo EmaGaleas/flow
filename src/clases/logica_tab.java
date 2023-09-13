@@ -90,7 +90,7 @@ public class logica_tab {
     }
     private void p(JButton button) {
         if (s % 2==1) {
-            button.setIcon(call_png_baraja.fichaAzul());
+            button.setIcon(call_png_fichas.obtenerFicha("MOSTAZA"));
         }else{
             button.setIcon(null);
         }
@@ -106,8 +106,8 @@ public class logica_tab {
             SwingUtilities.invokeLater(() -> {
 
                 ArrayList<ImageIcon> imageIcons = new ArrayList<>();
-                imageIcons.add(call_png_baraja.imagenTrasera());
-                imageIcons.add(call_png_baraja.imagenTrasera());
+                imageIcons.add(call_png_fichas.imagenTrasera());
+                imageIcons.add(call_png_fichas.imagenTrasera());
 
                 JPanel panel = new JPanel(new GridLayout(0, 1));
                 for (ImageIcon i : imageIcons) {
