@@ -90,11 +90,14 @@ public class tablero extends javax.swing.JFrame {
                 public void actionPerformed(ActionEvent e) {
                     // Obtine la información de la carta correspondiente
                     String cartaSeleccionada = (cartaIndex < cartas.length) ? cartas[cartaIndex+1] : "No hay información disponible";
-                    // Mostrar la información de la carta en un cuadro de diálogo
+                                   
+// Mostrar la información de la carta en un cuadro de diálogo
                     infoCartaDialog.showMessageDialog(null, cartaSeleccionada, "Información de la Carta", JOptionPane.INFORMATION_MESSAGE);
                 }
             });
-            boton.setIcon(call_png_baraja.obtenerFicha("DIAMANTE1"));
+            String carat = (cartaIndex < cartas.length) ? cartas[cartaIndex+1] : "No hay información disponible";
+             String cartaSinGuion = carat.replace("-", "");    
+            boton.setIcon(call_png_baraja.obtenerFicha(cartaSinGuion));
             panel.add(boton);
         }
 

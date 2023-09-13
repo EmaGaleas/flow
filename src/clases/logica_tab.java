@@ -93,6 +93,7 @@ public class logica_tab {
         }
     }
     private void p(JButton button) {
+        
         button.setIcon(call_png_fichas.obtenerFicha(fichaActual));
     }
     private void mostrarInformacionPieza(cartas carta) {

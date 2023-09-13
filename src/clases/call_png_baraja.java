@@ -27,8 +27,8 @@ public class call_png_baraja {
          carta.put("DIAMANTE1",           new ImageIcon("src/images/diamante/as_diamante.png"));
          carta.put("DIAMANTE2",           new ImageIcon("src/images/diamante/2_diamante.png"));
          carta.put("DIAMANTE3",           new ImageIcon("src/images/diamante/3_diamante.png"));
-         carta.put("DIAMANTE4",           new ImageIcon("src/images/diamante/4_diamantepng"));
-         carta.put("DIAMANTE5",           new ImageIcon("src/images/diamante/5_diamantepng"));
+         carta.put("DIAMANTE4",           new ImageIcon("src/images/diamante/4_diamante.png"));
+         carta.put("DIAMANTE5",           new ImageIcon("src/images/diamante/5_diamante.png"));
          carta.put("DIAMANTE6",           new ImageIcon("src/images/diamante/6_diamante.png"));
          carta.put("DIAMANTE7",           new ImageIcon("src/images/diamante/7_diamante.png"));
          carta.put("DIAMANTE8",           new ImageIcon("src/images/diamante/8_diamante.png"));
