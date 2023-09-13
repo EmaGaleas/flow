@@ -41,6 +41,9 @@ public class tablero extends javax.swing.JFrame {
         this.nombre = nombre;
         inicializarJugadores();
         segundos = 0;
+        lt.buscarModo(registro.getLogin());
+        lt.setFichaActual(lt.getColor1());
+        System.out.println(lt.getColor1()+"a2"+lt.getColor2()+"aaa3"+lt.getColor3()+"aaac4"+lt.getColor4()+"aa5"+lt.getColor5()+"aaa6"+lt.getColor6()+"aaa7"+lt.getColor7()+"aaac8"+lt.getColor8()+"aaactual"+lt.fichaActual);
         timer = new Timer(1000, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -52,7 +55,7 @@ public class tablero extends javax.swing.JFrame {
                 }
             }
         });
-        timer.start();
+        timer.start();  
     }
 
     private void actLabelTIME() {
@@ -63,45 +66,45 @@ public class tablero extends javax.swing.JFrame {
     }
 
     private void mostrarCuadroDialogoConImagenes(int numcarts, String infocartas) {
-    JPanel panel = new JPanel();
-    String[] cartasunidas = infocartas.split("\n");
-    String[] cartas = new String[numcarts + 1];
-    for (int i = 0; i < cartasunidas.length; i++) {
-        if (i < cartasunidas.length && !cartasunidas[i].equals("")) {
-            cartas[i] = cartasunidas[i];
-        }
-    }
-
-    panel.setLayout(new BoxLayout(panel, BoxLayout.X_AXIS)); // Establece el layout vertical
-    panel.add(Box.createRigidArea(new Dimension(15, 0)));
-    
-    //  cuadro de diálogo para mostrar la información de la carta
-    JOptionPane infoCartaDialog = new JOptionPane();
-    
-    for (int i = 0; i < numcarts; i++) {
-        int cartaIndex = i; // Almacena el índice de la carta para acceder a ella en el ActionListener
-        JButton boton = new JButton();
-        boton.setSize(new Dimension(45, 55));
-
-        boton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                // Obtine la información de la carta correspondiente
-                String cartaSeleccionada = (cartaIndex < cartas.length) ? cartas[cartaIndex+1] : "No hay información disponible";
-                // Mostrar la información de la carta en un cuadro de diálogo
-                infoCartaDialog.showMessageDialog(null, cartaSeleccionada, "Información de la Carta", JOptionPane.INFORMATION_MESSAGE);
+        JPanel panel = new JPanel();
+        String[] cartasunidas = infocartas.split("\n");
+        String[] cartas = new String[numcarts + 1];
+        for (int i = 0; i < cartasunidas.length; i++) {
+            if (i < cartasunidas.length && !cartasunidas[i].equals("")) {
+                cartas[i] = cartasunidas[i];
             }
-        });
-        boton.setIcon(call_png_baraja.obtenerFicha("DIAMANTE1"));
-        panel.add(boton);
-    }
+        }
 
-    CustomDialog dialog = new CustomDialog(this, panel, "PRUEBITA");
-    dialog.setMinimumSize(new Dimension(700, 500));
-    dialog.setMaximumSize(new Dimension(700, 500));
-    panel.setOpaque(false);
-    dialog.setLocationRelativeTo(null);
-    dialog.setVisible(true);
-}
+        panel.setLayout(new BoxLayout(panel, BoxLayout.X_AXIS)); // Establece el layout vertical
+        panel.add(Box.createRigidArea(new Dimension(15, 0)));
+
+        //  cuadro de diálogo para mostrar la información de la carta
+        JOptionPane infoCartaDialog = new JOptionPane();
+
+        for (int i = 0; i < numcarts; i++) {
+            int cartaIndex = i; // Almacena el índice de la carta para acceder a ella en el ActionListener
+            JButton boton = new JButton();
+            boton.setSize(new Dimension(45, 55));
+
+            boton.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                    // Obtine la información de la carta correspondiente
+                    String cartaSeleccionada = (cartaIndex < cartas.length) ? cartas[cartaIndex+1] : "No hay información disponible";
+                    // Mostrar la información de la carta en un cuadro de diálogo
+                    infoCartaDialog.showMessageDialog(null, cartaSeleccionada, "Información de la Carta", JOptionPane.INFORMATION_MESSAGE);
+                }
+            });
+            boton.setIcon(call_png_baraja.obtenerFicha("DIAMANTE1"));
+            panel.add(boton);
+        }
+
+        CustomDialog dialog = new CustomDialog(this, panel, "PRUEBITA");
+        dialog.setMinimumSize(new Dimension(700, 500));
+        dialog.setMaximumSize(new Dimension(700, 500));
+        panel.setOpaque(false);
+        dialog.setLocationRelativeTo(null);
+        dialog.setVisible(true);
+    }
 
 
     private void finTIME() {
@@ -120,171 +123,146 @@ public class tablero extends javax.swing.JFrame {
 
     private void inicializarJugadores() {
         String[] id = nombre.split("\n");
-        String nombre1 = "";
-        String equipo1 = "";
-        String nombre2 = "";
-        String equipo2 = "";
-        String nombre3 = "";
-        String equipo3 = "";
-        String nombre4 = "";
-        String equipo4 = "";
-        String nombre5 = "";
-        String equipo5 = "";
-        String nombre6 = "";
-        String equipo6 = "";
-        String nombre7 = "";
-        String equipo7 = "";
-        String nombre8 = "";
-        String equipo8 = "";
+        String nombre1 = ""; String equipo1="";
+        String nombre2 = ""; String equipo2="";
+        String nombre3 = ""; String equipo3="";
+        String nombre4 = ""; String equipo4="";
+        String nombre5 = ""; String equipo5="";
+        String nombre6 = ""; String equipo6="";
+        String nombre7 = ""; String equipo7="";
+        String nombre8 = ""; String equipo8="";
         if (id.length >= 1) {
             String[] split1 = id[0].split("-");
             if (split1.length >= 2) {
                 nombre1 = split1[0];
                 equipo1 = split1[1];
             }
-        }
-        if (id.length >= 2) {
+        }if (id.length >= 2) {
             String[] split2 = id[1].split("-");
             if (split2.length >= 2) {
                 nombre2 = split2[0];
                 equipo2 = split2[1];
             }
-        }
-        if (id.length >= 3) {
+        }if (id.length >= 3) {
             String[] split3 = id[2].split("-");
             if (split3.length >= 2) {
                 nombre3 = split3[0];
                 equipo3 = split3[1];
             }
-        }
-        if (id.length >= 4) {
+        }if (id.length >= 4) {
             String[] split4 = id[3].split("-");
             if (split4.length >= 2) {
                 nombre4 = split4[0];
                 equipo4 = split4[1];
             }
-        }
-        if (id.length >= 5) {
+        }if (id.length >= 5) {
             String[] split5 = id[4].split("-");
             if (split5.length >= 2) {
                 nombre5 = split5[0];
                 equipo5 = split5[1];
             }
-        }
-        if (id.length >= 6) {
+        }if (id.length >= 6) {
             String[] split6 = id[5].split("-");
             if (split6.length >= 2) {
                 nombre6 = split6[0];
                 equipo6 = split6[1];
             }
-        }
-        if (id.length >= 7) {
+        }if (id.length >= 7) {
             String[] split7 = id[6].split("-");
             if (split7.length >= 2) {
                 nombre7 = split7[0];
                 equipo7 = split7[1];
             }
-        }
-        if (id.length >= 8) {
+        }if (id.length >= 8) {
             String[] split8 = id[7].split("-");
             if (split8.length >= 2) {
                 nombre8 = split8[0];
                 equipo8 = split8[1];
             }
         }
-        try {
-            int c = obrg.getCantidadJ();
-            if (c == 2) {
-                if (equipo1.equals("TURNO 1")) {
+        try{
+            int c=obrg.getCantidadJ();
+             if (c == 2) {
+                if(equipo1.equals("TURNO 1")){
                     nombre_J1.setText(nombre1);
                     equipo_J1.setText(equipo1);
                     lt.setT1(nombre1);
-                    turno.setText("Turno de: " + lt.getT1());
-                } else if (equipo1.equals("TURNO 2")) {
+                    turno.setText("Turno de: "+nombre1);
+                }else if(equipo1.equals("TURNO 2")){
                     nombre_J8.setText(nombre1);
                     equipo_J8.setText(equipo1);
                     lt.setT2(nombre1);
-                    // turno.setText("Turno de: "+lt.getT1());
                 }
-                if (equipo2.equals("TURNO 2")) {
+                if(equipo2.equals("TURNO 2")){
                     nombre_J8.setText(nombre2);
                     equipo_J8.setText(equipo2);
                     lt.setT2(nombre2);
-                    //   turno.setText("Turno de: "+lt.getT2());
-                } else if (equipo2.equals("TURNO 1")) {
+                }else if(equipo2.equals("TURNO 1")){
                     nombre_J1.setText(nombre2);
                     equipo_J1.setText(equipo2);
                     lt.setT1(nombre2);
-                    turno.setText("Turno de: " + lt.getT1());
+                    turno.setText("Turno de: "+nombre2);
                 }
-
-                btn_verJ8.setIcon(call_png_fichas.imagenTrasera());
-                btn_verJ1.setIcon(call_png_fichas.imagenTrasera());
-
-                panelJ7.setVisible(false);
-                panelJ2.setVisible(false);
-                panelJ6.setVisible(false);
-                panelJ3.setVisible(false);
-                panelJ5.setVisible(false);
-                panelJ4.setVisible(false);
-            } else if (c == 3) {
-                if (equipo1.equals("TURNO 1")) {
+                btn_verJ8.setIcon(call_png_baraja.imagenTrasera());
+                btn_verJ1.setIcon(call_png_baraja.imagenTrasera());
+                panelJ7.setVisible(false);panelJ2.setVisible(false);
+                panelJ6.setVisible(false);panelJ3.setVisible(false);
+                panelJ5.setVisible(false);panelJ4.setVisible(false);
+            } else if(c==3){
+                if(equipo1.equals("TURNO 1")){
                     nombre_J1.setText(nombre1);
                     equipo_J1.setText(equipo1);
                     lt.setT1(nombre1);
-                    turno.setText("Turno de: " + lt.getT1());
-                } else if (equipo1.equals("TURNO 2")) {
+                    turno.setText("Turno de: "+nombre1);
+                }else if(equipo1.equals("TURNO 2")){
                     nombre_J2.setText(nombre1);
                     equipo_J2.setText(equipo1);
                     lt.setT2(nombre1);
-                } else if (equipo1.equals("TURNO 3")) {
+                }else if(equipo1.equals("TURNO 3")){
                     nombre_J8.setText(nombre1);
                     equipo_J8.setText(equipo1);
                     lt.setT3(nombre1);
                 }
-                if (equipo2.equals("TURNO 1")) {
+                if(equipo2.equals("TURNO 1")){
                     nombre_J1.setText(nombre2);
                     equipo_J1.setText(equipo2);
                     lt.setT1(nombre2);
-                    turno.setText("Turno de: " + lt.getT1());
-                } else if (equipo2.equals("TURNO 2")) {
+                    turno.setText("Turno de: "+nombre2);
+                }else if(equipo2.equals("TURNO 2")){
                     nombre_J2.setText(nombre2);
                     equipo_J2.setText(equipo2);
                     lt.setT2(nombre2);
-                } else if (equipo2.equals("TURNO 3")) {
+                }else if(equipo2.equals("TURNO 3")){
                     nombre_J8.setText(nombre2);
                     equipo_J8.setText(equipo2);
                     lt.setT3(nombre2);
                 }
-                if (equipo3.equals("TURNO 1")) {
+                if(equipo3.equals("TURNO 1")){
                     nombre_J1.setText(nombre3);
                     equipo_J1.setText(equipo3);
                     lt.setT1(nombre3);
-                    turno.setText("Turno de: " + lt.getT1());
-                } else if (equipo3.equals("TURNO 2")) {
+                    turno.setText("Turno de: "+lt.getT1());
+                }else if(equipo3.equals("TURNO 2")){
                     nombre_J2.setText(nombre3);
                     equipo_J2.setText(equipo3);
                     lt.setT2(nombre3);
-                } else if (equipo3.equals("TURNO 3")) {
+                }else if(equipo3.equals("TURNO 3")){
                     nombre_J8.setText(nombre3);
                     equipo_J8.setText(equipo3);
                     lt.setT3(nombre3);
                 }
-
-                btn_verJ1.setIcon(call_png_fichas.imagenTrasera());
-                btn_verJ2.setIcon(call_png_fichas.imagenTrasera());
-                btn_verJ8.setIcon(call_png_fichas.imagenTrasera());
-
-                panelJ7.setVisible(false);
-                panelJ6.setVisible(false);
-                panelJ3.setVisible(false);
-                panelJ5.setVisible(false);
+                
+                btn_verJ1.setIcon(call_png_baraja.imagenTrasera());
+                btn_verJ2.setIcon(call_png_baraja.imagenTrasera());
+                btn_verJ8.setIcon(call_png_baraja.imagenTrasera());
+                panelJ7.setVisible(false); panelJ6.setVisible(false);
+                panelJ3.setVisible(false); panelJ5.setVisible(false);
                 panelJ4.setVisible(false);
-            } else if (c == 4) {
+            }else if(c==4){
                 nombre_J1.setText(nombre1);
                 equipo_J1.setText(equipo1);
                 lt.setT1(nombre1);
-                turno.setText("Turno de: " + lt.getT1());
+                turno.setText("Turno de: "+nombre1);
                 nombre_J2.setText(nombre2);
                 equipo_J2.setText(equipo2);
                 lt.setT2(nombre2);
@@ -294,21 +272,18 @@ public class tablero extends javax.swing.JFrame {
                 nombre_J8.setText(nombre4);
                 equipo_J8.setText(equipo4);
                 lt.setT4(nombre4);
-
-                btn_verJ1.setIcon(call_png_fichas.imagenTrasera());
-                btn_verJ2.setIcon(call_png_fichas.imagenTrasera());
-                btn_verJ8.setIcon(call_png_fichas.imagenTrasera());
-                btn_verJ7.setIcon(call_png_fichas.imagenTrasera());
-
-                panelJ6.setVisible(false);
-                panelJ3.setVisible(false);
-                panelJ5.setVisible(false);
-                panelJ4.setVisible(false);
-            } else if (c == 6) {
+               
+                btn_verJ1.setIcon(call_png_baraja.imagenTrasera());
+                btn_verJ2.setIcon(call_png_baraja.imagenTrasera());
+                btn_verJ8.setIcon(call_png_baraja.imagenTrasera());
+                btn_verJ7.setIcon(call_png_baraja.imagenTrasera());
+                panelJ6.setVisible(false);panelJ3.setVisible(false);
+                panelJ5.setVisible(false);panelJ4.setVisible(false);
+            }else if(c==6){
                 nombre_J1.setText(nombre1);
                 equipo_J1.setText(equipo1);
                 lt.setT1(nombre1);
-                turno.setText("Turno de: " + lt.getT1());
+                turno.setText("Turno de: "+nombre1);
                 nombre_J2.setText(nombre2);
                 equipo_J2.setText(equipo2);
                 lt.setT2(nombre2);
@@ -324,21 +299,19 @@ public class tablero extends javax.swing.JFrame {
                 nombre_J8.setText(nombre6);
                 equipo_J8.setText(equipo6);
                 lt.setT6(nombre6);
-
-                btn_verJ8.setIcon(call_png_fichas.imagenTrasera());
-                btn_verJ7.setIcon(call_png_fichas.imagenTrasera());
-                btn_verJ6.setIcon(call_png_fichas.imagenTrasera());
-                btn_verJ1.setIcon(call_png_fichas.imagenTrasera());
-                btn_verJ2.setIcon(call_png_fichas.imagenTrasera());
-                btn_verJ3.setIcon(call_png_fichas.imagenTrasera());
-
-                panelJ5.setVisible(false);
-                panelJ4.setVisible(false);
-            } else if (c == 8) {
+                
+                btn_verJ8.setIcon(call_png_baraja.imagenTrasera());
+                btn_verJ7.setIcon(call_png_baraja.imagenTrasera());
+                btn_verJ6.setIcon(call_png_baraja.imagenTrasera());
+                btn_verJ1.setIcon(call_png_baraja.imagenTrasera());
+                btn_verJ2.setIcon(call_png_baraja.imagenTrasera());
+                btn_verJ3.setIcon(call_png_baraja.imagenTrasera());
+                panelJ5.setVisible(false);panelJ4.setVisible(false);
+            }else if(c==8){
                 nombre_J1.setText(nombre1);
                 equipo_J1.setText(equipo1);
                 lt.setT1(nombre1);
-                turno.setText("Turno de: " + lt.getT1());
+                turno.setText("Turno de: "+nombre1);
                 nombre_J2.setText(nombre2);
                 equipo_J2.setText(equipo2);
                 lt.setT2(nombre2);
@@ -360,23 +333,20 @@ public class tablero extends javax.swing.JFrame {
                 nombre_J8.setText(nombre8);
                 equipo_J8.setText(equipo8);
                 lt.setT8(nombre8);
-
-                btn_verJ8.setIcon(call_png_fichas.imagenTrasera());
-                btn_verJ7.setIcon(call_png_fichas.imagenTrasera());
-                btn_verJ6.setIcon(call_png_fichas.imagenTrasera());
-                btn_verJ5.setIcon(call_png_fichas.imagenTrasera());
-                btn_verJ1.setIcon(call_png_fichas.imagenTrasera());
-                btn_verJ2.setIcon(call_png_fichas.imagenTrasera());
-                btn_verJ3.setIcon(call_png_fichas.imagenTrasera());
-                btn_verJ4.setIcon(call_png_fichas.imagenTrasera());
-
-            } else {
-
+                
+                btn_verJ8.setIcon(call_png_baraja.imagenTrasera());
+                btn_verJ7.setIcon(call_png_baraja.imagenTrasera());
+                btn_verJ6.setIcon(call_png_baraja.imagenTrasera());
+                btn_verJ5.setIcon(call_png_baraja.imagenTrasera());
+                btn_verJ1.setIcon(call_png_baraja.imagenTrasera());
+                btn_verJ2.setIcon(call_png_baraja.imagenTrasera());
+                btn_verJ3.setIcon(call_png_baraja.imagenTrasera());
+                btn_verJ4.setIcon(call_png_baraja.imagenTrasera());
+            }else{
             }
-        } catch (IOException e) {
+        }catch(IOException e){
             System.err.println("error");
         }
-
     }
 
     private void fondoTablero() {
@@ -1063,7 +1033,7 @@ public class tablero extends javax.swing.JFrame {
         //JUGADOR 3
         
         if (lt.txtTurnoSting().equals(nombre_J2.getText())) {//VERIFICA QUE SEA SU TURNO, ES DECIR SI EL NOMBRE DE TURNO ES IGUAL AL NOMBRE DEL PANEL QUE ESTA EN ESTE BOTON
-            timer.stop();//para timer y turno
+            
             if (contjg3 == 0) {
                 darcart = 0;
                 contjg3++;
@@ -1135,6 +1105,7 @@ public class tablero extends javax.swing.JFrame {
                 System.out.println("error");
 
             }
+            timer.stop();//para timer y turno
             //esto cambia de turno y actualiza el timer
             JOptionPane.showMessageDialog(null, "Cambio de turno");//para timer y turno
             segundos = 0; //para timer y turno
@@ -1162,7 +1133,6 @@ public class tablero extends javax.swing.JFrame {
         //if(objjg1.||objjg3.equals(true)||objjg4.equals(true)||objjg5.equals(true)||objjg6.equals(true)||objjg7.equals(true)||objjg8.equals(true)){
 
         if (lt.txtTurnoSting().equals(nombre_J8.getText())) {
-            timer.stop();//para timer y turno
             if (contjg2 == 0) {
                 darcart = 0;
                 contjg2++;
@@ -1240,6 +1210,7 @@ public class tablero extends javax.swing.JFrame {
                 System.out.println("error");
 
             }
+            timer.stop();//para timer y turno
             //esto cambia de turno y actualiza el timer
             JOptionPane.showMessageDialog(null, "Cambio de turno");//para timer y turno
             segundos = 0; //para timer y turno
@@ -1255,7 +1226,6 @@ public class tablero extends javax.swing.JFrame {
         //JUGADOR 1
         
         if (lt.txtTurnoSting().equals(nombre_J1.getText())) {
-            timer.stop();//para timer y turno
             try {
                 if (contjg1 == 0) {
                     darcart = 0;
@@ -1328,6 +1298,7 @@ public class tablero extends javax.swing.JFrame {
             } catch (IOException e) {
                 System.out.println("error");
             }
+            timer.stop();//para timer y turno
             //actiulaiza turno y timer
             JOptionPane.showMessageDialog(null, "Cambio de turno");//para timer y turno
             segundos = 0; //para timer y turno
@@ -1343,7 +1314,6 @@ public class tablero extends javax.swing.JFrame {
         // JUGADOR 4
 
         if (lt.txtTurnoSting().equals(nombre_J7.getText())) {
-            timer.stop();//para timer y turno
             try {
                 if (contjg4 == 0) {
                     darcart = 0;
@@ -1391,6 +1361,7 @@ public class tablero extends javax.swing.JFrame {
             } catch (IOException e) {
                 System.out.println("Error");
             }
+            timer.stop();//para timer y turno
             //actualiza timer y turnp
             JOptionPane.showMessageDialog(null, "Cambio de turno");//para timer y turno
             segundos = 0; //para timer y turno
@@ -1407,7 +1378,6 @@ public class tablero extends javax.swing.JFrame {
         // JUGADOR 5
 
         if (lt.txtTurnoSting().equals(nombre_J3.getText())) {
-            timer.stop();//para timer y turno
             try {
                 if (contjg5 == 0) {
                     darcart = 0;
@@ -1441,6 +1411,7 @@ public class tablero extends javax.swing.JFrame {
             } catch (IOException e) {
                 System.out.println("Error");
             }
+            timer.stop();//para timer y turno
             JOptionPane.showMessageDialog(null, "Cambio de turno");//para timer y turno
             segundos = 0; //para timer y turno
             actLabelTIME();//para timer y turno
@@ -1456,7 +1427,6 @@ public class tablero extends javax.swing.JFrame {
         // JUGADOR 6
 
         if (lt.txtTurnoSting().equals(nombre_J6.getText())) {
-            timer.stop();//para timer y turno
             try {
                 if (contjg6 == 0) {
                     darcart = 0;
@@ -1489,7 +1459,7 @@ public class tablero extends javax.swing.JFrame {
             } catch (IOException e) {
                 System.out.println("Error");
             }
-
+            timer.stop();//para timer y turno
             JOptionPane.showMessageDialog(null, "Cambio de turno");//para timer y turno
             segundos = 0; //para timer y turno
             actLabelTIME();//para timer y turno
@@ -1505,7 +1475,6 @@ public class tablero extends javax.swing.JFrame {
         // JUGADOR 7
 
         if (lt.txtTurnoSting().equals(nombre_J5.getText())) {
-            timer.stop();
             try {
                 if (contjg7 == 0) {
                     darcart = 0;
@@ -1527,6 +1496,7 @@ public class tablero extends javax.swing.JFrame {
             } catch (IOException e) {
                 System.out.println("Error");
             }
+            timer.stop();//para timer y turno
             JOptionPane.showMessageDialog(null, "Cambio de turno");
             segundos = 0;
             actLabelTIME();
@@ -1542,7 +1512,6 @@ public class tablero extends javax.swing.JFrame {
         // JUGADOR 8
 
         if (lt.txtTurnoSting().equals(nombre_J4.getText())) {
-            timer.stop();
             try {
                 if (contjg8 == 0) {
                     darcart = 0;
@@ -1564,6 +1533,7 @@ public class tablero extends javax.swing.JFrame {
             } catch (IOException e) {
                 System.out.println("Error");
             }
+            timer.stop();//para timer y turno
             JOptionPane.showMessageDialog(null, "Cambio de turno");
             segundos = 0;
             actLabelTIME();

@@ -5,11 +5,13 @@
 package clases;
 
 import clases.cartas;
+import clases.call_png_baraja;
+import clases.call_png_fichas;
+
+
 import java.awt.*;
-import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.GridLayout;
-import java.awt.List;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
@@ -29,28 +31,25 @@ public class logica_tab {
     public cartas[][] matrizBotones; //de JButton a Pieza por valores
     private call_png_baraja baraja; 
     public int s=1;
-    public String t1;//nombre turno1
-    public String t2;//nombre turno2
-    public String t3;//nombre turno3
-    public String t4;//nombre turno4 
-    public String t5;//nombre turno5 
-    public String t6;//nombre turno6
-    public String t7;//nombre turno7 
-    public String t8;//nombre turno8 
+    //NOMBRE JUGADORS
+    public String t1, t2, t3, t4, t5, t6, t7, t8;
     public int turno=1;
+    //POR SI NO TIENE ASIGNADO
+    private ArrayList<String> todoColores;
+     //colores JUGADORES
+    public String color1, color2, color3, color4, color5, color6, color7, color8;
+    public String fichaActual="ROJO";
+    
+    registro r = new registro();
     
     public logica_tab() {
         matrizButtonsUI = new JButton[10][10]; 
         baraja = new call_png_baraja(); 
         turno=1;
-        t1="";
-        t2="";
-        t3="";
-        t4="";
-        t5="";
-        t6="";
-        t7="";
-        t8="";
+        t1=""; t2=""; t3=""; t4="";
+        t5=""; t6=""; t7=""; t8="";
+        
+        fichaActual="ROJO";
     } 
     public void GridLayout(JPanel tab) {
         int filas=10;
@@ -61,6 +60,12 @@ public class logica_tab {
         posicionarTablero();
         tab.setOpaque(false);
         
+        todoColores = new ArrayList<>();
+        String[] coloresDisponibles = {"ROJO","VERDE","AZUL","AMARILLO", "AQUA", "AZUL ELECTRICO", "BORGOÑA", "CELESTE", "CEREZA", "FUSCIA", "LILA", "LIMA", "MANGO", "MORADO", "MOSTAZA", "NARANJA", "OLIVA", "ROSA", "TURQUESA", "VINO", "ZAFIRO"};
+
+        for (String color : coloresDisponibles) {
+            todoColores.add(color);
+        }
         for (int i = 0; i < filas; i++) {
             for (int j = 0; j < col; j++) {
                 final cartas carta=matrizBotones[i][j]; 
@@ -74,13 +79,12 @@ public class logica_tab {
                 button.setPreferredSize(new Dimension(ancho, largo));
                 button.setOpaque(false);
                 button.setContentAreaFilled(false);
-             button.setBorder(BorderFactory.createLineBorder(Color.red));
+             //button.setBorder(BorderFactory.createLineBorder(Color.red));
      
                 button.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
                         mostrarInformacionPieza(carta);
-                        ImageIcon prueba=new ImageIcon("src/images/ficha_prueba.png");
                          p( button); 
                     }
                 });
@@ -89,12 +93,7 @@ public class logica_tab {
         }
     }
     private void p(JButton button) {
-        if (s % 2==1) {
-            button.setIcon(call_png_fichas.obtenerFicha("MOSTAZA"));
-        }else{
-            button.setIcon(null);
-        }
-        s++; 
+        button.setIcon(call_png_fichas.obtenerFicha(fichaActual));
     }
     private void mostrarInformacionPieza(cartas carta) {
         if (carta!=null) {
@@ -244,84 +243,79 @@ public class logica_tab {
     public void cambiorturno(){
         registro r=new registro();
         try {
-        if(r.getCantidadJ()==2){
-            if(turno==1){ turno=2;
-            }else{ turno=1;
+            if(r.getCantidadJ()==2){
+                if(turno==1){       turno=2; fichaActual=color2;
+                }else{              turno=1; fichaActual=color1;
+                }
+            }else if(r.getCantidadJ()==3){
+                if(turno==1){       turno=2; fichaActual=color2;
+                }else if(turno==2){ turno=3; fichaActual=color3;
+                }else if(turno==3){ turno=1; fichaActual=color1;
+                }
+            }else if(r.getCantidadJ()==4){
+                if(turno==1){       turno=2; fichaActual=color2;
+                }else if(turno==2){ turno=3; fichaActual=color3;
+                }else if(turno==3){ turno=4; fichaActual=color4;
+                }else if(turno==4){ turno=1; fichaActual=color1;
+                }
+            }else if(r.getCantidadJ()==6){
+                if(turno==1){       turno=2; fichaActual=color2;
+                }else if(turno==2){ turno=3; fichaActual=color3;
+                }else if(turno==3){ turno=4; fichaActual=color4;
+                }else if(turno==4){ turno=5; fichaActual=color5;
+                }else if(turno==5){ turno=6; fichaActual=color6;
+                }else if(turno==6){ turno=1; fichaActual=color1;
+                }               
+            } else if(r.getCantidadJ()==8){
+                if(turno==1){       turno=2; fichaActual=color2;
+                }else if(turno==2){ turno=3; fichaActual=color3;
+                }else if(turno==3){ turno=4; fichaActual=color4;
+                }else if(turno==4){ turno=5; fichaActual=color5;
+                }else if(turno==5){ turno=6; fichaActual=color6;
+                }else if(turno==6){ turno=7; fichaActual=color7;
+                }else if(turno==7){ turno=8; fichaActual=color8;
+                }else if(turno==8){ turno=1; fichaActual=color1;
+                }
             }
-        }else if(r.getCantidadJ()==3){
-            if(turno==1){ turno=2;
-            }else if(turno==2){ turno=3;
-            }else if(turno==3){ turno=1;
-            }
-        }else if(r.getCantidadJ()==4){
-            if(turno==1){ turno=2;
-            }else if(turno==2){ turno=3;
-            }else if(turno==3){ turno=4;
-            }else if(turno==4){ turno=1;
-            }
-        }else if(r.getCantidadJ()==6){
-            if(turno==1){ turno=2;
-            }else if(turno==2){ turno=3;
-            }else if(turno==3){ turno=4;
-            }else if(turno==4){ turno=5;
-            }else if(turno==5){ turno=6;
-            }else if(turno==6){ turno=1;
-            }               
-        } else if(r.getCantidadJ()==8){
-            if(turno==1){ turno=2;
-            }else if(turno==2){ turno=3;
-            }else if(turno==3){ turno=4;
-            }else if(turno==4){ turno=5;
-            }else if(turno==5){ turno=6;
-            }else if(turno==6){ turno=7;
-            }else if(turno==7){ turno=8;
-            }else if(turno==8){ turno=1;
-            }
-        }
         } catch (IOException e) {
              
         }
     }
     public String txtTurnoSting(){//LISTO
-//        if(turno==1){
-//            return t1;
-//        }else if(turno==2){
-//            return t2;
-//        }
         registro r=new registro();
         try {
             if(r.getCantidadJ()==2){
-                if(turno==1){ return t1;
-                }else{        return t2;
+                if(turno==1){       fichaActual=color1;return t1;
+                }else{              fichaActual=color2; return t2;
                 }
             }else if(r.getCantidadJ()==3){
-                if(turno==1){       return t1;
-                }else if(turno==2){ return t2;
-                }else if(turno==3){ return t3;
+                if(turno==1){       fichaActual=color1;return t1;
+                }else if(turno==2){ fichaActual=color2;return t2;
+                }else if(turno==3){ fichaActual=color3;return t3;
                 }
             }else if(r.getCantidadJ()==4){
-                if(turno==1){       return t1;
-                }else if(turno==2){ return t2;
-                }else if(turno==3){ return t3;
-                }else if(turno==4){ return t4;
+                if(turno==1){       fichaActual=color1;return t1;
+                }else if(turno==2){ fichaActual=color2;return t2;
+                }else if(turno==3){ fichaActual=color3;return t3;
+                }else if(turno==4){ fichaActual=color4;return t4;
                 }
             }else if(r.getCantidadJ()==6){
-                if(turno==1){       return t1;
-                }else if(turno==2){ return t2;
-                }else if(turno==3){ return t3;
-                }else if(turno==4){ return t4;
-                }else if(turno==5){ return t5;
-                }else if(turno==6){ return t6;
+                if(turno==1){       fichaActual=color1;return t1;
+                }else if(turno==2){ fichaActual=color2;return t2;
+                }else if(turno==3){ fichaActual=color3;return t3;
+                }else if(turno==4){ fichaActual=color4;return t4;
+                }else if(turno==5){ fichaActual=color5;return t5;
+                }else if(turno==6){ fichaActual=color6;return t6;
                 }               
             } else if(r.getCantidadJ()==8){
-                if(turno==1){       return t1;
-                }else if(turno==2){ return t2;
-                }else if(turno==3){ return t3;
-                }else if(turno==4){ return t4;
-                }else if(turno==5){ return t5;
-                }else if(turno==6){ return t6;
-                }else if(turno==7){ return t7;
-                }else if(turno==8){ return t8;
+                if(turno==1){       fichaActual=color1;return t1;
+                }else if(turno==2){ fichaActual=color2;return t2;
+                }else if(turno==3){ fichaActual=color3;return t3;
+                }else if(turno==4){ fichaActual=color4;return t4;
+                }else if(turno==5){ fichaActual=color5;return t5;
+                }else if(turno==6){ fichaActual=color6;return t6;
+                }else if(turno==7){ fichaActual=color7;return t7;
+                }else if(turno==8){ fichaActual=color8;return t8;
                 }
             }
         } catch (IOException e) {
@@ -330,76 +324,292 @@ public class logica_tab {
         return ";";
     }
     public String nombreTurno(){
-     return "";   
-    }
-
-    public int getTurno() {
+        return "";   
+    } public int getTurno() {
         return turno;
     }
 
     public String getT1() {
         return t1;
-    }
-
-    public void setT1(String t1) {
+    }public void setT1(String t1) {
         this.t1 = t1;
     }
 
     public String getT2() {
         return t2;
-    }
-
-    public void setT2(String t2) {
+    }public void setT2(String t2) {
         this.t2 = t2;
     }
 
     public String getT3() {
         return t3;
-    }
-
-    public void setT3(String t3) {
+    } public void setT3(String t3) {
         this.t3 = t3;
     }
 
     public String getT4() {
         return t4;
-    }
-
-    public void setT4(String t4) {
+    }public void setT4(String t4) {
         this.t4 = t4;
     }
 
     public String getT5() {
         return t5;
-    }
-
-    public void setT5(String t5) {
+    }public void setT5(String t5) {
         this.t5 = t5;
     }
 
     public String getT6() {
         return t6;
-    }
-
-    public void setT6(String t6) {
+    }public void setT6(String t6) {
         this.t6 = t6;
     }
 
     public String getT7() {
         return t7;
-    }
-
-    public void setT7(String t7) {
+    } public void setT7(String t7) {
         this.t7 = t7;
     }
 
     public String getT8() {
         return t8;
-    }
-
-    public void setT8(String t8) {
+    }public void setT8(String t8) {
         this.t8 = t8;
     }
+    //LOGICA PARA FICHA GETTER Y SETTER
+      public void buscarModo(String login){//busca el modo del que esta login si su modo es 0 entonces retorna color en equipo  si uno debe haer busqueda individual
+        registro r = new registro();
+        try{
+            if(r.getModo()==0){
+                System.out.println("modo equipo");
+                coloresEquipo();//por codigo
+                //TERMINADO
+            }else{
+                System.out.println("modo individual");
+                coloresIndividual();
+                //PENDIENTE TODO DE ESTE JEJE
+                //llama la funcion que obtiene los colores individual y los aplica a mi clase logica_tab
+            }
+        }catch(IOException ex){
+            System.out.println("ERROR AL OBTENER MODO EN OPONENTE");
+            
+        }
+    }
+    private void coloresEquipo() {
+        try {
+            registro r = new registro();
+            logica_tab t = new logica_tab();
+            int c = r.getCantidadJ();
+
+            if (c >= 2) { 
+                String listaColores = r.getColorEquipo();
+                String[] colores = listaColores.split("-");
+
+                ArrayList<String> listaDeColores = new ArrayList<>();//los colores que hay en mi unidimensional colores
+                while (colores.length < c && c==3) {
+                    String nuevoColor = obtenerColorNoUtilizado(listaDeColores);
+                    listaColores += "-" + nuevoColor; 
+                    colores = listaColores.split("-"); 
+                }
+               
+                for (int i = 0; i < listaDeColores.size(); i++) {
+                    String color = listaDeColores.get(i);
+                    if (r.getColorEquipo().equals("NO APLICA") || r.getColorEquipo().equals("NOAPLICA")  ) {
+                        listaDeColores.remove(i);
+                        String nuevoColor = obtenerColorNoUtilizado(listaDeColores);
+
+                        listaDeColores.add(i, nuevoColor);
+                    }
+                    listaDeColores.add(color);
+                }
+                
+                while (listaDeColores.size() < c) {
+                    String nuevoColor = obtenerColorNoUtilizado(listaDeColores);
+                    listaDeColores.add(nuevoColor);
+                }
+//esto puede aplicar para el individual 
+                if(r.getColorEquipo().equals("NO APLICA") && (c<=4)){
+                    for (int i = 0; i < c; i++) {
+                        if (i == 0 && r.getColorEquipo().equals("NO APLICA") ) {
+                            setColor1(listaDeColores.get(i));
+                            fichaActual=color1;
+                        } else if (i == 1  && (r.getColorEquipo().equals("NO APLICA") || c==2 || c==3)) {
+                            setColor2(listaDeColores.get(i));
+                        } else if (i == 2  &&  (r.getColorEquipo().equals("NO APLICA") || c==2 || c==3)) {
+                            setColor3(listaDeColores.get(i));
+                        }else if (i == 3  &&  (r.getColorEquipo().equals("NO APLICA") || c==2 || c==3)) {
+                            setColor4(listaDeColores.get(i));
+                        }else if (i == 4  &&  (r.getColorEquipo().equals("NO APLICA") || c==2 || c==3)) {
+                            setColor5(listaDeColores.get(i));
+                        }
+                    }
+                }
+                if(r.getColorEquipo().equals("NO APLICA") && (c==8)){
+                    for (int i = 0; i < c; i++) {
+                        if (i == 0 ) {
+                            setColor1(listaDeColores.get(0));
+                            fichaActual=color1;
+                        } else if (i == 1  ) {
+                            setColor2(listaDeColores.get(1));
+                        } else if (i == 2 ) {
+                            setColor3(listaDeColores.get(0));
+                        } else if (i == 3 ) {
+                            setColor4(listaDeColores.get(1));
+                        } else if (i == 4 ) {
+                            setColor5(listaDeColores.get(0));
+                        } else if (i == 5  ) {
+                            setColor6(listaDeColores.get(1));
+                        } else if (i == 6 ) {
+                            setColor7(listaDeColores.get(0));
+                        } else if (i == 7  ) {
+                            setColor8(listaDeColores.get(1));
+                        } 
+                    }
+                }
+                if(r.getColorEquipo().equals("NO APLICA") && (c==6)){
+                    for (int i = 0; i < c; i++) {
+                        if (i == 0 ) {
+                            setColor1(listaDeColores.get(0));
+                            fichaActual=color1;
+                        } else if (i == 1  ) {
+                            setColor2(listaDeColores.get(1));
+                        } else if (i == 2 ) {
+                            setColor3(listaDeColores.get(2));
+                        } else if (i == 3 ) {
+                            setColor4(listaDeColores.get(0));
+                        } else if (i == 4 ) {
+                            setColor5(listaDeColores.get(1));
+                        } else if (i == 5  ) {
+                            setColor6(listaDeColores.get(2));
+                        }
+                    }
+                }
+                if(!r.getColorEquipo().equals("NO APLICA") && (c==2 || c==3)){
+                    for (int i = 0; i < c; i++) {
+                        if (i == 0 && !r.getColorEquipo().equals("NO APLICA") ) {
+                            setColor1(colores[0]);
+                            fichaActual=color1;
+                        } else if (i == 1  && !r.getColorEquipo().equals("NO APLICA")) {
+                            setColor2(colores[1]);
+                        } else if (i == 2  &&  !r.getColorEquipo().equals("NO APLICA")) {
+                            setColor3(colores[2]);
+                        }
+                    }
+                }
+                if(!r.getColorEquipo().equals("NO APLICA") && (c==4 || c==8)){
+                    for (int i = 0; i < c; i++) {
+                        if (i == 0 ) {
+                            setColor1(colores[0]);
+                            fichaActual=color1;
+                        } else if (i == 1  ) {
+                            setColor2(colores[1]);
+                        } else if (i == 2 ) {
+                            setColor3(colores[0]);
+                        } else if (i == 3 ) {
+                            setColor4(colores[1]);
+                        } else if (i == 4 ) {
+                            setColor5(colores[0]);
+                        } else if (i == 5  ) {
+                            setColor6(colores[1]);
+                        } else if (i == 6 ) {
+                            setColor7(colores[0]);
+                        } else if (i == 7  ) {
+                            setColor8(colores[1]);
+                        } 
+                    }
+                }
+                if(!r.getColorEquipo().equals("NO APLICA") && c==6){
+                    for (int i = 0; i < c; i++) {
+                        if (i == 0 ) {
+                            setColor1(colores[0]);
+                            fichaActual=color1;
+                        } else if (i == 1  ) {
+                            setColor2(colores[1]);
+                        } else if (i == 2 ) {
+                            setColor3(colores[2]);
+                        } else if (i == 3 ) {
+                            setColor4(colores[0]);
+                        } else if (i == 4 ) {
+                            setColor5(colores[1]);
+                        } else if (i == 5  ) {
+                            setColor6(colores[2]);
+                        }
+                    }
+                }
+                
+            }
+        } catch (IOException ex) {
+            System.out.println("error en color equipo");
+        }
+    }
+
+    private String obtenerColorNoUtilizado(ArrayList<String> listaDeColores) {
+        for (String color : todoColores) {
+            if (!listaDeColores.contains(color)) {
+                return color;
+            }
+        }
+        return "AQUA";
+    }
+
+    private void coloresIndividual(){
+        
+    }
+    
+    public String getColor1() {
+        return color1;
+    }public void setColor1(String color1) {
+        this.color1 = color1;
+    }
+
+    public String getColor2() {
+        return color2;
+    }public void setColor2(String color2) {
+        this.color2 = color2;
+    }
+
+    public String getColor3() {
+        return color3;
+    }public void setColor3(String color3) {
+        this.color3 = color3;
+    }
+
+    public String getColor4() {
+        return color4;
+    }public void setColor4(String color4) {
+        this.color4 = color4;
+    }
+
+    public String getColor5() {
+        return color5;
+    }public void setColor5(String color5) {
+        this.color5 = color5;
+    }
+
+    public String getColor6() {
+        return color6;
+    }public void setColor6(String color6) {
+        this.color6 = color6;
+    }
+
+    public String getColor7() {
+        return color7;
+    }public void setColor7(String color7) {
+        this.color7 = color7;
+    }
+
+    public String getColor8() {
+        return color8;
+    }public void setColor8(String color8) {
+        this.color8 = color8;
+    }
+
+    public String getFichaActual() {
+        return fichaActual;
+    }public void setFichaActual(String fichaActual) {
+        this.fichaActual = fichaActual;
+    }
+    
     
     
 }

@@ -4,14 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 import javax.swing.ImageIcon;
 public class call_png_baraja {
-//codigo trasera
-    
-   
-//codigo esquinas   
-    public static ImageIcon imagenEsquinas() {
-        ImageIcon icono=new ImageIcon("src/images/esquinas.png");
-        return icono;
-    }
+
      private static final Map<String, ImageIcon> carta = new HashMap<>();//debe recibir algo como DIAMANTE2
     
     static{
@@ -78,6 +71,18 @@ public class call_png_baraja {
         if (icono == null) {
             icono = carta.get("ESQUINAS");//si hay un error al cargar va a retornar esta
         }
+        return icono;
+    }
+    //codigo trasera
+    
+   
+//codigo esquinas   
+    public static ImageIcon imagenEsquinas() {
+        ImageIcon icono=new ImageIcon("src/images/esquinas.png");
+        return icono;
+    }
+    public static ImageIcon imagenTrasera() {
+        ImageIcon icono=new ImageIcon("src/images/trasera.png");
         return icono;
     }
 }
