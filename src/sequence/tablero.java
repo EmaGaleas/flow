@@ -67,6 +67,7 @@ public class tablero extends javax.swing.JFrame {
 
     private void mostrarCuadroDialogoConImagenes(int numcarts, String infocartas) {
         JPanel panel = new JPanel();
+        System.out.println("infocartas"+infocartas);
         String[] cartasunidas = infocartas.split("\n");
         String[] cartas = new String[numcarts + 1];
         for (int i = 0; i < cartasunidas.length; i++) {
@@ -107,6 +108,34 @@ public class tablero extends javax.swing.JFrame {
         panel.setOpaque(false);
         dialog.setLocationRelativeTo(null);
         dialog.setVisible(true);
+    }
+    
+    private void mostrarmazo(String infocarta) {
+        
+        JPanel panel = new JPanel();
+        System.out.println("infocarta mazo"+infocarta);
+        panel.setLayout(new BoxLayout(panel, BoxLayout.X_AXIS)); // Establece el layout vertical
+        panel.add(Box.createRigidArea(new Dimension(155, 0)));
+
+            JButton boton = new JButton();
+            boton.setSize(new Dimension(45, 55));
+
+            boton.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+               JOptionPane.showMessageDialog(null, "Información de la Carta"+infocarta);
+                }
+            });
+             String cartaSinGuion = infocarta.replace("-", "");    
+            boton.setIcon(call_png_baraja.obtenerFicha(cartaSinGuion));
+            panel.add(boton);
+        
+        CustomDialog dialog = new CustomDialog(this, panel, "PRUEBITA");
+        dialog.setMinimumSize(new Dimension(400, 400));
+        dialog.setMaximumSize(new Dimension(500, 300));
+        panel.setOpaque(false);
+        dialog.setLocationRelativeTo(null);
+        dialog.setVisible(true);
+        
     }
 
 
@@ -1126,6 +1155,7 @@ public class tablero extends javax.swing.JFrame {
         Cartas_conf siguienteCarta = repart.siguienteCarta();
         if (siguienteCarta != null) {
             JOptionPane.showMessageDialog(null, "Carta sacada: " + siguienteCarta);
+         mostrarmazo(siguienteCarta.getTipo()+siguienteCarta.getValor());
         } else {
             JOptionPane.showMessageDialog(null, "Ya no hay más cartas, barajear de nuevo");
         }
