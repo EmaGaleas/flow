@@ -28,7 +28,7 @@ public class tablero extends javax.swing.JFrame {
     String nombre, cartjg1, cartjg2, cartjg3, cartjg4, cartg5, cartg6, cartg7, cartg8;
     int darcart = 0, contjg1 = 0, contjg2 = 0, contjg3 = 0, contjg4 = 0, contjg5 = 0, contjg6 = 0, contjg7 = 0, contjg8 = 0;
     private Timer timer;
-    private int segundos = 0;
+    private int segundos = 0,contador=0;
 
     public tablero(String nombre) {
         initComponents();
@@ -60,45 +60,47 @@ public class tablero extends javax.swing.JFrame {
         time.setText(tiempoFormateado);
     }
 
-    private void mostrarCuadroDialogoConImagenes(int numcarts,String infocartas) {
-       System.out.println("infocartas"+infocartas);
-       JPanel panel = new JPanel();
-       String[] cartasunidas = infocartas.split("\n");
-       
-       String[] cartas = new String[numcarts];
-       for (int i = 0; i < numcarts; i++) {
-            if (i < cartasunidas.length) {
-                cartas[i] = cartasunidas[i];
-            } 
+    private void mostrarCuadroDialogoConImagenes(int numcarts, String infocartas) {
+    JPanel panel = new JPanel();
+    String[] cartasunidas = infocartas.split("\n");
+    String[] cartas = new String[numcarts + 1];
+    for (int i = 0; i < cartasunidas.length; i++) {
+        if (i < cartasunidas.length && !cartasunidas[i].equals("")) {
+            cartas[i] = cartasunidas[i];
         }
-        System.out.println("");
-        for (String palabra : cartas) {
-            System.out.println("CARTAS:"+palabra);
-        }
-       
-       
-        panel.setLayout(new BoxLayout(panel, BoxLayout.X_AXIS)); // Establece el layout vertical
-        panel.add(Box.createRigidArea(new Dimension(15, 0)));
-        for (int i = 0; i < numcarts; i++) {
-            JButton boton = new JButton();
-            boton.setSize(new Dimension(45, 55));
-
-            boton.addActionListener(new ActionListener() {
-                public void actionPerformed(ActionEvent e) {
-                    JOptionPane.showMessageDialog(null, "jajaj");
-                }
-            });
-            boton.setIcon(call_png_baraja.imagenCorazon12());
-            panel.add(boton);
-        }
-
-        CustomDialog dialog = new CustomDialog(this, panel, "PRUEBITA");
-        dialog.setMinimumSize(new Dimension(700, 500));
-        dialog.setMaximumSize(new Dimension(700, 500));
-        panel.setOpaque(false);
-        dialog.setLocationRelativeTo(null);
-        dialog.setVisible(true);
     }
+
+    panel.setLayout(new BoxLayout(panel, BoxLayout.X_AXIS)); // Establece el layout vertical
+    panel.add(Box.createRigidArea(new Dimension(15, 0)));
+    
+    //  cuadro de diálogo para mostrar la información de la carta
+    JOptionPane infoCartaDialog = new JOptionPane();
+    
+    for (int i = 0; i < numcarts; i++) {
+        int cartaIndex = i; // Almacena el índice de la carta para acceder a ella en el ActionListener
+        JButton boton = new JButton();
+        boton.setSize(new Dimension(45, 55));
+
+        boton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                // Obtine la información de la carta correspondiente
+                String cartaSeleccionada = (cartaIndex < cartas.length) ? cartas[cartaIndex+1] : "No hay información disponible";
+                // Mostrar la información de la carta en un cuadro de diálogo
+                infoCartaDialog.showMessageDialog(null, cartaSeleccionada, "Información de la Carta", JOptionPane.INFORMATION_MESSAGE);
+            }
+        });
+        boton.setIcon(call_png_baraja.imagenCorazon12());
+        panel.add(boton);
+    }
+
+    CustomDialog dialog = new CustomDialog(this, panel, "PRUEBITA");
+    dialog.setMinimumSize(new Dimension(700, 500));
+    dialog.setMaximumSize(new Dimension(700, 500));
+    panel.setOpaque(false);
+    dialog.setLocationRelativeTo(null);
+    dialog.setVisible(true);
+}
+
 
     private void finTIME() {
         JOptionPane.showMessageDialog(this, ":(\nSE TE ACABO EL TIEMPO\nCambio de turno", "Fin turno", JOptionPane.INFORMATION_MESSAGE);
