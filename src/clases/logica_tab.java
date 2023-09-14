@@ -564,6 +564,7 @@ public class logica_tab {
                     color=r.getColorIndividual(t1);
                     todos.add(color);
                     System.out.println(color);
+                    color=r.getColorIndividual(t2);
                     todos.add(color);
                 }else if(c==3){
                     color=r.getColorIndividual(t1);
