@@ -91,9 +91,9 @@ public class logica_tab {
                         
                          p( button, carta.getFila(),carta.getColumna()); 
                          System.out.println(posesion);
-                         System.out.println(miembros1);
-                         System.out.println(miembros2);
-                         System.out.println(miembros3);
+//                         System.out.println(miembros1);
+//                         System.out.println(miembros2);
+//                         System.out.println(miembros3);
                     }
                 });
               //button.setBackground(Color.black);
@@ -127,7 +127,10 @@ public class logica_tab {
             cambioValido = true;
             elegida="a";
         }else{
-            JOptionPane.showMessageDialog(null, "NO DISPONIBLE", "Informacion de Carta", JOptionPane.WARNING_MESSAGE);
+            if(carta.getTipo().equals("ESQUINA")){
+                JOptionPane.showMessageDialog(null, "No puedes poner NADA aqui", "Informacion de Carta", JOptionPane.WARNING_MESSAGE);
+            }
+            JOptionPane.showMessageDialog(null, "NO COINCIDE CON TU ELECCION", "Informacion de Carta", JOptionPane.WARNING_MESSAGE);
             mostrarInformacionPieza(carta);
         }  
         
