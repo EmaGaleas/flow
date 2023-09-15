@@ -39,8 +39,13 @@ public class logica_tab {
      //colores JUGADORES
     public String color1, color2, color3, color4, color5, color6, color7, color8;
     public String fichaActual="ROJO";
-    
+    public String miembros1="";
+    public String miembros2="";
+    public String miembros3="";
+    public String posesion="EQUIPO 1";
     registro r = new registro();
+    private boolean cambioValido = false;
+    public  String elegida="a";
     
     public logica_tab() {
         matrizButtonsUI = new JButton[10][10]; 
@@ -80,22 +85,61 @@ public class logica_tab {
                 button.setOpaque(false);
                 button.setContentAreaFilled(false);
              //button.setBorder(BorderFactory.createLineBorder(Color.red));
-     
                 button.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
-                        mostrarInformacionPieza(carta);
-                         p( button); 
+                        
+                         p( button, carta.getFila(),carta.getColumna()); 
+                         System.out.println(posesion);
+                         System.out.println(miembros1);
+                         System.out.println(miembros2);
+                         System.out.println(miembros3);
                     }
                 });
               //button.setBackground(Color.black);
             }
         }
     }
-    private void p(JButton button) {
-
-        button.setIcon(call_png_fichas.obtenerFicha(fichaActual));
+    //    public void sobresalir(String tipo) {
+//    for (int fila = 0; fila < matrizBotones.length; fila++) {
+//        for (int columna = 0; columna < matrizBotones[0].length; columna++) {
+//            cartas carta = matrizBotones[fila][columna];
+//             // Supongo que tienes un método para obtener el botón en tu clase cartas
+//
+//            if (carta.getTipo().equals(tipo)) {
+//                // Cambiar el fondo del botón a color rosa (puedes usar setForeground o setBackground según tus necesidades)
+//                matrizBotones[fila][columna].setOpaque(true);
+//                matrizBotones[fila][columna].setContentAreaFilled(true);
+//                matrizBotones[fila][columna].setBackground(Color.pink);
+//                
+//            }
+//        }
+//    }
+//}
+    private void p(JButton button, int fila, int columa) {
+        cartas carta = matrizBotones[fila][columa];
+        
+        if(elegida.equals("a")){
+            JOptionPane.showMessageDialog(null, "NO HAS ELEGIDO UNA CARTA", "Informacion de Carta", JOptionPane.WARNING_MESSAGE);
+        }else if(carta.getPosesion().equals("NADIE") && !carta.getTipo().equals("ESQUINA") && carta.getTipo().equals(elegida)) {
+            button.setIcon(call_png_fichas.obtenerFicha(fichaActual));
+            carta.setPosesion(posesion);
+            cambioValido = true;
+            elegida="a";
+        }else{
+            JOptionPane.showMessageDialog(null, "NO DISPONIBLE", "Informacion de Carta", JOptionPane.WARNING_MESSAGE);
+            mostrarInformacionPieza(carta);
+        }  
+        
     }
+    public synchronized boolean seRealizoAccion() {
+    if (cambioValido) {
+        cambioValido = false; 
+        return true;
+    } else {
+        return false;
+    }
+}
     private void mostrarInformacionPieza(cartas carta) {
         if (carta!=null) {
             String info="Tipo: "+carta.getTipo()+"\nValor: "+carta.getValor()+"\nPosesion: "+carta.getPosesion()+"\nFila:"+carta.getFila()+"\nColumna: "+carta.getColumna();
@@ -145,98 +189,98 @@ public class logica_tab {
     //columna 9
         int valorDiamanteColumna9=6;//columna 9 fila del 1 al 7
         for (int f = 1; f < 8; f++) {
-            matrizBotones[f][9]=new cartas("DIAMANTE", valorDiamanteColumna9, posesionInicial,f,9);
+            matrizBotones[f][9]=new cartas("DIAMANTE"+valorDiamanteColumna9, valorDiamanteColumna9, posesionInicial,f,9);
             valorDiamanteColumna9++;//llega hasta 2
         }
-        matrizBotones[8][9]=new cartas("DIAMANTE", 1, posesionInicial,8,9);
+        matrizBotones[8][9]=new cartas("DIAMANTE1", 1, posesionInicial,8,9);
     //fila 9
         int valorTrebolFila9=6;//fila 9 columna 1 al 7
         for (int c = 1; c < 8; c++) {
-            matrizBotones[9][c]=new cartas("TREBOL", valorTrebolFila9, posesionInicial,9,c);
+            matrizBotones[9][c]=new cartas("TREBOL"+valorTrebolFila9, valorTrebolFila9, posesionInicial,9,c);
             valorTrebolFila9++;//llega hasta 12
         }
-        matrizBotones[9][8]=new cartas("TREBOL", 1, posesionInicial,9,8);
+        matrizBotones[9][8]=new cartas("TREBOL1", 1, posesionInicial,9,8);
     //fila 0 
         int valorDimanteFila0=2;//fila 0 columna  5 al 8
         for (int c = 5; c < 9; c++) {
-            matrizBotones[0][c]=new cartas("DIAMANTE", valorDimanteFila0, posesionInicial,0,c);
+            matrizBotones[0][c]=new cartas("DIAMANTE"+valorDimanteFila0, valorDimanteFila0, posesionInicial,0,c);
             valorDimanteFila0++;//llega hasta 5
         }
-        matrizBotones[0][1]=new cartas("PICA", 10, posesionInicial,0,1);
-        matrizBotones[0][2]=new cartas("PICA", 11, posesionInicial,0,2);
-        matrizBotones[0][3]=new cartas("PICA", 12, posesionInicial,0,3);
-        matrizBotones[0][4]=new cartas("PICA", 1, posesionInicial,0,4);
+        matrizBotones[0][1]=new cartas("PICA10", 10, posesionInicial,0,1);
+        matrizBotones[0][2]=new cartas("PICA11", 11, posesionInicial,0,2);
+        matrizBotones[0][3]=new cartas("PICA12", 12, posesionInicial,0,3);
+        matrizBotones[0][4]=new cartas("PICA1", 1, posesionInicial,0,4);
     //fila 1
         int valorCorazonFila1=10;//fila 1 columna  1 al 8
         for (int c = 1; c < 9; c++) {
-            matrizBotones[1][c]=new cartas("CORAZON", valorCorazonFila1, posesionInicial,1,c);
+            matrizBotones[1][c]=new cartas("CORAZON"+valorCorazonFila1, valorCorazonFila1, posesionInicial,1,c);
             valorCorazonFila1--;//llega hasta 3
         }
     //fila 8
         int valorPicaFila8=12;//fila 8 columna 3 al 8 
         for (int c = 3; c < 9; c++) {
-            matrizBotones[8][c]=new cartas("PICA", valorPicaFila8, posesionInicial,8,c);
+            matrizBotones[8][c]=new cartas("PICA"+valorPicaFila8, valorPicaFila8, posesionInicial,8,c);
             valorPicaFila8--;//llega hasta 7
         }
-        matrizBotones[8][2]=new cartas("PICA", 1, posesionInicial,8,2);    
+        matrizBotones[8][2]=new cartas("PICA1", 1, posesionInicial,8,2);    
     //fila 2
         int valorDiamanteFila2=7;//fila 2 columna 2 al 7 
         for (int c = 2; c < 8; c++) {
-            matrizBotones[2][c]=new cartas("DIAMANTE", valorDiamanteFila2, posesionInicial,2,c);
+            matrizBotones[2][c]=new cartas("DIAMANTE"+valorDiamanteFila2, valorDiamanteFila2, posesionInicial,2,c);
             valorDiamanteFila2++;//llega hasta 12
         }
-        matrizBotones[2][1]=new cartas("CORAZON", 11, posesionInicial,2,1);  
-        matrizBotones[2][8]=new cartas("CORAZON", 2, posesionInicial,2,8);
+        matrizBotones[2][1]=new cartas("CORAZON11", 11, posesionInicial,2,1);  
+        matrizBotones[2][8]=new cartas("CORAZON2", 2, posesionInicial,2,8);
     //columna 1 faltantes desde fila 3 al 8    
-        matrizBotones[3][1]=new cartas("CORAZON", 12, posesionInicial,3,1);  
-        matrizBotones[4][1]=new cartas("CORAZON", 1, posesionInicial,4,1);
-        matrizBotones[5][1]=new cartas("TREBOL", 2, posesionInicial,5,1);  
-        matrizBotones[6][1]=new cartas("TREBOL", 3, posesionInicial,6,1);
-        matrizBotones[7][1]=new cartas("TREBOL", 4, posesionInicial,7,1);  
-        matrizBotones[8][1]=new cartas("TREBOL", 5, posesionInicial,8,1);
+        matrizBotones[3][1]=new cartas("CORAZON12", 12, posesionInicial,3,1);  
+        matrizBotones[4][1]=new cartas("CORAZON1", 1, posesionInicial,4,1);
+        matrizBotones[5][1]=new cartas("TREBOL2", 2, posesionInicial,5,1);  
+        matrizBotones[6][1]=new cartas("TREBOL3", 3, posesionInicial,6,1);
+        matrizBotones[7][1]=new cartas("TREBOL4", 4, posesionInicial,7,1);  
+        matrizBotones[8][1]=new cartas("TREBOL5", 5, posesionInicial,8,1);
     //columna 2 fila 3 al 7  
         int valorDiamanteColumna2=6;
         for (int f = 3; f < 8; f++) {
-            matrizBotones[f][2]=new cartas("DIAMANTE", valorDiamanteColumna2, posesionInicial,f,2);
+            matrizBotones[f][2]=new cartas("DIAMANTE"+valorDiamanteColumna2, valorDiamanteColumna2, posesionInicial,f,2);
             valorDiamanteColumna2--;//llega hasta 2
         }
     //fila 7 columna 3 al 7
         int valorTrebolFila7=6;
         for (int c = 3; c < 8; c++) {
-            matrizBotones[7][c]=new cartas("TREBOL", valorTrebolFila7, posesionInicial,7,c);
+            matrizBotones[7][c]=new cartas("TREBOL"+valorTrebolFila7, valorTrebolFila7, posesionInicial,7,c);
             valorTrebolFila7++;//llega hasta 10 
         }   
     //columna 3 faltantes desde fila 3 al 6     
         int valorTrebolColumna3=2;
         for (int f = 3; f < 7; f++) {
-            matrizBotones[f][3]=new cartas("TREBOL",  valorTrebolColumna3, posesionInicial,f,3);
+            matrizBotones[f][3]=new cartas("TREBOL"+valorTrebolColumna3,  valorTrebolColumna3, posesionInicial,f,3);
             valorTrebolColumna3++;//llega hasta 5
         } 
     //columna 4 faltantes desde fila 3 al 6    
-        matrizBotones[3][4]=new cartas("CORAZON", 1, posesionInicial,3,4);  
-        matrizBotones[4][4]=new cartas("CORAZON", 4, posesionInicial,4,4);
-        matrizBotones[5][4]=new cartas("CORAZON", 5, posesionInicial,5,4);  
-        matrizBotones[6][4]=new cartas("CORAZON", 6, posesionInicial,6,4); 
+        matrizBotones[3][4]=new cartas("CORAZON1", 1, posesionInicial,3,4);  
+        matrizBotones[4][4]=new cartas("CORAZON4", 4, posesionInicial,4,4);
+        matrizBotones[5][4]=new cartas("CORAZON5", 5, posesionInicial,5,4);  
+        matrizBotones[6][4]=new cartas("CORAZON6", 6, posesionInicial,6,4); 
     //columna 5 faltantes desde fila 3 al 6    
-        matrizBotones[3][5]=new cartas("CORAZON", 12, posesionInicial,3,5);  
-        matrizBotones[4][5]=new cartas("CORAZON", 3, posesionInicial,4,5);
-        matrizBotones[5][5]=new cartas("CORAZON", 2, posesionInicial,5,5);  
-        matrizBotones[6][5]=new cartas("CORAZON", 7, posesionInicial,6,5);
+        matrizBotones[3][5]=new cartas("CORAZON12", 12, posesionInicial,3,5);  
+        matrizBotones[4][5]=new cartas("CORAZON3", 3, posesionInicial,4,5);
+        matrizBotones[5][5]=new cartas("CORAZON2", 2, posesionInicial,5,5);  
+        matrizBotones[6][5]=new cartas("CORAZON7", 7, posesionInicial,6,5);
     //columna 6 faltantes desde fila 3 al 6    
         int valorCorazonColumna6=11;
         for (int f = 3; f < 7; f++) {
-            matrizBotones[f][6]=new cartas("CORAZON", valorCorazonColumna6, posesionInicial,f,6);
+            matrizBotones[f][6]=new cartas("CORAZON"+valorCorazonColumna6, valorCorazonColumna6, posesionInicial,f,6);
             valorCorazonColumna6--;//llega hasta 8
         }
     //columna 7 faltantes desde fila 3 al 6    
-        matrizBotones[3][7]=new cartas("DIAMANTE", 1, posesionInicial,3,7);  
-        matrizBotones[4][7]=new cartas("TREBOL", 1, posesionInicial,4,7);
-        matrizBotones[5][7]=new cartas("TREBOL", 12, posesionInicial,5,7);  
-        matrizBotones[6][7]=new cartas("TREBOL", 11, posesionInicial,6,7);    
+        matrizBotones[3][7]=new cartas("DIAMANTE1", 1, posesionInicial,3,7);  
+        matrizBotones[4][7]=new cartas("TREBOL1", 1, posesionInicial,4,7);
+        matrizBotones[5][7]=new cartas("TREBOL12", 12, posesionInicial,5,7);  
+        matrizBotones[6][7]=new cartas("TREBOL11", 11, posesionInicial,6,7);    
     //columna 8 faltantes desde fila 3 al 7   
         int valorPicaColumna8=2;
         for (int f = 3; f < 8; f++) {
-            matrizBotones[f][8]=new cartas("PICA",   valorPicaColumna8, posesionInicial,f,8);
+            matrizBotones[f][8]=new cartas("PICA"+valorPicaColumna8,   valorPicaColumna8, posesionInicial,f,8);
             valorPicaColumna8++;//llega hasta 6
         }   
     }
@@ -245,37 +289,37 @@ public class logica_tab {
         registro r=new registro();
         try {
             if(r.getCantidadJ()==2){
-                if(turno==1){       turno=2; fichaActual=color2;
-                }else{              turno=1; fichaActual=color1;
+                if(turno==1){       posesion="EQUIPO 2";turno=2; fichaActual=color2;
+                }else{              posesion="EQUIPO 1";turno=1; fichaActual=color1;
                 }
             }else if(r.getCantidadJ()==3){
-                if(turno==1){       turno=2; fichaActual=color2;
-                }else if(turno==2){ turno=3; fichaActual=color3;
-                }else if(turno==3){ turno=1; fichaActual=color1;
+                if(turno==1){       posesion="EQUIPO 2";turno=2;fichaActual=color2;
+                }else if(turno==2){ posesion="EQUIPO 3";turno=3;fichaActual=color3;
+                }else if(turno==3){ posesion="EQUIPO 1"; turno=1; fichaActual=color1;
                 }
             }else if(r.getCantidadJ()==4){
-                if(turno==1){       turno=2; fichaActual=color2;
-                }else if(turno==2){ turno=3; fichaActual=color3;
-                }else if(turno==3){ turno=4; fichaActual=color4;
-                }else if(turno==4){ turno=1; fichaActual=color1;
+                if(turno==1){       posesion="EQUIPO 2";turno=2; fichaActual=color2;
+                }else if(turno==2){ posesion="EQUIPO 1";turno=3; fichaActual=color3;
+                }else if(turno==3){ posesion="EQUIPO 2";turno=4; fichaActual=color4;
+                }else if(turno==4){ posesion="EQUIPO 1";turno=1; fichaActual=color1;
                 }
             }else if(r.getCantidadJ()==6){
-                if(turno==1){       turno=2; fichaActual=color2;
-                }else if(turno==2){ turno=3; fichaActual=color3;
-                }else if(turno==3){ turno=4; fichaActual=color4;
-                }else if(turno==4){ turno=5; fichaActual=color5;
-                }else if(turno==5){ turno=6; fichaActual=color6;
-                }else if(turno==6){ turno=1; fichaActual=color1;
+                if(turno==1){       posesion="EQUIPO 2";turno=2; fichaActual=color2;
+                }else if(turno==2){ posesion="EQUIPO 3";turno=3; fichaActual=color3;
+                }else if(turno==3){ posesion="EQUIPO 1";turno=4; fichaActual=color4;
+                }else if(turno==4){ posesion="EQUIPO 2";turno=5; fichaActual=color5;
+                }else if(turno==5){ posesion="EQUIPO 3";turno=6; fichaActual=color6;
+                }else if(turno==6){ posesion="EQUIPO 1";turno=1; fichaActual=color1;
                 }               
             } else if(r.getCantidadJ()==8){
-                if(turno==1){       turno=2; fichaActual=color2;
-                }else if(turno==2){ turno=3; fichaActual=color3;
-                }else if(turno==3){ turno=4; fichaActual=color4;
-                }else if(turno==4){ turno=5; fichaActual=color5;
-                }else if(turno==5){ turno=6; fichaActual=color6;
-                }else if(turno==6){ turno=7; fichaActual=color7;
-                }else if(turno==7){ turno=8; fichaActual=color8;
-                }else if(turno==8){ turno=1; fichaActual=color1;
+                if(turno==1){       posesion="EQUIPO 2";turno=2; fichaActual=color2;
+                }else if(turno==2){ posesion="EQUIPO 1";turno=3; fichaActual=color3;
+                }else if(turno==3){ posesion="EQUIPO 2";turno=4; fichaActual=color4;
+                }else if(turno==4){ posesion="EQUIPO 1";turno=5; fichaActual=color5;
+                }else if(turno==5){ posesion="EQUIPO 2";turno=6; fichaActual=color6;
+                }else if(turno==6){ posesion="EQUIPO 1";turno=7; fichaActual=color7;
+                }else if(turno==7){ posesion="EQUIPO 2";turno=8; fichaActual=color8;
+                }else if(turno==8){ posesion="EQUIPO 1";turno=1; fichaActual=color1;
                 }
             }
         } catch (IOException e) {
@@ -330,53 +374,6 @@ public class logica_tab {
         return turno;
     }
 
-    public String getT1() {
-        return t1;
-    }public void setT1(String t1) {
-        this.t1 = t1;
-    }
-
-    public String getT2() {
-        return t2;
-    }public void setT2(String t2) {
-        this.t2 = t2;
-    }
-
-    public String getT3() {
-        return t3;
-    } public void setT3(String t3) {
-        this.t3 = t3;
-    }
-
-    public String getT4() {
-        return t4;
-    }public void setT4(String t4) {
-        this.t4 = t4;
-    }
-
-    public String getT5() {
-        return t5;
-    }public void setT5(String t5) {
-        this.t5 = t5;
-    }
-
-    public String getT6() {
-        return t6;
-    }public void setT6(String t6) {
-        this.t6 = t6;
-    }
-
-    public String getT7() {
-        return t7;
-    } public void setT7(String t7) {
-        this.t7 = t7;
-    }
-
-    public String getT8() {
-        return t8;
-    }public void setT8(String t8) {
-        this.t8 = t8;
-    }
     //LOGICA PARA FICHA GETTER Y SETTER
       public void buscarModo(String login){//busca el modo del que esta login si su modo es 0 entonces retorna color en equipo  si uno debe haer busqueda individual
         registro r = new registro();
@@ -384,7 +381,6 @@ public class logica_tab {
             if(r.getModo()==0){
                 System.out.println("modo equipo");
                 coloresEquipo();//por codigo
-                //TERMINADO
             }else{
                 System.out.println("modo individual");
                 coloresIndividual();
@@ -394,7 +390,7 @@ public class logica_tab {
             
         }
     }
-    private void coloresEquipo() {
+     private void coloresEquipo() {
         try {
             registro r = new registro();
             logica_tab t = new logica_tab();
@@ -563,7 +559,6 @@ public class logica_tab {
                 if(c==2){
                     color=r.getColorIndividual(t1);
                     todos.add(color);
-                    System.out.println(color);
                     color=r.getColorIndividual(t2);
                     todos.add(color);
                 }else if(c==3){
@@ -652,7 +647,6 @@ public class logica_tab {
             
         }  
     }
-    
     public String getColor1() {
         return color1;
     }public void setColor1(String color1) {

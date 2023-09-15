@@ -21,12 +21,7 @@ public class cartas extends JButton{
         this.imagePath = imagePath;
         this.posesion = posesion;
         this.fila = fila;
-        this.columna = columna;      
-//        if (tipo.equals("ESQUINA") && valor==-1) {
-//            this.imagePath = "src/images/esquina.png";
-//        }else{
-//            this.imagePath = "src/images/trasera.png";
-//        }
+        this.columna = columna;    
     }
     public String getTipo() {
         return tipo;
