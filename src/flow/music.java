@@ -4,28 +4,43 @@
  */
 package flow;
 
+import java.io.BufferedInputStream;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStream;
 import java.util.TimerTask;
 import javax.print.attribute.standard.Media;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 import javax.swing.Timer;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import javazoom.jl.decoder.Bitstream;
+import javazoom.jl.player.Player;
+import javazoom.jl.player.advanced.AdvancedPlayer;
+import javazoom.jl.player.advanced.PlaybackEvent;
+
 
 public class music extends javax.swing.JFrame {
-  private DefaultListModel<String> canciones;
+    private DefaultListModel<String> canciones;
     private int songNumber=0;
     private Timer timer;
     private TimerTask task;
-    private boolean play;
     private Media media;
-
+    private Bitstream bitstream;
+    private Player player; 
+    private boolean rep = false;
+    private boolean pausa= false;
 
     public music() {
         initComponents();
         ImageIcon icon = new ImageIcon("src/flow/no.png");
         im.setIcon(icon);
+        player = null; 
         canciones = new DefaultListModel<>();
     }
     public void pause(){
@@ -49,7 +64,9 @@ public class music extends javax.swing.JFrame {
     public void pararT(){
         
     }
- 
+
+
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -98,6 +115,11 @@ public class music extends javax.swing.JFrame {
 
         stop_play.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         stop_play.setText("ll");
+        stop_play.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                stop_playMouseClicked(evt);
+            }
+        });
 
         add.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         add.setText("Añadir");
@@ -195,10 +217,27 @@ public class music extends javax.swing.JFrame {
 
     private void listaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listaMouseClicked
         int elegida =  lista.getSelectedIndex();
-       if (elegida >= 0) {
+        if (elegida >= 0) {
             String eCancion = canciones.getElementAt(elegida);
             nombre.setText(eCancion);
-       }
+
+            if (player != null) {
+                player.close();
+            }
+
+            new Thread() {
+                public void run() {
+                    try {
+                        FileInputStream fis = new FileInputStream(eCancion);
+                        player = new Player(fis); 
+                        player.play();
+                    } catch (Exception e) {
+                        System.out.println("Problem playing file " + eCancion);
+                        System.out.println(e);
+                    }
+                }
+            }.start();
+        }
     }//GEN-LAST:event_listaMouseClicked
 
     private void addMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addMouseClicked
@@ -218,6 +257,17 @@ public class music extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_addMouseClicked
+
+    private void stop_playMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_stop_playMouseClicked
+//        if (player != null) {
+//            if () {
+//               // ResumeMusic();
+//            } else {
+//              //  PauseMusic();
+//            }
+//        }
+
+    }//GEN-LAST:event_stop_playMouseClicked
 
     /**
      * @param args the command line arguments

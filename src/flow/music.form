@@ -189,6 +189,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="ll"/>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="stop_playMouseClicked"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="add">
           <Properties>
