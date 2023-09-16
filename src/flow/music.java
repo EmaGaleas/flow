@@ -23,15 +23,17 @@ import org.jaudiotagger.audio.AudioFileIO;
 
 public class music extends javax.swing.JFrame {
     private DefaultListModel<String> canciones;
-    private int song=0;
     public Timer timer;
-    private Media media;
     private Player player; 
     private boolean rep = false;
     private boolean pausa= false;
     private int segundos;
     private int indiceActual = -1; 
     private String name;
+    private boolean pausado ;
+private FileInputStream fis;
+private long pauseLocation;
+private long songTotalLength;
 
     public music() {
         initComponents();
@@ -40,6 +42,9 @@ public class music extends javax.swing.JFrame {
         player = null; 
         segundos=0;
         name="";
+         pauseLocation = 0;
+ songTotalLength = 0;
+ pausado = false;
          indiceActual = -1;
         canciones = new DefaultListModel<>();
         canciones.addElement("Lilium.mp3");
@@ -269,13 +274,13 @@ public class music extends javax.swing.JFrame {
                         timer.start();
                         String duracio = duracionToda(eCancion);
                         duracion.setText(""+duracio);
-                        FileInputStream fis = new FileInputStream(eCancion);
+                        fis = new FileInputStream(eCancion);
+                        songTotalLength = fis.available();
                         player = new Player(fis);
                         player.play();
                         
                     } catch (Exception e) {
-                        System.out.println("Problem playing file " + eCancion);
-                        System.out.println(e);
+                        
                     }
                 }
             }.start();
@@ -302,8 +307,35 @@ public class music extends javax.swing.JFrame {
 
     private void stop_playMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_stop_playMouseClicked
         if (player != null) {
-            player.close();
-            timer.stop();
+            if (pausado) {
+                pausado = false;
+                timer.start();
+                try {
+                    fis = new FileInputStream(name);
+                    fis.skip(songTotalLength-pauseLocation);
+                    player = new Player(fis);
+                    new Thread() {
+                        public void run() {
+                            try {
+                                player.play();
+                            } catch (Exception e) {
+                            }
+                        }
+                    }.start();
+                } catch (Exception e) {
+                }
+            } else {
+                try {
+                    pauseLocation=fis.available();
+                    player.close();
+                    fis.close(); 
+                    timer.stop();
+                    pausado = true;  
+                } catch (Exception e) {
+                }
+            }
+        }else{
+            
         }
 
     }//GEN-LAST:event_stop_playMouseClicked
@@ -315,6 +347,7 @@ public class music extends javax.swing.JFrame {
         }
         if (player!= null) {
             player.close();
+            pausado = false;
         }
         if (indiceActual== -1) {
             indiceActual = 0;
@@ -327,20 +360,22 @@ public class music extends javax.swing.JFrame {
         String siguienteCancion=canciones.getElementAt(indiceActual);
         nombre.setText(siguienteCancion);
         name=siguienteCancion;
+        songTotalLength =0;
         new Thread() {
             public void run() {
                 try {
+                       
                     timer.stop();
                     segundos = 0;
                     actLabelTIME();
                     timer.start();
                     String duracio = duracionToda(siguienteCancion);
                     duracion.setText("" + duracio);
-                    FileInputStream fis = new FileInputStream(siguienteCancion);
+                    fis = new FileInputStream(siguienteCancion);
+                    songTotalLength = fis.available();
                     player = new Player(fis);
                     player.play();
                 } catch (Exception e) {
-                    System.out.println("Problem playing file " + siguienteCancion);
                     System.out.println(e);
                 }
             }
@@ -354,6 +389,7 @@ public class music extends javax.swing.JFrame {
         }
         if (player!= null) {
             player.close();
+            pausado = false;
         }
         if (indiceActual== -1) {
             indiceActual=canciones.getSize()-1; 
@@ -367,6 +403,7 @@ public class music extends javax.swing.JFrame {
         String cancionAntes=canciones.getElementAt(indiceActual);
         nombre.setText(cancionAntes);
         name=cancionAntes;
+        songTotalLength =0;
         new Thread() {
             public void run() {
                 try {
@@ -376,11 +413,13 @@ public class music extends javax.swing.JFrame {
                     timer.start();
                     String duracio = duracionToda(cancionAntes);
                     duracion.setText("" + duracio);
-                    FileInputStream fis = new FileInputStream(cancionAntes);
+                    fis = new FileInputStream(cancionAntes);
+                    songTotalLength = fis.available();
                     player = new Player(fis);
                     player.play();
+                    
+
                 } catch (Exception e) {
-                    System.out.println("Problem playing file " + cancionAntes);
                     System.out.println(e);
                 }
             }
