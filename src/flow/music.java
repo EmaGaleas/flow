@@ -26,56 +26,57 @@ public class music extends javax.swing.JFrame {
     public Timer timer;
     private Player player; 
     private boolean rep = false;
-    private boolean pausa= false;
     private int segundos;
     private int indiceActual = -1; 
     private String name;
     private boolean pausado ;
-private FileInputStream fis;
-private long pauseLocation;
-private long songTotalLength;
+    private FileInputStream fis;
+    private long pauseLocation;
+    private long songTotalLength;
 
     public music() {
         initComponents();
         ImageIcon icon = new ImageIcon("src/flow/no.png");
         im.setIcon(icon);
         player = null; 
-        segundos=0;
+        segundos= 0;
         name="";
-         pauseLocation = 0;
- songTotalLength = 0;
- pausado = false;
-         indiceActual = -1;
-        canciones = new DefaultListModel<>();
+        pauseLocation= 0;
+        songTotalLength= 0;
+        pausado= false;
+        indiceActual = -1;
+        canciones= new DefaultListModel<>();
         canciones.addElement("Lilium.mp3");
         canciones.addElement("unravel.mp3");
+        canciones.addElement("TOP Polarize.mp3");
         lista.setModel(canciones);
-        segundos = 0;
+        segundos= 0;
         
-        timer = new Timer(1000, new ActionListener() {
+        timer= new Timer(1000, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 segundos++;
                 actLabelTIME();
-                
+                if (player!= null && player.isComplete()) {
+                    timer.stop();
+                }
             }
         });
-        
-    
+
     }
      private void actLabelTIME() {
-        int minutos=segundos/60;
-        int segundosRestantes=segundos % 60;
+        int minutos= segundos/60;
+        int segundosRestantes= segundos % 60;
         String tiempoFormateado=String.format("%02d:%02d", minutos, segundosRestantes);
         tiempo.setText(tiempoFormateado);
-        double total=palBar(name);
+        double total= palBar(name);
         int bankai = (int) ((segundos*100.0)/total);
         barra.setValue(bankai);
     }
     private double palBar(String rutaArchivo) {
         try {
-            AudioFile audioFile=AudioFileIO.read(new File(rutaArchivo));
-            int sec=audioFile.getAudioHeader().getTrackLength();
+            AudioFile audioFile= AudioFileIO.read(new File(rutaArchivo));
+            int sec= audioFile.getAudioHeader().getTrackLength();
             return sec;
         } catch (Exception e) {
             System.out.println(e);
@@ -84,10 +85,10 @@ private long songTotalLength;
     }
     private String duracionToda(String rutaArchivo) {
         try {
-            AudioFile audioFile=AudioFileIO.read(new File(rutaArchivo));
-            int sec=audioFile.getAudioHeader().getTrackLength();
-            int min=sec/60;
-            int segundos=sec%60;
+            AudioFile audioFile= AudioFileIO.read(new File(rutaArchivo));
+            int sec= audioFile.getAudioHeader().getTrackLength();
+            int min= sec/60;
+            int segundos= sec%60;
             return String.format("%02d:%02d", min, segundos);
         } catch (Exception e) {
             System.out.println(e);
@@ -114,6 +115,7 @@ private long songTotalLength;
         jLabel1 = new javax.swing.JLabel();
         nombre = new javax.swing.JLabel();
         im = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -178,6 +180,19 @@ private long songTotalLength;
 
         im.setInheritsPopupMenu(false);
 
+        jPanel2.setBackground(new java.awt.Color(51, 0, 51));
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 8, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -192,17 +207,17 @@ private long songTotalLength;
                         .addComponent(duracion, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(26, 26, 26)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addComponent(jLabel1)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(nombre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addComponent(barra, javax.swing.GroupLayout.PREFERRED_SIZE, 417, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 401, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(nombre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(barra, javax.swing.GroupLayout.DEFAULT_SIZE, 417, Short.MAX_VALUE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(add, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(165, 165, 165)))
+                                .addGap(165, 165, 165))
+                            .addComponent(jScrollPane1)
+                            .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -232,7 +247,9 @@ private long songTotalLength;
                     .addComponent(antes, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(stop_play, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(siguiente, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 88, Short.MAX_VALUE)
+                .addGap(46, 46, 46)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
                 .addComponent(add, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -256,11 +273,11 @@ private long songTotalLength;
     }// </editor-fold>//GEN-END:initComponents
 
     private void listaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listaMouseClicked
-        int elegida=lista.getSelectedIndex();
+        int elegida= lista.getSelectedIndex();
         if (elegida>= 0) {
-            String eCancion=canciones.getElementAt(elegida);
+            String eCancion= canciones.getElementAt(elegida);
             nombre.setText(eCancion);
-            name=eCancion;
+            name= eCancion;
             if (player!= null) {
                 player.close();
             }
@@ -269,18 +286,17 @@ private long songTotalLength;
                 public void run() {
                     try {
                         timer.stop();
-                        segundos = 0; 
+                        segundos= 0; 
                         actLabelTIME();
                         timer.start();
-                        String duracio = duracionToda(eCancion);
+                        String duracio= duracionToda(eCancion);
                         duracion.setText(""+duracio);
-                        fis = new FileInputStream(eCancion);
-                        songTotalLength = fis.available();
-                        player = new Player(fis);
+                        fis= new FileInputStream(eCancion);
+                        songTotalLength= fis.available();
+                        player= new Player(fis);
                         player.play();
                         
                     } catch (Exception e) {
-                        
                     }
                 }
             }.start();
@@ -290,15 +306,15 @@ private long songTotalLength;
    
     
     private void addMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addMouseClicked
-        JFileChooser fac = new JFileChooser();
+        JFileChooser fac= new JFileChooser();
         fac.setCurrentDirectory(new File("."));
-        FileNameExtensionFilter fnef = new FileNameExtensionFilter("MP3 files", "mp3");
+        FileNameExtensionFilter fnef= new FileNameExtensionFilter("MP3 files", "mp3");
         fac.setFileFilter(fnef);
-        int song = fac.showOpenDialog(null);
+        int song= fac.showOpenDialog(null);
         
-        if (song == JFileChooser.APPROVE_OPTION) {
-            File selectedFile = fac.getSelectedFile();
-            String fileName = selectedFile.getName();
+        if (song== JFileChooser.APPROVE_OPTION) {
+            File selectedFile= fac.getSelectedFile();
+            String fileName= selectedFile.getName();
             canciones.addElement(fileName);
             lista.setModel(canciones); 
         }
@@ -306,12 +322,12 @@ private long songTotalLength;
     }//GEN-LAST:event_addMouseClicked
 
     private void stop_playMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_stop_playMouseClicked
-        if (player != null) {
+        if (player!= null) {
             if (pausado) {
-                pausado = false;
+                pausado= false;
                 timer.start();
                 try {
-                    fis = new FileInputStream(name);
+                    fis= new FileInputStream(name);
                     fis.skip(songTotalLength-pauseLocation);
                     player = new Player(fis);
                     new Thread() {
@@ -350,30 +366,30 @@ private long songTotalLength;
             pausado = false;
         }
         if (indiceActual== -1) {
-            indiceActual = 0;
+            indiceActual= 0;
         } else {
             indiceActual++;
             if (indiceActual>= canciones.getSize()) {
                 indiceActual=0; 
             }
         }
-        String siguienteCancion=canciones.getElementAt(indiceActual);
+        String siguienteCancion= canciones.getElementAt(indiceActual);
         nombre.setText(siguienteCancion);
-        name=siguienteCancion;
+        name= siguienteCancion;
         songTotalLength =0;
         new Thread() {
             public void run() {
                 try {
                        
                     timer.stop();
-                    segundos = 0;
+                    segundos= 0;
                     actLabelTIME();
                     timer.start();
-                    String duracio = duracionToda(siguienteCancion);
+                    String duracio= duracionToda(siguienteCancion);
                     duracion.setText("" + duracio);
-                    fis = new FileInputStream(siguienteCancion);
-                    songTotalLength = fis.available();
-                    player = new Player(fis);
+                    fis= new FileInputStream(siguienteCancion);
+                    songTotalLength= fis.available();
+                    player= new Player(fis);
                     player.play();
                 } catch (Exception e) {
                     System.out.println(e);
@@ -408,14 +424,14 @@ private long songTotalLength;
             public void run() {
                 try {
                     timer.stop();
-                    segundos = 0;
+                    segundos= 0;
                     actLabelTIME();
                     timer.start();
-                    String duracio = duracionToda(cancionAntes);
+                    String duracio= duracionToda(cancionAntes);
                     duracion.setText("" + duracio);
-                    fis = new FileInputStream(cancionAntes);
-                    songTotalLength = fis.available();
-                    player = new Player(fis);
+                    fis= new FileInputStream(cancionAntes);
+                    songTotalLength= fis.available();
+                    player= new Player(fis);
                     player.play();
                     
 
@@ -469,6 +485,7 @@ private long songTotalLength;
     private javax.swing.JLabel im;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JList<String> lista;
     private javax.swing.JLabel nombre;
