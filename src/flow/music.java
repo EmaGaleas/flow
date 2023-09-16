@@ -4,65 +4,90 @@
  */
 package flow;
 
-import java.io.BufferedInputStream;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.InputStream;
-import java.util.TimerTask;
 import javax.print.attribute.standard.Media;
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
 import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
-import javax.swing.JOptionPane;
 import javax.swing.Timer;
 import javax.swing.filechooser.FileNameExtensionFilter;
-import javazoom.jl.decoder.Bitstream;
 import javazoom.jl.player.Player;
-import javazoom.jl.player.advanced.AdvancedPlayer;
-import javazoom.jl.player.advanced.PlaybackEvent;
+import javax.sound.sampled.*;
+import javax.swing.JOptionPane;
+import org.jaudiotagger.audio.AudioFile;
+import org.jaudiotagger.audio.AudioFileIO;
 
 
 public class music extends javax.swing.JFrame {
     private DefaultListModel<String> canciones;
-    private int songNumber=0;
-    private Timer timer;
-    private TimerTask task;
+    private int song=0;
+    public Timer timer;
     private Media media;
-    private Bitstream bitstream;
     private Player player; 
     private boolean rep = false;
     private boolean pausa= false;
+    private int segundos;
+    private int indiceActual = -1; 
+    private String name;
 
     public music() {
         initComponents();
         ImageIcon icon = new ImageIcon("src/flow/no.png");
         im.setIcon(icon);
         player = null; 
+        segundos=0;
+        name="";
+         indiceActual = -1;
         canciones = new DefaultListModel<>();
-    }
-    public void pause(){
+        canciones.addElement("Lilium.mp3");
+        canciones.addElement("unravel.mp3");
+        lista.setModel(canciones);
+        segundos = 0;
         
-    }
-    public void play(){
+        timer = new Timer(1000, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                segundos++;
+                actLabelTIME();
+                
+            }
+        });
         
+    
     }
-    public void reset(){
-        
+     private void actLabelTIME() {
+        int minutos=segundos/60;
+        int segundosRestantes=segundos % 60;
+        String tiempoFormateado=String.format("%02d:%02d", minutos, segundosRestantes);
+        tiempo.setText(tiempoFormateado);
+        double total=palBar(name);
+        int bankai = (int) ((segundos*100.0)/total);
+        barra.setValue(bankai);
     }
-    public void anterior(){
-        
+    private double palBar(String rutaArchivo) {
+        try {
+            AudioFile audioFile=AudioFileIO.read(new File(rutaArchivo));
+            int sec=audioFile.getAudioHeader().getTrackLength();
+            return sec;
+        } catch (Exception e) {
+            System.out.println(e);
+            return 1600;
+        }
     }
-    public void siguiente(){
-        
-    }
-    public void correrT(){
-        
-    }
-    public void pararT(){
-        
+    private String duracionToda(String rutaArchivo) {
+        try {
+            AudioFile audioFile=AudioFileIO.read(new File(rutaArchivo));
+            int sec=audioFile.getAudioHeader().getTrackLength();
+            int min=sec/60;
+            int segundos=sec%60;
+            return String.format("%02d:%02d", min, segundos);
+        } catch (Exception e) {
+            System.out.println(e);
+            return null;
+        }
     }
 
 
@@ -76,9 +101,9 @@ public class music extends javax.swing.JFrame {
         lista = new javax.swing.JList<>();
         antes = new javax.swing.JButton();
         barra = new javax.swing.JProgressBar();
-        tiempoCorrido = new javax.swing.JLabel();
+        tiempo = new javax.swing.JLabel();
         duracion = new javax.swing.JLabel();
-        sig = new javax.swing.JButton();
+        siguiente = new javax.swing.JButton();
         stop_play = new javax.swing.JButton();
         add = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
@@ -99,19 +124,29 @@ public class music extends javax.swing.JFrame {
 
         antes.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         antes.setText("<<");
+        antes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                antesMouseClicked(evt);
+            }
+        });
 
-        tiempoCorrido.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        tiempoCorrido.setForeground(new java.awt.Color(255, 255, 255));
-        tiempoCorrido.setText("00:00");
+        tiempo.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        tiempo.setForeground(new java.awt.Color(255, 255, 255));
+        tiempo.setText("00:00");
 
-        duracion.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        duracion.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         duracion.setForeground(new java.awt.Color(255, 255, 255));
         duracion.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         duracion.setText("00:00");
         duracion.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
 
-        sig.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        sig.setText(">>");
+        siguiente.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        siguiente.setText(">>");
+        siguiente.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                siguienteMouseClicked(evt);
+            }
+        });
 
         stop_play.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         stop_play.setText("ll");
@@ -129,11 +164,11 @@ public class music extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Reproduciendo:");
 
-        nombre.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        nombre.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         nombre.setForeground(new java.awt.Color(255, 255, 255));
 
         im.setInheritsPopupMenu(false);
@@ -147,7 +182,7 @@ public class music extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(29, 29, 29)
-                        .addComponent(tiempoCorrido, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(tiempo, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(duracion, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -170,7 +205,7 @@ public class music extends javax.swing.JFrame {
                         .addGap(55, 55, 55)
                         .addComponent(stop_play, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(52, 52, 52)
-                        .addComponent(sig, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(siguiente, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(75, 75, 75)))
                 .addContainerGap(18, Short.MAX_VALUE))
         );
@@ -180,10 +215,10 @@ public class music extends javax.swing.JFrame {
                 .addGap(44, 44, 44)
                 .addComponent(barra, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(duracion, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tiempoCorrido, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(tiempo, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(duracion, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(19, 19, 19)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -191,8 +226,8 @@ public class music extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(antes, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(stop_play, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(sig, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 89, Short.MAX_VALUE)
+                    .addComponent(siguiente, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 88, Short.MAX_VALUE)
                 .addComponent(add, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -216,21 +251,28 @@ public class music extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void listaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listaMouseClicked
-        int elegida =  lista.getSelectedIndex();
-        if (elegida >= 0) {
-            String eCancion = canciones.getElementAt(elegida);
+        int elegida=lista.getSelectedIndex();
+        if (elegida>= 0) {
+            String eCancion=canciones.getElementAt(elegida);
             nombre.setText(eCancion);
-
-            if (player != null) {
+            name=eCancion;
+            if (player!= null) {
                 player.close();
             }
-
+            
             new Thread() {
                 public void run() {
                     try {
+                        timer.stop();
+                        segundos = 0; 
+                        actLabelTIME();
+                        timer.start();
+                        String duracio = duracionToda(eCancion);
+                        duracion.setText(""+duracio);
                         FileInputStream fis = new FileInputStream(eCancion);
-                        player = new Player(fis); 
+                        player = new Player(fis);
                         player.play();
+                        
                     } catch (Exception e) {
                         System.out.println("Problem playing file " + eCancion);
                         System.out.println(e);
@@ -238,8 +280,10 @@ public class music extends javax.swing.JFrame {
                 }
             }.start();
         }
+        
     }//GEN-LAST:event_listaMouseClicked
-
+   
+    
     private void addMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addMouseClicked
         JFileChooser fac = new JFileChooser();
         fac.setCurrentDirectory(new File("."));
@@ -250,24 +294,98 @@ public class music extends javax.swing.JFrame {
         if (song == JFileChooser.APPROVE_OPTION) {
             File selectedFile = fac.getSelectedFile();
             String fileName = selectedFile.getName();
-
             canciones.addElement(fileName);
-
             lista.setModel(canciones); 
         }
         
     }//GEN-LAST:event_addMouseClicked
 
     private void stop_playMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_stop_playMouseClicked
-//        if (player != null) {
-//            if () {
-//               // ResumeMusic();
-//            } else {
-//              //  PauseMusic();
-//            }
-//        }
+        if (player != null) {
+            player.close();
+            timer.stop();
+        }
 
     }//GEN-LAST:event_stop_playMouseClicked
+
+    private void siguienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_siguienteMouseClicked
+        if (canciones.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "NO HAY CANCIONES");//para timer y turno
+            return; 
+        }
+        if (player!= null) {
+            player.close();
+        }
+        if (indiceActual== -1) {
+            indiceActual = 0;
+        } else {
+            indiceActual++;
+            if (indiceActual>= canciones.getSize()) {
+                indiceActual=0; 
+            }
+        }
+        String siguienteCancion=canciones.getElementAt(indiceActual);
+        nombre.setText(siguienteCancion);
+        name=siguienteCancion;
+        new Thread() {
+            public void run() {
+                try {
+                    timer.stop();
+                    segundos = 0;
+                    actLabelTIME();
+                    timer.start();
+                    String duracio = duracionToda(siguienteCancion);
+                    duracion.setText("" + duracio);
+                    FileInputStream fis = new FileInputStream(siguienteCancion);
+                    player = new Player(fis);
+                    player.play();
+                } catch (Exception e) {
+                    System.out.println("Problem playing file " + siguienteCancion);
+                    System.out.println(e);
+                }
+            }
+        }.start();
+    }//GEN-LAST:event_siguienteMouseClicked
+
+    private void antesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_antesMouseClicked
+         if (canciones.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "NO HAY CANCIONES");//para timer y turno
+            return; 
+        }
+        if (player!= null) {
+            player.close();
+        }
+        if (indiceActual== -1) {
+            indiceActual=canciones.getSize()-1; 
+        } else {
+            if (indiceActual == 0) {
+                indiceActual=canciones.getSize()-1;
+            } else {
+                indiceActual--;
+            }
+        }
+        String cancionAntes=canciones.getElementAt(indiceActual);
+        nombre.setText(cancionAntes);
+        name=cancionAntes;
+        new Thread() {
+            public void run() {
+                try {
+                    timer.stop();
+                    segundos = 0;
+                    actLabelTIME();
+                    timer.start();
+                    String duracio = duracionToda(cancionAntes);
+                    duracion.setText("" + duracio);
+                    FileInputStream fis = new FileInputStream(cancionAntes);
+                    player = new Player(fis);
+                    player.play();
+                } catch (Exception e) {
+                    System.out.println("Problem playing file " + cancionAntes);
+                    System.out.println(e);
+                }
+            }
+        }.start();
+    }//GEN-LAST:event_antesMouseClicked
 
     /**
      * @param args the command line arguments
@@ -315,8 +433,8 @@ public class music extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JList<String> lista;
     private javax.swing.JLabel nombre;
-    private javax.swing.JButton sig;
+    private javax.swing.JButton siguiente;
     private javax.swing.JButton stop_play;
-    private javax.swing.JLabel tiempoCorrido;
+    private javax.swing.JLabel tiempo;
     // End of variables declaration//GEN-END:variables
 }
