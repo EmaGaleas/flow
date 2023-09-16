@@ -8,14 +8,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.FileInputStream;
-import javax.print.attribute.standard.Media;
 import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.Timer;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javazoom.jl.player.Player;
-import javax.sound.sampled.*;
 import javax.swing.JOptionPane;
 import org.jaudiotagger.audio.AudioFile;
 import org.jaudiotagger.audio.AudioFileIO;
@@ -118,6 +116,7 @@ public class music extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Music Player");
         setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(51, 51, 51));
