@@ -293,7 +293,7 @@ public class music extends javax.swing.JFrame {
             if (player!= null) {
                 player.close();
             }
-            stop_play.setText("||");
+            stop_play.setText("ll");
             new Thread() {
                 public void run() {
                     try {
@@ -342,7 +342,7 @@ public class music extends javax.swing.JFrame {
             if (pausado) {
                 pausado= false;
                 timer.start();
-                stop_play.setText("||");
+                stop_play.setText("ll");
                 try {
                     fis= new FileInputStream(name);
                     fis.skip(songTotalLength-pauseLocation);
@@ -395,7 +395,7 @@ public class music extends javax.swing.JFrame {
         nombre.setText(siguienteCancion);
         name= siguienteCancion;
         songTotalLength =0;
-        stop_play.setText("||");
+        stop_play.setText("ll");
         new Thread() {
             public void run() {
                 try {
@@ -439,7 +439,7 @@ public class music extends javax.swing.JFrame {
         nombre.setText(cancionAntes);
         name=cancionAntes;
         songTotalLength =0;
-        stop_play.setText("||");
+        stop_play.setText("ll");
         new Thread() {
             public void run() {
                 try {
@@ -471,7 +471,7 @@ public class music extends javax.swing.JFrame {
             pausado = false;
         }
         timer.stop();
-        stop_play.setText("||");
+        stop_play.setText("ll");
         barra.setValue(0);
         nombre.setText("");
         tiempo.setText("00:00");
